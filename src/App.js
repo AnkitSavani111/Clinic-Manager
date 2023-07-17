@@ -1,9 +1,10 @@
 import './App.css';
+import Home from './Components/Home';
 
 function App() {
   return (
     <div className="container text-6xl">
-        Home Panu
+        <Home />
 
     </div>
   );
