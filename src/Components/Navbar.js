@@ -14,14 +14,14 @@ function Navbar() {
 
     const links = [
         { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
-        { name: "Contact", path: "/contact" },
+        { name: "Appointment", path: "/appointment" },
+        { name: "About", path: "/about" }
     ]
     return (
-        <Disclosure as="nav" className="bg-white shadow">
+        <Disclosure as="nav" className="bg-transparent shadow">
             {({ open }) => (
                 <>
-                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 backdrop-blur-xl ">
                         <div className="relative flex h-16 justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button */}
@@ -37,7 +37,7 @@ function Navbar() {
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
-                                        className="block h-8 w-auto lg:hidden"
+                                        className="block h-8 w-auto lg:hidden rounded-full"
                                         src="https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/testing-trends-world-quality-report.jpg?itok=vUyONZsj"
                                         alt="Your Company"
                                     />
@@ -47,7 +47,7 @@ function Navbar() {
                                         alt="Your Company"
                                     />
                                 </div>
-                                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                                <div className="hidden sm:ml-10 sm:flex sm:space-x-8">
                                     {links.map((link) => (
                                         <Link
                                             to={link.path}
@@ -61,11 +61,11 @@ function Navbar() {
                                 </div>
                             </div>
 
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <div className="py-6">
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+                                <div className="justify-center">
                                     <Link
                                         to="/"
-                                        className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
+                                        className="-mx-3 block rounded-lg py-2.5 px-5 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                                     >
                                         Sign up
                                     </Link>
@@ -73,7 +73,7 @@ function Navbar() {
 
 
                                 {/* Profile dropdown */}
-                                <Menu as="div" className="relative ml-3">
+                                <Menu as="div" className="relative ml-3 justify-center">
                                     <div>
                                         <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                             <span className="sr-only">Open user menu</span>
