@@ -1,18 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Homebody() {
     return (
         <>
-            <main>
+            <main className='-z-10'>
                 <div className="relative px-6 lg:px-8">
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:my-auto">
                         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                                Announcing our next round of funding.{' '}
-                                <a href="#" className="font-semibold text-indigo-600">
+                                Announcing our next round of funding.
+                                <Link to="/" className="font-semibold text-indigo-600">
                                     <span className="absolute inset-0" aria-hidden="true" />
                                     Read more <span aria-hidden="true">&rarr;</span>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className="text-center">
@@ -24,19 +25,19 @@ function Homebody() {
                                 fugiat veniam occaecat fugiat aliqua.
                             </p>
                             <div className="mt-10 flex items-center justify-center gap-x-6">
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/"
                                     className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
                                     Get started
-                                </a>
-                                <a href="#" className="text-base font-semibold leading-7 text-gray-900">
+                                </Link>
+                                <Link to="/" className="text-base font-semibold leading-7 text-gray-900">
                                     Learn more <span aria-hidden="true">→</span>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
-                    <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+                    <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-40 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
                         <svg
                             className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
                             viewBox="0 0 1155 678"
@@ -63,6 +64,44 @@ function Homebody() {
                         </svg>
                     </div>
                 </div>
+
+                {/* Featured section */}
+                    <section aria-labelledby="cause-heading" >
+                    <div className="relative bg-gray-800 py-32 px-6 sm:py-40 sm:px-12 lg:px-16">
+                        <div className="absolute inset-0 overflow-hidden">
+                            <img
+                                src="https://tailwindui.com/img/ecommerce-images/home-page-03-feature-section-full-width.jpg"
+                                alt=""
+                                className="h-full w-full object-cover object-center"
+                            />
+                        </div>
+                        <div
+                            aria-hidden="true"
+                            className="absolute inset-0 bg-gray-900 bg-opacity-50"
+                        />
+                        <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+                            <h2
+                                id="cause-heading"
+                                className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+                            >
+                                Long-term thinking
+                            </h2>
+                            <p className="mt-3 text-xl text-white">
+                                We're committed to responsible, sustainable, and ethical
+                                manufacturing. Our small-scale approach allows us to focus on
+                                quality and reduce our impact. We're doing our best to delay the
+                                inevitable heat-death of the universe.
+                            </p>
+                            <Link
+                                to="#"
+                                className="mt-8 block w-full rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
+                            >
+                                Read our story
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+                
             </main>
         </>
     )
