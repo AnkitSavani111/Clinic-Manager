@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -65,10 +65,10 @@ function Navbar() {
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                                     <div className="justify-center">
                                         <Link
-                                            to="/"
+                                            to="/login"
                                             className="-mx-3 block rounded-lg py-2.5 px-5 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                                         >
-                                            Sign up
+                                            Admin Login
                                         </Link>
                                     </div>
 
