@@ -2,7 +2,7 @@ import React from "react";
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 
-const ReceptionLogin = () => {
+const DoctorLogin = () => {
   const [error, setError] = useState({ status: false, msg: "", type: "" });
 
   const handleSubmit = (event) => {
@@ -28,7 +28,7 @@ const ReceptionLogin = () => {
         <span className="px-2 pr-1 text-teal-700 font-bold">Staff !</span>
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col w-5/12 m-auto justify-center relative top-3">
+        <div className="flex flex-col w-5/12 m-auto mb-20 justify-self-center relative top-3">
           <TextField
             required
             margin="normal"
@@ -50,8 +50,8 @@ const ReceptionLogin = () => {
               paddingLeft: "0.5%",
             }}
           />
-        </div>
-        <Button
+          
+          <Button
           type="submit"
           variant="contained"
           sx={{
@@ -62,9 +62,11 @@ const ReceptionLogin = () => {
         >
           Log in
         </Button>
+        </div>
+        
       </form>
     </>
   );
 };
 
-export default ReceptionLogin;
+export default DoctorLogin;
