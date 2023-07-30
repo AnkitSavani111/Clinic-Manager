@@ -11,7 +11,8 @@ function Home() {
         className="Home md:pt-7"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover'
+          backgroundSize: '100% 100%',
+          objectFit: 'cover'
         }}
       >
         <Navbar />
