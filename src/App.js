@@ -4,6 +4,8 @@ import Home from './Components/Home';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Appointment from './Components/Appointment';
 import About from './Components/About';
+import SignUp from './Components/SignUp';
+import ReceptionDashBoard from './Components/ReceptionDashBoard';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/appointment' element={<Appointment />} />
           <Route path='/about' element={<About />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/rec-dashboard' element={<ReceptionDashBoard />} />
         </Routes>
       </BrowserRouter>
     </>
