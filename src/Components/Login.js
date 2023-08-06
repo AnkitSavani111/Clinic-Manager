@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import DoctorLogin from "./DoctorLogin";
-import ReceptionLogin from "./ReceptionLogin";
-import Logo from "../Images/logoTemp.png";
-import { Input } from "@mui/material";
+// import DoctorLogin from "./DoctorLogin";
+// import ReceptionLogin from "./ReceptionLogin";
+import Logo from "../Images/logo.png";
+// import { Input } from "@mui/material";
 
 const Login = () => {
   const [comp, setComp] = useState("Doctor");
@@ -65,7 +65,7 @@ const Login = () => {
           <div className="Card flex flex-col justify-center m-auto items-center w-2/5 shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl">
             <div className="sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply">
               <img
-                className="m-auto h-12 w-auto mix-blend-multiply rounded-md "
+                className="m-auto h-12 w-auto mix-blend-multiply rounded-md"
                 src={Logo}
                 alt="Your Company"
               />
@@ -117,7 +117,7 @@ const Login = () => {
 
                   <div>
                     <div>
-                      <label htmlFor="Role" className="block mb-2 text-sm font-medium text-gray-900">Select your workF</label>
+                      <label htmlFor="Role" className="block mb-2 text-sm font-medium text-gray-900">Select your work</label>
                       <select onChange={(e) => { setRole(e.target.value) }} value={Role} name="Role" id="Role"
                       className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100'>
                         <option value="">
@@ -152,7 +152,7 @@ const Login = () => {
                     <div className="text-sm">
                       <a
                         href="#"
-                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                        className="font-medium text-white hover:text-black"
                       >
                         Forgot your password?
                       </a>

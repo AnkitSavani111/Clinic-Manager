@@ -14,7 +14,7 @@ module.exports = {
         custom6: '0 25px 50px -12px rgb(0 0 0 / 0.25)',
         custom7: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
         custom8: 'none',
-      }
+      },
     },
   },
   plugins: [],
