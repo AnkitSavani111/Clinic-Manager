@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <>
-            <svg className="-mt-24 md:-mt-48 lg:-mt-52 xl:-mt-44 absolute overflow-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#4f46e5" fill-opacity="1" d="M0,64L80,80C160,96,320,128,480,122.7C640,117,800,75,960,74.7C1120,75,1280,117,1360,138.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+            <svg className="-mt-24 md:-mt-24 lg:-mt-40 xl:-mt-44 absolute overflow-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#4f46e5" fill-opacity="1" d="M0,64L80,80C160,96,320,128,480,122.7C640,117,800,75,960,74.7C1120,75,1280,117,1360,138.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
 
             <footer className="bg-gradient-to-b from-[#4f46e5] to-purple-500 p-12 absolute w-full">
                 <div className="mx-auto flex-col lg:w-5/6 lg:grid lg:grid-cols-2 lg:gap-5 flex items-center justify-center">
