@@ -14,7 +14,7 @@ function Navbar() {
 
     const links = [
         { name: "Home", path: "/" },
-        { name: "Appointment", path: "/appointment" },
+        { name: "Book Appointment", path: "/appointment" },
         { name: "About", path: "/about" }
     ]
     return (
@@ -22,7 +22,7 @@ function Navbar() {
             <Disclosure as="nav" className="bg-transparent">
                 {({ open }) => (
                     <>
-                        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 backdrop-blur-xl rounded-full">
+                        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 backdrop-blur-3xl rounded-full">
                             <div className="relative flex h-16 justify-between">
                                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                     {/* Mobile menu button */}
@@ -68,7 +68,7 @@ function Navbar() {
                                             to="/login"
                                             className="-mx-3 block rounded-lg py-2.5 px-5 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                                         >
-                                            Admin Login
+                                            Login
                                         </Link>
                                     </div>
 

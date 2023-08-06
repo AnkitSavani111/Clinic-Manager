@@ -1,19 +1,13 @@
 import React from 'react';
 import Navbar from './Navbar';
-import Homebody from './Homebody';
-import backgroundImage from '../Images/bghome.jpg'; // Import the background image\
+import Homebody from './Homebody'
 import Footer from './Footer';
 
 function Home() {
   return (
     <>
       <section
-        className="Home md:pt-7"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: '100% 100%',
-          objectFit: 'cover'
-        }}
+        className="Home bg-[url('Images/bghome.jpg')] object-top bg-cover md:pt-7"
       >
         <Navbar />
         <Homebody />
