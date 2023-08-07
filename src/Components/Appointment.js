@@ -23,8 +23,11 @@ function Appointment() {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate() + 1);
   tomorrow = tomorrow.toISOString().slice(0, 10);
-  console.log(tomorrow);
+  // console.log(tomorrow);
 
+  let afterweek = new Date();
+  afterweek.setDate(new Date().getDate() + 15);
+  afterweek = afterweek.toISOString().slice(0, 10);
 
   return (
     <>
@@ -90,7 +93,7 @@ function Appointment() {
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label htmlFor="timeslot" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                      Select Date and Time
+                      Available Time Slot and Date 
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0 flex space-x-8">
                       <select
@@ -103,7 +106,7 @@ function Appointment() {
                           <option key={timeslot.id}>{timeslot.time}</option>
                         ))}
                       </select>
-                      <input className='max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm' type="date" id="birthday" name="birthday" min={tomorrow}></input>
+                      <input className='max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm' type="date" id="birthday" name="birthday" min={tomorrow} max={afterweek}></input>
                     </div>
                   </div>
 
