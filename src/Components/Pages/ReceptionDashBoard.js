@@ -1,8 +1,13 @@
 import React from 'react'
+import Sidebar from '../ReceptionSidebar'
 
 function ReceptionDashBoard() {
   return (
-    <div>ReceptionDashBoard</div>
+    <div>
+      <h1>
+        <Sidebar />
+      </h1>
+    </div>
   )
 }
 
