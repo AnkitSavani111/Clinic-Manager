@@ -7,7 +7,7 @@ function Home() {
   return (
     <>
       <section
-        className="Home bg-[url('Images/bghome.jpg')] h-auto bg-cover  md:pt-7"
+        className="Home bg-[url('Images/bghome.jpg')] bg-cover  md:pt-7"
       >
         <Navbar />
         <Homebody />
