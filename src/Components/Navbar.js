@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useLocation, Link } from 'react-router-dom'
+import Logo from "../Images/logo.png";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -15,7 +16,8 @@ function Navbar() {
     const links = [
         { name: "Home", path: "/" },
         { name: "Book Appointment", path: "/appointment" },
-        { name: "About", path: "/about" }
+        { name: "About", path: "/about" },
+        { name: "Contact", path: "/contact" }
     ]
     return (
         <div className='md:mx-36 md:rounded-full overflow-visible md:bg-white'>
@@ -39,12 +41,12 @@ function Navbar() {
                                     <div className="flex flex-shrink-0 items-center">
                                         <img
                                             className="block h-8 w-auto lg:hidden rounded-full"
-                                            src="https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/testing-trends-world-quality-report.jpg?itok=vUyONZsj"
+                                            src={Logo}
                                             alt="Your Company"
                                         />
                                         <img
                                             className="hidden h-8 w-auto lg:block rounded-full"
-                                            src="https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/testing-trends-world-quality-report.jpg?itok=vUyONZsj"
+                                            src={Logo}
                                             alt="Your Company"
                                         />
                                     </div>
