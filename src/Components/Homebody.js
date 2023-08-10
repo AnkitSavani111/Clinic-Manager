@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import InfoCard from './InfoCard'
+import Data from "./infoData"
+
 
 function Homebody() {
     return (
         <>
             <main className='-z-10'>
-                <div className="relative px-6 lg:px-8">
+                <div id='home' className="relative px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:my-auto">
                         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
@@ -66,7 +71,7 @@ function Homebody() {
                 </div>
 
                 {/* Featured section */}
-                    <section aria-labelledby="cause-heading" >
+                <section aria-labelledby="cause-heading" >
                     <div className="relative bg-gray-800 py-32 px-6 sm:py-40 sm:px-12 lg:px-16">
                         <div className="absolute inset-0 overflow-hidden">
                             <img
@@ -84,24 +89,33 @@ function Homebody() {
                                 id="cause-heading"
                                 className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
                             >
-                                Long-term thinking
+                                About us
                             </h2>
-                            <p className="mt-3 text-xl text-white">
-                                We're committed to responsible, sustainable, and ethical
-                                manufacturing. Our small-scale approach allows us to focus on
-                                quality and reduce our impact. We're doing our best to delay the
-                                inevitable heat-death of the universe.
-                            </p>
-                            <Link
+                            <div className="containerCard">
+                                {/* {
+                                    Data.map((value) => {
+                                        return (
+                                            <>
+                                                <InfoCard customImgSrc={value.image}
+                                                    customDetail={value.detail}
+                                                />
+                                            </>
+                                        );
+                                    })} */}
+                            </div>
+                            {/* <p className="mt-3 text-xl text-white">
+                                hello
+                            </p> */}
+                            {/* <Link
                                 to="#"
                                 className="mt-8 block w-full rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
                             >
                                 Read our story
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </section>
-                
+
             </main>
         </>
     )
