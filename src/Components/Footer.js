@@ -2,7 +2,7 @@
 // import Link from "next/link";
 import React from "react";
 import { Link } from "react-router-dom";
-// import 
+import Logo from "../Images/logo.png";
 
 const Footer = () => {
     const date = new Date();
@@ -16,26 +16,27 @@ const Footer = () => {
                     <div className="p-10">
                         <div className="w-2/3 mx-auto lg:mx-0">
                             <img
-                                src="https://d3eeke16mv0lt7.cloudfront.net/sites/default/files/styles/article_hero_image/public/field/image/testing-trends-world-quality-report.jpg?itok=vUyONZsj"
+                                src={Logo}
                                 alt="logo"
                                 width={200}
                                 height={200}
-                                className="bg-white p-2 rounded"
+                                className="bg-white opacity-80 shadow-md backdrop-blur-md p-2 rounded-lg"
                             />
-                            <figcaption className="pt-3 text-white font-bold text-sm italic">
-                                "Company Name"
-                            </figcaption>
+                            {/* <figcaption className="pt-3 text-white font-bold text-sm">
+                                Ashirwad Dental Clinic
+                            </figcaption> */}
                         </div>
                         <hr className="mt-5" />
                         <h6 className="font-bold mt-5 text-xl text-white col-span-2 mb-3">
                             <div className="text-center lg:text-left">
                                 <i className="mr-2 fas fa-phone-alt text-white"></i>{" "}
-                                <span className="font-bold"></span>XXXX-XXXXXX
+                                <span className="font-bold">Contact us on,</span>
+                                <div className="font-bold">+91-9429344025</div>
                             </div>
                             <div className="my-3 text-center lg:text-left">
                                 <i className="mr-2 fas fa-envelope text-white"></i>{" "}
                                 <span className="font-bold"></span>
-                                admin@co.in
+                                Ashirwad Dental Clinic, Vadiya.
                             </div>
                         </h6>
                         <hr className="mt-5" />
@@ -43,7 +44,7 @@ const Footer = () => {
                             Follow us
                         </h6>
                         <div className="flex mt-4 gap-6 sm:mt-0">
-                            <Link to="/" className="text-gray-50 hover:text-gray-900">
+                            <a href="https://www.facebook.com/" className="text-gray-50 hover:text-gray-900">
                                 <svg
                                     className="w-5 h-5"
                                     fill="currentColor"
@@ -57,8 +58,8 @@ const Footer = () => {
                                     />
                                 </svg>
                                 <span className="sr-only">Facebook page</span>
-                            </Link>
-                            <Link to="/" className="text-gray-50 hover:text-gray-900">
+                            </a>
+                            <a href="https://www.instagram.com/" className="text-gray-50 hover:text-gray-900">
                                 <svg
                                     className="w-5 h-5"
                                     fill="currentColor"
@@ -72,8 +73,8 @@ const Footer = () => {
                                     />
                                 </svg>
                                 <span className="sr-only">Instagram page</span>
-                            </Link>
-                            <Link to="/" className="text-gray-50 hover:text-gray-900">
+                            </a>
+                            <a href="https://www.twitter.com/" className="text-gray-50 hover:text-gray-900">
                                 <svg
                                     className="w-5 h-5"
                                     fill="currentColor"
@@ -83,8 +84,8 @@ const Footer = () => {
                                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                                 </svg>
                                 <span className="sr-only">Twitter page</span>
-                            </Link>
-                            <Link to="/" className="text-gray-50 hover:text-gray-900">
+                            </a>
+                            {/* <Link to="/" className="text-gray-50 hover:text-gray-900">
                                 <svg
                                     className="w-5 h-5"
                                     fill="currentColor"
@@ -98,8 +99,8 @@ const Footer = () => {
                                     />
                                 </svg>
                                 <span className="sr-only">GitHub account</span>
-                            </Link>
-                            <Link to="/" className="text-gray-50 hover:text-gray-900">
+                            </Link> */}
+                            {/* <Link to="/" className="text-gray-50 hover:text-gray-900">
                                 <svg
                                     className="w-5 h-5"
                                     fill="currentColor"
@@ -113,7 +114,7 @@ const Footer = () => {
                                     />
                                 </svg>
                                 <span className="sr-only">Dribble account</span>
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                     <div className="grid grid-cols-1 gap-1 p-7 col-span-1">
@@ -122,46 +123,36 @@ const Footer = () => {
                         </h6>
                         <hr className="col-span-1 lg:w-10/12" />
                         <Link
+                            to="#home"
+                            className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
+                        >
+                            Home
+                        </Link>
+                        <Link
                             to="/about-us"
                             className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
                         >
                             About Us
                         </Link>
-                        <Link
-                            to="/acceleration-program"
-                            className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
-                        >
-                            Acceleration Program
-                        </Link>
-                        <Link
-                            to="/portfolio"
-                            className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
-                        >
-                            Start-up Portfolio
-                        </Link>
+                        
+                        
                         <Link
                             to="/facilities/infrastructural"
                             className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
                         >
-                            Facilities
-                        </Link>
-                        <Link
-                            to="/services"
-                            className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
-                        >
-                            Services
+                            Facilities and Services
                         </Link>
                                                
-                        <Link
+                        {/* <Link
                             to="/contact-us"
                             className="font-semibold text-lg relative text-gray-300 mt-4 hover:text-white transition-all"
                         >
                             Contact Us
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
                 <div className="mt-8 font-bold w-full text-center text-white text-xl">
-                    <p>&#169; Ankit Savani {date.getFullYear()}</p>
+                    <p>&#169; Ashirwad Dental Clinic {date.getFullYear()}</p>
                     {/* <p className="font-semibold mt-4 text-sm">
           Designed and Developed By Jay A. Keraliya [21IT064] & Hit B. Koladiya
           [21IT067].
