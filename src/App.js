@@ -1,11 +1,11 @@
 import './App.css';
 import Login from './Components/Login';
-import Home from './Components/Home';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import Home from './Components/Pages/Home';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Appointment from './Components/Appointment';
 import About from './Components/About';
 import SignUp from './Components/SignUp';
-import ReceptionDashBoard from './Components/ReceptionDashBoard';
+import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Route path='/appointment' element={<Appointment />} />
           <Route path='/about' element={<About />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='/rec-dashboard' element={<ReceptionDashBoard />} />
+          <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
         </Routes>
       </BrowserRouter>
     </>

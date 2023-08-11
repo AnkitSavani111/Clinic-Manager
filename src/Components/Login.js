@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import DoctorLogin from "./DoctorLogin";
 // import ReceptionLogin from "./ReceptionLogin";
 import Logo from "../Images/logo.png";
+import { Link } from "react-router-dom";
 // import { Input } from "@mui/material";
 
 const Login = () => {
@@ -118,9 +119,14 @@ const Login = () => {
                   <div>
                     <div>
                       <label htmlFor="Role" className="block mb-2 text-sm font-medium text-gray-900">Select your work</label>
-                      <select onChange={(e) => { setRole(e.target.value) }} value={Role} name="Role" id="Role"
-                      className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100'>
-                        <option value="">
+                      <select
+                        onChange={(e) => { setRole(e.target.value) }}
+                        value={Role}
+                        name="Role"
+                        id="Role"
+                        className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100'
+                      >
+                        <option value="" disabled selected>
                           Select Role
                         </option>
                         <option value="doctor">
@@ -130,6 +136,7 @@ const Login = () => {
                           Receptionist
                         </option>
                       </select>
+
                     </div>
                   </div>
 
@@ -150,12 +157,12 @@ const Login = () => {
                     </div>
 
                     <div className="text-sm">
-                      <a
-                        href="#"
+                      <Link
+                        to="/"
                         className="font-medium text-white hover:text-black"
                       >
                         Forgot your password?
-                      </a>
+                      </Link>
                     </div>
                   </div>
 
