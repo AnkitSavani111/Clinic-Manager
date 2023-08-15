@@ -31,7 +31,7 @@ function PatientTable() {
         .catch((e)=>{
             console.log(e);
         })
-    })
+    },[])
 
     return (
         <div className="py-4">
@@ -73,13 +73,13 @@ function PatientTable() {
                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Gender
                                                     </th>
-                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Age
                                                     </th>
-                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                    {/* <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Address
-                                                    </th>
-                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                    </th> */}
+                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Date
                                                     </th>
                                                 </tr>
@@ -96,9 +96,9 @@ function PatientTable() {
                                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                             {person.age}
                                                         </td>
-                                                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                        {/* <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                             {person.address}
-                                                        </td>
+                                                        </td> */}
                                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                             {person.date_registration}
                                                         </td>
