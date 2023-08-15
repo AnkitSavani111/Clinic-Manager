@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 import Homebody from './Homebody'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
-
+// const apiURL = "mongodb+srv://admin:admin@cluster0.c5yalsn.mongodb.net/"
 function Appointment() {
+  
+  const inputData = {name:"",phone:0,email:"",gender:"",date_registration:Date.now(),age:0,address:""}
+  const [data,setData] = useState(inputData)
+  
+  const handleData = (event) => {
+    setData({...data,[event.target.name]:event.target.value})
+  }
+  
+  const apiURL = "http://localhost:4000" + "/patient";
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post(apiURL,data)
+    .then((response)=>{
+        console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
   const timeslots = [
     { id: 1, time: '10:00 AM' },
@@ -47,22 +67,24 @@ function Appointment() {
                 </div>
                 <div className="space-y-6 sm:space-y-5">
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label htmlFor="full-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                       Full name
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <input
                         type="text"
-                        name="first-name"
+                        name="name"
                         id="first-name"
                         autoComplete="given-name"
                         className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        value={data.name}
+                        onChange={handleData}
                       />
                     </div>
                   </div>
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label htmlFor="mobile-no" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                       Mobile Number
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
@@ -72,6 +94,25 @@ function Appointment() {
                         id="phone"
                         autoComplete="family-name"
                         className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        onChange={handleData}
+                        value={data.phone === 0 ? "" : data.phone}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label htmlFor="gender" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                      Gender
+                    </label>
+                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                      <input
+                        type="text"
+                        name="gender"
+                        id="gender"
+                        autoComplete="given-name"
+                        className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        value={data.gender}
+                        onChange={handleData}
                       />
                     </div>
                   </div>
@@ -87,6 +128,8 @@ function Appointment() {
                         type="email"
                         autoComplete="email"
                         className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        onChange={handleData}
+                        value={data.email}
                       />
                     </div>
                   </div>
@@ -101,6 +144,8 @@ function Appointment() {
                         name="timeslot"
                         autoComplete="timeslot"
                         className="w-32 block max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        // onChange={handleData}
+                        // value={data.timeslot}
                       >
                         {timeslots.map((timeslot) => (
                           <option key={timeslot.id}>{timeslot.time}</option>
@@ -122,27 +167,31 @@ function Appointment() {
                         id="age"
                         autoComplete="address-level2"
                         className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        onChange={handleData}
+                        value={data.age === 0 ? "": data.age}
                       />
                     </div>
                   </div>
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label htmlFor="street-address" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                       Address
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <textarea
-                        name="street-address"
-                        id="street-address"
-                        autoComplete="street-address"
+                        name="address"
+                        id="address"
+                        autoComplete="address"
                         className="block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                       // className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        onChange={handleData}
+                        value={data.address}
                       ></textarea>
                     </div>
                   </div>
 
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  {/* <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <h3 className="text-lg font-medium leading-6 text-gray-900">Verified your details ?</h3>
                     <div className="relative flex items-start">
                       <div className="flex h-5 items-center">
@@ -160,7 +209,7 @@ function Appointment() {
                         <p className="text-gray-500">You won't able to change anything once you filled the form</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -180,6 +229,7 @@ function Appointment() {
                 <button
                   type="submit"
                   className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  onClick={handleSubmit}
                 >
                   Book Appointment
                 </button>
