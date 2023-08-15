@@ -5,7 +5,6 @@ import Footer from './Footer'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 
-// const apiURL = "mongodb+srv://admin:admin@cluster0.c5yalsn.mongodb.net/"
 function Appointment() {
   
   const inputData = {name:"",phone:0,email:"",gender:"",date_registration:Date.now(),age:0,address:""}
