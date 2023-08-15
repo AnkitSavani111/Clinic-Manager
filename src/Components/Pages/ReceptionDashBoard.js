@@ -1,11 +1,11 @@
 import React from 'react'
-import Sidebar from '../ReceptionSidebar'
+import ReceptionHome from '../ReceptionHome'
 
 function ReceptionDashBoard() {
   return (
     <div>
       <h1>
-        <Sidebar />
+        <ReceptionHome/>
       </h1>
     </div>
   )
