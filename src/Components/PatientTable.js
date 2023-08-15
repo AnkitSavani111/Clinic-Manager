@@ -1,21 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+
+// date x
+// age
 
 
+// const people = [
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
+//     // More people...
+// ]
 
-const people = [
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
-    // More people...
-]
-
-
+const getURL = "http://localhost:4000/patient"
 
 function PatientTable() {
+
+    const [people,setPeople] = useState([])
+
+    useEffect(()=>{
+        axios.get(getURL)
+        .then((response)=>{
+            console.log(response);
+            setPeople(response.data)
+        })
+        .catch((e)=>{
+            console.log(e);
+        })
+    })
 
     return (
         <div className="py-4">
@@ -55,16 +71,16 @@ function PatientTable() {
                                                         Email
                                                     </th>
                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        Gender
+                                                    </th>
+                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                        Age
+                                                    </th>
+                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                                        Address
+                                                    </th>
+                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                                         Date
-                                                    </th>
-                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                        <span className="sr-only">Edit</span>
-                                                    </th>
-                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                        <span className="sr-only">Edit</span>
-                                                    </th>
-                                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                        <span className="sr-only">Edit</span>
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -74,23 +90,17 @@ function PatientTable() {
                                                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                             {person.name}
                                                         </td>
-                                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.mobile}</td>
+                                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.phone}</td>
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.date}</td>
+                                                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.gender}</td>
                                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                            <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                                Edit<span className="sr-only">, {person.name}</span>
-                                                            </a>
+                                                            {person.age}
                                                         </td>
                                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                            <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                                Edit<span className="sr-only">, {person.name}</span>
-                                                            </a>
+                                                            {person.address}
                                                         </td>
                                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                            <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                                Edit<span className="sr-only">, {person.name}</span>
-                                                            </a>
+                                                            {person.date_registration}
                                                         </td>
                                                     </tr>
                                                 ))}
