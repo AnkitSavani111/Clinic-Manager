@@ -94,10 +94,10 @@ function classNames(...classes) {
 
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  
 
 
   return (
-    <div>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
@@ -212,29 +212,7 @@ function Sidebar() {
                         )
                       )}
                     </nav>
-                    {/* <nav className="space-y-1 px-2">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                          )}
-                        >
-                          <item.icon
-                            className={classNames(
-                              item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                              'mr-4 flex-shrink-0 h-6 w-6'
-                            )}
-                            aria-hidden="true"
-                          />
-                          {item.name}
-                        </a>
-                      ))}
-                    </nav> */}
+
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -317,27 +295,6 @@ function Sidebar() {
                   )
                 )}
               </nav>
-              {/* <nav className="flex-1 space-y-1 px-2 pb-4">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                    )}
-                  >
-                    <item.icon
-                      className={classNames(
-                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-3 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
-                ))}
-              </nav> */}
             </div>
           </div>
         </div>
@@ -354,24 +311,6 @@ function Sidebar() {
             <div className="flex flex-1 justify-between px-4 ">
               <div className="flex flex-1">
                 <div className="text-center w-full sm:text-[1.5rem] text-[1.1rem] self-center font-semibold text-[rgb(8  72 48)]">Reception Dashboard</div>
-
-                {/* <form className="flex w-full md:ml-0" action="#" method="GET">
-                  <label htmlFor="search-field" className="sr-only">
-                    Search
-                  </label>
-                  <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                      <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <input
-                      id="search-field"
-                      className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                      placeholder="Search"
-                      type="search"
-                      name="search"
-                    />
-                  </div>
-                </form> */}
               </div>
               <div className="ml-4 flex items-center md:ml-6">
                 <button
@@ -433,14 +372,13 @@ function Sidebar() {
               </div>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
-                      <PatientTable />
+                <PatientTable />
                 {/* /End replace */}
               </div>
             </div>
           </main>
         </div>
       </div>
-    </div>
   )
 }
 
