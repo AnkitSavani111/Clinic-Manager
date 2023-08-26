@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
+import { data } from 'autoprefixer'
 
 // date x
 // age
@@ -20,7 +21,7 @@ import axios from 'axios'
 //     // More people...
 // ]
 
-const getURL = "http://localhost:4000/patient"
+const getURL = "http://localhost:4000/"
 
 function PatientTable() {
     const [openEdit, setOpenEdit] = useState(false)
@@ -28,8 +29,8 @@ function PatientTable() {
 
     const [people, setPeople] = useState([])
 
-    useEffect(() => {
-        axios.get(getURL)
+    const insert = () => {
+        axios.get((getURL + "patient"))
             .then((response) => {
                 console.log(response);
                 setPeople(response.data)
@@ -37,7 +38,32 @@ function PatientTable() {
             .catch((e) => {
                 console.log(e);
             })
-    }, [])
+    }
+    useEffect(() => {
+        insert()
+    },[])
+
+
+    const handleUpdate = (e,personId)=> {
+        e.preventDefauult();
+        axios.put((`${getURL}patient/${personId}`),people)
+        .then((response)=>{
+            console.log(response);
+        })
+    }
+
+    const handleDelete = (personId) => {
+        axios.delete(`${getURL}patient/${personId}`)
+            .then((response) => {
+                console.log(response);
+                // After successfully deleting the patient, you should update the list
+                // to remove the deleted entry.
+                setPeople(people.filter(person => person._id !== personId));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     return (
         <div className="py-4">
@@ -88,11 +114,17 @@ function PatientTable() {
                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Date
                                                     </th>
+                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        Delete
+                                                    </th>
+                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        Edit
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody className="bg-white">
                                                 {people.map((person, personIdx) => (
-                                                    <tr key={person.email} className={personIdx % 2 === 0 ? undefined : 'bg-gray-50'}>
+                                                    <tr key={person._id} className={personIdx % 2 === 0 ? undefined : 'bg-gray-50'}>
                                                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                             {person.name}
                                                         </td>
@@ -108,16 +140,26 @@ function PatientTable() {
                                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                             {person.date_registration}
                                                         </td>
+                                                        <td className="relative text-red-500 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                            <button key={person._id} onClick={() => handleDelete(person._id)}>
+                                                                delete
+                                                            </button>
+                                                        </td>
+                                                        <td className="relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                            <button key={person._id} onClick={() => handleUpdate(person._id)}>
+                                                                Edit
+                                                            </button>
+                                                        </td>
                                                     </tr>
                                                 ))}
-                                            </tbody >
-                                        </table >
-                                    </div >
-                                </div >
-                            </div >
-                        </div >
-                    </div >
-                    {/* <Transition.Root show={openEdit} as={Fragment}>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <Transition.Root show={openEdit} as={Fragment}>
                         <Dialog
                             as="div"
                             className="relative z-10"
@@ -196,7 +238,7 @@ function PatientTable() {
                                 </div>
                             </div>
                         </Dialog>
-                    </Transition.Root> */}
+                    </Transition.Root>
                     < Transition.Root show={openEdit} as={Fragment}>
                         <Dialog
                             as="div"
@@ -343,8 +385,8 @@ function PatientTable() {
                         </Dialog>
                     </Transition.Root >
                 </>
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
 
