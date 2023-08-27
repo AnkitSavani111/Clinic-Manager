@@ -25,6 +25,7 @@ const getURL = "http://localhost:4000/"
 
 function PatientTable() {
     const [openEdit, setOpenEdit] = useState(false)
+    const [openDelete, setOpenDelete] = useState(false)
     const cancelButtonRef = useRef(null)
 
     const [people, setPeople] = useState([])
@@ -41,10 +42,10 @@ function PatientTable() {
     }
     useEffect(() => {
         insert()
-    },[])
+    }, [])
 
 
-    const handleUpdate = (e,personId)=> {
+    const handleUpdate = (e, personId) => {
         setOpenEdit(true)
         // e.preventDefauult();
         // axios.put((`${getURL}patient/${personId}`),people)
@@ -54,17 +55,17 @@ function PatientTable() {
     }
 
     const handleDelete = (personId) => {
-        
-        axios.delete(`${getURL}patient/${personId}`)
-            .then((response) => {
-                console.log(response);
-                // After successfully deleting the patient, you should update the list
-                // to remove the deleted entry.
-                setPeople(people.filter(person => person._id !== personId));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        setOpenDelete(true)
+        // axios.delete(`${getURL}patient/${personId}`)
+        //     .then((response) => {
+        //         console.log(response);
+        //         // After successfully deleting the patient, you should update the list
+        //         // to remove the deleted entry.
+        //         setPeople(people.filter(person => person._id !== personId));
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
     }
 
     return (
@@ -122,7 +123,7 @@ function PatientTable() {
                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Delete
                                                     </th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody className="bg-white">
@@ -153,7 +154,7 @@ function PatientTable() {
                                                                 Delete
                                                             </button>
                                                         </td>
-                                                        
+
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -163,86 +164,6 @@ function PatientTable() {
                             </div>
                         </div>
                     </div>
-                    {/* <Transition.Root show={openEdit} as={Fragment}>
-                        <Dialog
-                            as="div"
-                            className="relative z-10"
-                            initialFocus={cancelButtonRef}
-                            onClose={setOpenEdit}
-                        >
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0"
-                                enterTo="opacity-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                            >
-                                <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm transition-opacity" />
-                            </Transition.Child>
-                            <div className="fixed inset-0 z-10 overflow-y-auto">
-                                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                    <Transition.Child
-                                        as={Fragment}
-                                        enter="ease-out duration-300"
-                                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        enterTo="opacity-100 translate-y-0 sm:scale-100"
-                                        leave="ease-in duration-200"
-                                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                    >
-                                        <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 content-center " >
-                                                <div className="flex justify-center">
-                                                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                                        <Dialog.Title
-                                                            as="h3"
-                                                            className="text-lg font-bold text-center leading-6 text-gray-900"
-                                                        >
-                                                            Edit patient details
-                                                        </Dialog.Title>
-                                                        <div className="mt-2">
-                                                            <div className="grid justify-center p-3 md:gap-5">
-                                                                <div className="relative z-0 w-full mb-6 group">
-                                                                    Content
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row space-x-11 sm:justify-center">
-                                                <button
-                                                    type="button"
-                                                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                                                // onClick={async (e) => {
-                                                //   e.preventDefault()
-                                                //   // User confirmation
-                                                //   const res = await FDeleteMenu(iid) // from iid state.
-                                                //   FGetMenu().then((res) => setMenu(res))
-                                                //   setIid('')
-                                                //   setOpenDelete(false)
-                                                // }}
-                                                >
-                                                    Save
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                                                onClick={async (e) => {
-                                                  setOpenEdit(false)
-                                                }}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        </Dialog.Panel>
-                                    </Transition.Child>
-                                </div>
-                            </div>
-                        </Dialog>
-                    </Transition.Root> */}
                     < Transition.Root show={openEdit} as={Fragment}>
                         <Dialog
                             as="div"
@@ -373,6 +294,10 @@ function PatientTable() {
                                                 </button>
                                                 <button
                                                     onClick={() => {
+
+                                                        // Code to update the patient or call the function to update the patient
+
+
                                                         setOpenEdit(false)
                                                     }
                                                     }
@@ -388,6 +313,89 @@ function PatientTable() {
                             </div>
                         </Dialog>
                     </Transition.Root >
+
+                    <Transition.Root show={openDelete} as={Fragment}>
+                    <Dialog
+                        as="div"
+                        className="relative z-10"
+                        initialFocus={cancelButtonRef}
+                        onClose={setOpenDelete}
+                    >
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm transition-opacity" />
+                        </Transition.Child>
+                        <div className="fixed inset-0 z-10 overflow-y-auto">
+                            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                <Transition.Child
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                >
+                                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 content-center " >
+                                            <div className="flex justify-center">
+                                                <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                    <Dialog.Title
+                                                        as="h3"
+                                                        className="text-lg font-bold text-center leading-6 text-gray-900"
+                                                    >
+                                                        Remove Patient
+                                                    </Dialog.Title>
+                                                    <div className="mt-2">
+                                                        <div className="grid justify-center p-3 md:gap-5">
+                                                            <div className="relative z-0 w-full group text-center">
+                                                                Are you sure, you want to remove this patient Details?
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row space-x-11 justify-center">
+                                            <button
+                                                type="button"
+                                                className="inline-flex w-full justify-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                                                onClick={async (e) => {
+                                                    e.preventDefault()
+                                                    
+                                                    //Code to delete the patient or call the function to delete the patient
+
+                                                    
+                                                    setOpenDelete(false)
+                                                }}
+                                            >
+                                                Yes
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                                                onClick={async (e) => {
+                                                    e.preventDefault()
+                                                    setOpenDelete(false)
+                                                }}
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </Dialog.Panel>
+                                </Transition.Child>
+                            </div>
+                        </div>
+                    </Dialog>
+                </Transition.Root>
+
                 </>
             </div>
         </div>
