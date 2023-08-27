@@ -115,11 +115,12 @@ function PatientTable() {
                                                         Date
                                                     </th>
                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                        Delete
-                                                    </th>
-                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                         Edit
                                                     </th>
+                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        Delete
+                                                    </th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody className="bg-white">
@@ -131,25 +132,26 @@ function PatientTable() {
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.phone}</td>
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.gender}</td>
-                                                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                                                             {person.age}
                                                         </td>
                                                         {/* <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                             {person.address}
                                                         </td> */}
-                                                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                                                             {person.date_registration}
                                                         </td>
-                                                        <td className="relative text-red-500 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                            <button key={person._id} onClick={() => handleDelete(person._id)}>
-                                                                delete
-                                                            </button>
-                                                        </td>
-                                                        <td className="relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                        <td className="relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
                                                             <button key={person._id} onClick={() => handleUpdate(person._id)}>
                                                                 Edit
                                                             </button>
                                                         </td>
+                                                        <td className="relative text-red-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                                                            <button key={person._id} onClick={() => handleDelete(person._id)}>
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                        
                                                     </tr>
                                                 ))}
                                             </tbody>
