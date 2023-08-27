@@ -45,14 +45,16 @@ function PatientTable() {
 
 
     const handleUpdate = (e,personId)=> {
-        e.preventDefauult();
-        axios.put((`${getURL}patient/${personId}`),people)
-        .then((response)=>{
-            console.log(response);
-        })
+        setOpenEdit(true)
+        // e.preventDefauult();
+        // axios.put((`${getURL}patient/${personId}`),people)
+        // .then((response)=>{
+        //     console.log(response);
+        // })
     }
 
     const handleDelete = (personId) => {
+        
         axios.delete(`${getURL}patient/${personId}`)
             .then((response) => {
                 console.log(response);
@@ -161,7 +163,7 @@ function PatientTable() {
                             </div>
                         </div>
                     </div>
-                    <Transition.Root show={openEdit} as={Fragment}>
+                    {/* <Transition.Root show={openEdit} as={Fragment}>
                         <Dialog
                             as="div"
                             className="relative z-10"
@@ -240,7 +242,7 @@ function PatientTable() {
                                 </div>
                             </div>
                         </Dialog>
-                    </Transition.Root>
+                    </Transition.Root> */}
                     < Transition.Root show={openEdit} as={Fragment}>
                         <Dialog
                             as="div"
