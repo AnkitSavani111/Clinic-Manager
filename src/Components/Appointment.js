@@ -4,11 +4,14 @@ import Homebody from './Homebody'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 function Appointment() {
   
   const inputData = {name:"",phone:0,email:"",gender:"",date_registration:Date.now(),age:0,address:""}
   const [data,setData] = useState(inputData)
+
+  const navigate = useNavigate();
   
   const handleData = (event) => {
     setData({...data,[event.target.name]:event.target.value})
@@ -20,6 +23,7 @@ function Appointment() {
     axios.post(apiURL,data)
     .then((response)=>{
         console.log(response);
+        navigate("/receptiondashb")
     })
     .catch((error) => {
       console.error(error);

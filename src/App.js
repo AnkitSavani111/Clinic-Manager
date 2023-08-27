@@ -6,6 +6,7 @@ import Appointment from './Components/Appointment';
 import About from './Components/About';
 import SignUp from './Components/SignUp';
 import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
+import Forget from './Components/Forget';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
+          <Route path='/forget' element={<Forget />} />
         </Routes>
       </BrowserRouter>
     </>

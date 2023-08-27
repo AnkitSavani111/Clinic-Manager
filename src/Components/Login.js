@@ -59,23 +59,23 @@ const Login = () => {
         </div>
       </div> */}
 
-      <div className="Background bg-[url('Images/bglogin.jpg')] bg-cover relative h-screen">
+      <div className="Background bg-slate-400 bg-cover relative h-screen">
 
         <div className="flex justify-center items-center h-screen">
 
-          <div className="Card flex flex-col justify-center m-auto items-center w-2/5 shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl">
+          <div className="Card bg-slate-300 flex sm:w-2/5 sm:h-auto h-4/5 flex-col justify-center m-auto items-center shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-lg rounded-2xl">
             <div className="sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply">
               <img
-                className="m-auto h-12 w-auto mix-blend-multiply rounded-md"
+                className="sm:m-auto m-auto mt-5 h-12 w-auto mix-blend-multiply rounded-md"
                 src={Logo}
                 alt="Your Company"
               />
-              <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+              <h2 className="mt-6 text-center sm:text-3xl text-2xl font-bold tracking-tight text-gray-900">
                 Sign in to your account
               </h2>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="sm:mt-5 sm:mx-auto sm:w-full sm:max-w-md">
               <div className="bg-transparent py-8 px-4 sm:rounded-lg sm:px-10">
                 <form className="space-y-6" action="#" method="POST">
                   <div>
@@ -140,7 +140,7 @@ const Login = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="sm:flex sm:items-center sm:justify-between items-center p-1">
                     <div className="flex items-center">
                       <input
                         id="remember-me"
@@ -150,18 +150,17 @@ const Login = () => {
                       />
                       <label
                         htmlFor="remember-me"
-                        className="ml-2 block text-sm text-gray-900"
+                        className="sm:ml-2 sm:font-medium font-medium sm:block sm:text-[15px] text-sm ml-1 text-black"
                       >
                         Remember me
                       </label>
                     </div>
 
-                    <div className="text-sm">
-                      <Link
-                        to="/"
-                        className="font-medium text-white hover:text-black"
+                    <div className="text-sm mt-5 sm:mt-0"> {/* Add mt-2 to create space on mobile */}
+                      <Link to="/forget"
+                        className="sm:font-medium font-medium sm:text-[14px] text-indigo-900 sm:text-indigo-900 sm:hover:text-slate-950 sm:duration-100"
                       >
-                        Forgot your password?
+                        Forgot your password ?
                       </Link>
                     </div>
                   </div>

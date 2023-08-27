@@ -4,22 +4,22 @@ const SignUp = () => {
     const [Role, setRole] = useState("")
     return (
         <>
-            <div className="Background bg-[url('Images/bglogin.jpg')] bg-cover relative h-screen">
+            <div className="Background bg-slate-400 bg-cover relative h-screen">
                 <div className="flex justify-center items-center h-full">
-                    <div className="Card flex flex-col justify-center m-auto items-center w-2/5 shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl">
+                    <div className="Card bg-slate-300 flex flex-col justify-center m-auto items-center w-4/5 sm:h-auto sm:w-2/5 shadow-custom6 drop-shadow-md sm:py-2 py-2 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl">
                         <div className="sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply">
                             <img
-                                className="m-auto h-12 w-auto mix-blend-multiply rounded-md"
+                                className="m-auto mt-2 h-12 w-auto mix-blend-multiply rounded-md"
                                 src={Logo}
                                 alt="Your Company"
                             />
-                            <h2 className=" text-center text-3xl font-bold tracking-tight text-gray-900">
+                            <h2 className=" text-center mt-5 sm:text-3xl text-2xl font-bold tracking-tight text-gray-900">
                                 Sign up for account
                             </h2>
                         </div>
 
                         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
-                            <div className="bg-transparent py-8 px-4 sm:rounded-lg sm:px-10">
+                            <div className="bg-transparent py-8 sm:rounded-lg sm:px-10">
                                 <form className="space-y-6" action="#" method="POST">
                                     <div>
                                         <label
