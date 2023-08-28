@@ -7,9 +7,11 @@ import About from './Components/About';
 import SignUp from './Components/SignUp';
 import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
 import Forget from './Components/Forget';
-import OTP from './Components/OTP';
+import Pass_OTP from './Components/OTP';
 import { useEffect, useState } from "react";
 import { useUser } from "../src/Contexts/UserContext";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 function App() {
@@ -56,6 +58,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forget' element={<Forget />} />
+        <Route path='/forget/OTP' element={<Pass_OTP />} />
       </Routes>
     </>
   );

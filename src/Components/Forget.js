@@ -9,6 +9,7 @@ const Forget = () => {
     const handleOTP = (e) => {
     e.preventDefault();
     navigate("/forget/OTP")
+    
   };
 
   return (

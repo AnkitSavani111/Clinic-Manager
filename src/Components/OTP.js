@@ -2,9 +2,15 @@ import React from "react";
 import Logo from "../Images/logo.png";
 
 const OTP = () => {
-  const handleSubmition = () => {
+  const handleSubmition = (props) => {
     console.log("hello there");
   };
+
+  const handleResend = (e) => {
+    // console.log('resend');
+    e.preventDefault()
+    e.resetPassword.reset()
+  }
 
   return (
     <div className="Background bg-slate-400 h-screen flex items-center justify-center">
@@ -21,7 +27,7 @@ const OTP = () => {
         </div>
         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-transparent py-8 sm:rounded-lg sm:px-10">
-            <form className="space-y-6" method="POST">
+            <form className="space-y-6" name="resetPassword">
               <div>
                 <label
                   htmlFor="OTP"
@@ -45,7 +51,7 @@ const OTP = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  New Password
                 </label>
                 <div className="mt-1">
                   <input
@@ -77,6 +83,13 @@ const OTP = () => {
                   />
                 </div>
               </div>
+
+              <a
+                onClick={handleResend}
+                className="sm:font-medium sm:cursor-pointer sm:relative sm:top-2 relative top-2 font-medium sm:text-[14px] text-indigo-900 sm:text-indigo-900 sm:hover:text-slate-950 sm:duration-100"
+              >
+                Resend OTP
+              </a>
 
               <div>
                 <button
