@@ -1,16 +1,16 @@
 import './App.css';
 import Login from './Components/Login';
 import Home from './Components/Pages/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route ,useNavigate} from 'react-router-dom';
 import Appointment from './Components/Appointment';
 import About from './Components/About';
 import SignUp from './Components/SignUp';
 import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
 import Forget from './Components/Forget';
 import OTP from './Components/OTP';
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useUser } from "../src/Contexts/UserContext";
-
+import axios from "axios";
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -56,6 +56,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forget' element={<Forget />} />
+        <Route path='/forget/OTP' element={<OTP />} />
       </Routes>
     </>
   );
