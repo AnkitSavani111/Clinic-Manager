@@ -7,6 +7,7 @@ import About from './Components/About';
 import SignUp from './Components/SignUp';
 import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
 import Forget from './Components/Forget';
+import OTP from './Components/OTP';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
           <Route path='/forget' element={<Forget />} />
+          <Route path='/forget/OTP' element={<OTP />} />
         </Routes>
       </BrowserRouter>
     </>
