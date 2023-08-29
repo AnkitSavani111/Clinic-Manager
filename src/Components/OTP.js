@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../Images/logo.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 const OTP = () => {
   const navigate = useNavigate();
+  // useEffect(() => {
+  //   handleShowToast("OTP sent to your email.", "success");
+  // }, []);
+  const [loading, setLoading] = useState(false);
+  const [resend, setResend] = useState(false);
   const handleSubmition = async (e) => {
     try {
       e.preventDefault();
       let psw = document.getElementById("password").value;
       let cnfPsw = document.getElementById("cnfPassword").value;
       if (psw !== cnfPsw) {
-        alert("Password and Confirm Password are not same");
+        handleShowToast("Password and Confirm Password are not same.", "error");
         return;
       }
+      setLoading(true);
       axios.defaults.baseURL = "http://localhost:4000";
       const resp = await axios.post("/user/resetpassword", {
         otp: document.getElementById("OTP").value,
@@ -20,33 +27,53 @@ const OTP = () => {
         email: sessionStorage.getItem("toResetPassEmail"),
       });
       if (resp.status == 200) {
-        alert("Password changed successfully");
+        setLoading(false);
+        handleShowToast("Password changed successfully.", "success");
         navigate("/login");
       } else {
-        alert("Wrong OTP");
+        setLoading(false);
+        handleShowToast("Wrong OTP", "error");
         document.getElementById("OTP").value = "";
         document.getElementById("password").value = "";
         document.getElementById("cnfPassword").value = "";
       }
     } catch (error) {
-      alert("Wrong OTP");
+      handleShowToast("Wrong OTP", "error");
     }
   };
 
   const handleResendOTP = async (e) => {
     try {
       e.preventDefault();
+      setResend(true);
       axios.defaults.baseURL = "http://localhost:4000";
       const resp = await axios.post("/user/forgetpassword", {
         email: sessionStorage.getItem("toResetPassEmail"),
       });
       if (resp.status == 200) {
-        alert("OTP sent to your email");
+        setResend(false);
+        handleShowToast("OTP sent to your email.", "success");
       } else {
-        alert("Please enter valid email");
+        setResend(false);
+        handleShowToast("Email is not registered.", "error");
       }
     } catch (error) {
-      alert("Please enter valid email");
+      setResend(false);
+      handleShowToast("Email is not registered.", "error");
+    }
+  };
+
+  const handleShowToast = (message, type) => {
+    if (type === "error") {
+      toast.error(message, {
+        position: "bottom-center",
+      });
+      return;
+    } else if (type === "success") {
+      toast.success(message, {
+        position: "bottom-center",
+      });
+      return;
     }
   };
 
@@ -64,6 +91,7 @@ const OTP = () => {
           </div>
         </div>
         <div className=' sm:mx-auto sm:w-full sm:max-w-md'>
+          <Toaster />
           <div className='bg-transparent py-8 sm:rounded-lg sm:px-10'>
             <form className='space-y-6' onSubmit={handleSubmition}>
               <div>
@@ -132,9 +160,14 @@ const OTP = () => {
               </div>
 
               <div>
-                <p className='' onClick={handleResendOTP}>
-                  Resend OTP
-                </p>
+                {!resend ? (
+                  <p className='text-center' onClick={handleResendOTP}>
+                    Resend OTP
+                  </p>
+                ) : null}
+                {/* <p className='' onClick={handleResendOTP}>
+                  {resend ? "Sending OTP..." : "Resend OTP"}
+                </p> */}
               </div>
             </form>
           </div>

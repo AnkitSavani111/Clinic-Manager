@@ -2,25 +2,49 @@ import React from "react";
 import Logo from "../Images/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
+import { useState } from "react";
 const Forget = () => {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const handleOTP = async (e) => {
     e.preventDefault();
     try {
-      sessionStorage.setItem("toResetPassEmail", document.getElementById("email").value);
+      sessionStorage.setItem(
+        "toResetPassEmail",
+        document.getElementById("email").value
+      );
       axios.defaults.baseURL = "http://localhost:4000";
+      setLoading(true);
       const resp = await axios.post("/user/forgetpassword", {
         email: document.getElementById("email").value,
       });
       if (resp.status == 200) {
-        alert("OTP sent to your email");
+        setLoading(false);
+        handleShowToast("OTP sent to your email.", "success");
         navigate("/forget/OTP");
       } else {
-        alert("Please enter valid email");
+        setLoading(false);
+        handleShowToast("Email is not registered.", "error");
       }
     } catch (error) {
-      alert("Please enter valid email");
+      setLoading(false);
+      handleShowToast("Email is not registered.", "error");
+    }
+  };
+  const handleShowToast = (message, type) => {
+    if (type === "error") {
+      toast.error(message, {
+        position: "bottom-center",
+        duration: 3000,
+      });
+      return;
+    } else if (type === "success") {
+      toast.success(message, {
+        position: "bottom-center",
+        duration: 3000,
+      });
+      return;
     }
   };
 
@@ -29,6 +53,7 @@ const Forget = () => {
       {/* <div> this is forget page </div> */}
       <div className='Background bg-slate-400 h-screen flex items-center justify-center'>
         <div className='BoxOfForget bg-slate-300 sm:w-[80%] md:w-[55%] w-[90%] backdrop-blur-md rounded-2xl p-4'>
+          <Toaster />
           <div className='Heading'>
             <img
               className='sm:m-auto mt-2 m-auto h-[70px] w-auto sm:mt-2 sm:h-[70px] sm:w-auto sm:mix-blend-multiply rounded-md'
@@ -63,9 +88,10 @@ const Forget = () => {
                 <div>
                   <button
                     onClick={handleOTP}
+                    disabled={loading} 
                     className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                   >
-                    Get OTP
+                    {loading ? "Sending OTP..." : "Get OTP"}
                   </button>
                 </div>
               </form>

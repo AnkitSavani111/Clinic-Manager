@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../Contexts/UserContext";
 // import { Input } from "@mui/material";
+import { Toaster, toast } from "react-hot-toast";
 
 const Login = () => {
   const [comp, setComp] = useState("Doctor");
@@ -38,9 +39,28 @@ const Login = () => {
         email: res.data.user.email,
         role: res.data.user.role,
       });
+      handleShowToast("Login Successful","success");
       navigate("/");
     } catch (error) {
-      alert(error);
+      handleShowToast("Login Failed. Try again","error");
+      // alert(error);
+    }
+  };
+
+  const handleShowToast = (message,type) => {
+    if(type === "error")
+    {
+      toast.error(message, {
+        position: "bottom-center",
+      });
+      return;
+    }
+    else if(type === "success")
+    {
+      toast.success(message, {
+        position: "bottom-center",
+      });
+      return;
     }
   };
 
@@ -90,6 +110,7 @@ const Login = () => {
       <div className='Background bg-slate-400 bg-cover relative h-screen'>
         <div className='flex justify-center items-center h-screen'>
           <div className='Card bg-slate-300 flex sm:w-2/5 sm:h-auto h-4/5 flex-col justify-center m-auto items-center shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-lg rounded-2xl'>
+            <Toaster />
             <div className='sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply'>
               <img
                 className='sm:m-auto m-auto mt-5 h-12 w-auto mix-blend-multiply rounded-md'
@@ -100,7 +121,6 @@ const Login = () => {
                 Sign in to your account
               </h2>
             </div>
-
             <div className='sm:mt-5 sm:mx-auto sm:w-full sm:max-w-md'>
               <div className='bg-transparent py-8 px-4 sm:rounded-lg sm:px-10'>
                 <form className='space-y-6' onSubmit={handleSubmit}>
