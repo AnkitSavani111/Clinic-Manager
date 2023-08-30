@@ -95,8 +95,6 @@ function classNames(...classes) {
 function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   
-
-
   return (
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
