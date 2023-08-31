@@ -102,6 +102,7 @@ const SignUp = () => {
                         type="usrname"
                         autoComplete="usrname"
                         value={userName}
+                        placeholder="User_Name"
                         onChange={(e) => setUserName(e.target.value)}
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
@@ -127,6 +128,7 @@ const SignUp = () => {
                         type="email"
                         autoComplete="email"
                         value={email}
+                        placeholder="example@gmail.com"
                         onChange={(e) => setEmail(e.target.value)}
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
@@ -150,6 +152,7 @@ const SignUp = () => {
                         type="password"
                         autoComplete="current-password"
                         value={password}
+                        placeholder="********"
                         onChange={(e) => setPassword(e.target.value)}
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />

@@ -1,25 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../Images/logo.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const OTP = () => {
   const navigate = useNavigate();
+  const [otpError, setOtpError] = useState(""); // State for OTP validation error
+  const [passwordError, setPasswordError] = useState(""); // State for password validation error
+  const [cnfPasswordError, setCnfPasswordError] = useState(""); // State for confirm password validation error
+
   const handleSubmition = async (e) => {
     try {
       e.preventDefault();
-      let psw = document.getElementById("password").value;
-      let cnfPsw = document.getElementById("cnfPassword").value;
-      if (psw !== cnfPsw) {
-        alert("Password and Confirm Password are not same");
+      const otp = document.getElementById("OTP").value;
+      const password = document.getElementById("password").value;
+      const cnfPassword = document.getElementById("cnfPassword").value;
+
+      // Simple OTP validation (6 digits)
+      if (!/^\d{6}$/.test(otp)) {
+        setOtpError("Please enter a valid 6-digit OTP");
         return;
+      } else {
+        setOtpError(""); // Clear the OTP validation error
       }
+
+      // Password validation
+      if (password.length < 6) {
+        setPasswordError("Password must be alphanumeric with special character and length must be 8");
+        return;
+      } else {
+        setPasswordError(""); // Clear the password validation error
+      }
+
+      // Confirm Password validation
+      if (password !== cnfPassword) {
+        setCnfPasswordError("Passwords do not match");
+        return;
+      } else {
+        setCnfPasswordError(""); // Clear the confirm password validation error
+      }
+
       axios.defaults.baseURL = "http://localhost:4000";
       const resp = await axios.post("/user/resetpassword", {
-        otp: document.getElementById("OTP").value,
-        password: document.getElementById("password").value,
+        otp,
+        password,
         email: sessionStorage.getItem("toResetPassEmail"),
       });
-      if (resp.status == 200) {
+      if (resp.status === 200) {
         alert("Password changed successfully");
         navigate("/login");
       } else {
@@ -36,18 +63,18 @@ const OTP = () => {
   const handleResendOTP = async (e) => {
     try {
       e.preventDefault();
-      e.resetPassword.reset();
+      e.target.form.reset();
       axios.defaults.baseURL = "http://localhost:4000";
       const resp = await axios.post("/user/forgetpassword", {
         email: sessionStorage.getItem("toResetPassEmail"),
       });
-      if (resp.status == 200) {
+      if (resp.status === 200) {
         alert("OTP sent to your email");
       } else {
-        alert("Please enter valid email");
+        alert("Please enter a valid email");
       }
     } catch (error) {
-      alert("Please enter valid email");
+      alert("Please enter a valid email");
     }
   };
 
@@ -79,9 +106,12 @@ const OTP = () => {
                     id="OTP"
                     name="OTP"
                     type="number"
-                    required
+                    placeholder="Enter OTP from email"
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   />
+                  {otpError && (
+                    <p className="text-red-600 text-sm mt-1">{otpError}</p>
+                  )}
                 </div>
               </div>
 
@@ -98,9 +128,12 @@ const OTP = () => {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    required
+                    placeholder="Enter new password"
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   />
+                  {passwordError && (
+                    <p className="text-red-600 text-sm mt-1">{passwordError}</p>
+                  )}
                 </div>
               </div>
 
@@ -117,9 +150,12 @@ const OTP = () => {
                     name="cnfPassword"
                     type="Password"
                     autoComplete="current-cnfPassword"
-                    required
+                    placeholder="Confirm new password"
                     className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   />
+                  {cnfPasswordError && (
+                    <p className="text-red-600 text-sm mt-1">{cnfPasswordError}</p>
+                  )}
                 </div>
               </div>
 
