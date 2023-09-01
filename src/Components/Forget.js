@@ -3,7 +3,6 @@ import Logo from "../Images/logo.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
-import { useState } from "react";
 const Forget = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
