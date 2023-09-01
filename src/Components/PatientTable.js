@@ -3,7 +3,7 @@ import { Fragment, useState, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useEffect } from "react";
 import axios from "axios";
-import {Toast , toaster} from "react-hot-toast";
+import { Toast, toaster } from "react-hot-toast";
 const getURL = "http://localhost:4000/";
 
 function PatientTable() {
@@ -16,6 +16,13 @@ function PatientTable() {
   const [updationID, setUpdatetionID] = useState(0);
   const [currentPatient, setCurrentPatient] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
+  const [nameError, setNameError] = useState("");
+  const [genderError, setGenderError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [ageError, setAgeError] = useState("");
+  const [generalError, setGeneralError] = useState("");
+  const [addressError, setAddressError] = useState("");
 
   const insert = () => {
     axios
@@ -33,6 +40,7 @@ function PatientTable() {
   }, []);
 
   const handleUpdate = (personId) => {
+
     axios
       .get(`${getURL}patient/${personId}`)
       .then((response) => {
@@ -48,7 +56,36 @@ function PatientTable() {
   };
 
   const updateRecord = (changedData) => {
-    // setOpenEdit(false);
+
+    setNameError("");
+    setGenderError("");
+    setPhoneError("");
+    setEmailError("");
+    setAgeError("");
+    setGeneralError("");
+    setAddressError("");
+
+    // Validate fields
+    if (changedData.name === undefined || changedData.name === "") {
+      setNameError("Name is required");
+    }
+    if (changedData.gender === undefined || changedData.gender === "") {
+      setGenderError("Gender is required");
+    }
+    if (changedData.phone === undefined || changedData.phone === "") {
+      setPhoneError("Phone number is required");
+    }
+    if (changedData.email === undefined || changedData.email === "") {
+      setEmailError("Email address is required");
+    }
+    if (changedData.age === undefined || changedData.age === "") {
+      setAgeError("Age is required");
+    }
+    if (changedData.address === undefined || changedData.address === "") {
+      setAddressError("Address is required");
+      return;
+    }
+
     axios
       .put(`${getURL}patient/${updationID}`, changedData)
       .then((response) => {
@@ -86,7 +123,7 @@ function PatientTable() {
     <div className='py-4'>
       <div className='h-auto'>
         <>
-        {/* <Toa */}
+          {/* <Toa */}
           <div className='px-4 sm:px-6 lg:px-8'>
             <div className='sm:flex sm:items-center'>
               <div className='sm:flex-auto'>
@@ -216,7 +253,16 @@ function PatientTable() {
               as='div'
               className='relative z-30'
               initialFocus={cancelButtonRef}
-              onClose={setOpenEdit}
+              onClose={() => {
+                setOpenEdit(false);
+                setNameError("");
+                setGenderError("");
+                setPhoneError("");
+                setEmailError("");
+                setAgeError("");
+                setGeneralError("");
+                setAddressError("");
+              }}
             >
               <Transition.Child
                 as={Fragment}
@@ -286,6 +332,7 @@ function PatientTable() {
                                     autoComplete='given-name'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
+                                  {nameError && <div className="text-red-500">{nameError}</div>}
                                 </div>
                               </div>
 
@@ -311,6 +358,7 @@ function PatientTable() {
                                     autoComplete='gender'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
+                                  {genderError && <div className="text-red-500">{genderError}</div>}
                                 </div>
                               </div>
 
@@ -336,6 +384,7 @@ function PatientTable() {
                                     autoComplete='family-name'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
+                                  {phoneError && <div className="text-red-500">{phoneError}</div>}
                                 </div>
                               </div>
 
@@ -361,6 +410,7 @@ function PatientTable() {
                                     autoComplete='email'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
+                                  {emailError && <div className="text-red-500">{emailError}</div>}
                                 </div>
                               </div>
 
@@ -386,6 +436,7 @@ function PatientTable() {
                                     autoComplete='address-level2'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
+                                  {ageError && <div className="text-red-500">{ageError}</div>}
                                 </div>
                               </div>
 
@@ -410,6 +461,7 @@ function PatientTable() {
                                     autoComplete='address'
                                     className='block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   ></textarea>
+                                  {addressError && <div className="text-red-500">{addressError}</div>}
                                 </div>
                               </div>
                             </div>
@@ -417,7 +469,7 @@ function PatientTable() {
                         </div>
                         <div className='bg-gray-50 py-3 flex flex-row-reverse px-6 rounded-xl gap-x-5'>
                           <button
-                            onClick={ 
+                            onClick={
                               (e) => {
                                 e.preventDefault();
                                 updateRecord(currentPatient);
@@ -433,6 +485,13 @@ function PatientTable() {
                             onClick={(e) => {
                               e.preventDefault();
                               setOpenEdit(false);
+                              setNameError("");
+                              setGenderError("");
+                              setPhoneError("");
+                              setEmailError("");
+                              setAgeError("");
+                              setGeneralError("");
+                              setAddressError("");
                             }}
                             type='button'
                             className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
