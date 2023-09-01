@@ -67,8 +67,6 @@ const OTP = () => {
         try {
             e.preventDefault();
             setResend(true);
-            e.resetPassword.reset();
-            e.target.form.reset();
             axios.defaults.baseURL = "http://localhost:4000";
             const resp = await axios.post("/user/forgetpassword", {
                 email: sessionStorage.getItem("toResetPassEmail"),
