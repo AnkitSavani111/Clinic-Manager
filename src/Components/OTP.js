@@ -10,6 +10,9 @@ const OTP = () => {
     // }, []);
     const [loading, setLoading] = useState(false);
     const [resend, setResend] = useState(false);
+    const [otpError, setOtpError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [cnfPasswordError, setCnfPasswordError] = useState("");
     const handleSubmition = async (e) => {
         try {
             e.preventDefault();
@@ -22,7 +25,7 @@ const OTP = () => {
             }
 
             // Password validation
-            if (password.length < 6) {
+            if (psw.length < 6) {
                 setPasswordError("Password must be alphanumeric with special character and length must be 8");
                 return;
             } else {
@@ -30,7 +33,7 @@ const OTP = () => {
             }
 
             // Confirm Password validation
-            if (password !== cnfPassword) {
+            if (psw !== cnfPsw) {
                 setCnfPasswordError("Passwords do not match");
                 return;
             } else {
