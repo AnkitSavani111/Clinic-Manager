@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { data } from 'autoprefixer'
+import { useNavigate } from 'react-router-dom'
 
 // date x
 // age
@@ -20,17 +21,16 @@ import { data } from 'autoprefixer'
 //     { name: 'Lindsay Walton', mobile: '9xxxxxxxxxx', email: 'lindsay.walton@example.com', date: '10/05/2023' },
 //     // More people...
 // ]
-
 const getURL = "http://localhost:4000/"
 
 function PatientTable() {
     const [openEdit, setOpenEdit] = useState(false)
     const [openDelete, setOpenDelete] = useState(false)
     const cancelButtonRef = useRef(null)
-
     const [people, setPeople] = useState([])
     const [deletionID, setDeletionID] = useState(0);
     const [updationID, setUpdatetionID] = useState(0);
+    const navigate = useNavigate();
 
     const insert = () => {
         axios.get((getURL + "patient"))
@@ -46,47 +46,20 @@ function PatientTable() {
         insert()
     }, [])
 
-    const inputData = {name:"",phone:0,email:"",gender:"",date_registration:Date.now(),age:0,address:""}
-    const [data,setData] = useState(inputData)
+    const inputData = { name: "", phone: 0, email: "", gender: "", date_registration: Date.now(), age: 0, address: "" }
+    const [data, setData] = useState(inputData)
     const handleData = (event) => {
-        setData({...data,[event.target.name]:event.target.value})
-      }
+        setData({ ...data, [event.target.name]: event.target.value })
+    }
 
     const handleUpdate = (personId) => {
         setOpenEdit(true)
         setUpdatetionID(personId)
     }
 
-    // const updateRecord = () => {
-         // Get the updated data from the input fields
-    // const updatedData = {
-    //     name: document.getElementById('first-name').value,
-    //     phone: document.getElementById('phone').value,
-    //     email: document.getElementById('email').value,
-    //     age: document.getElementById('age').value,
-    //     address: document.getElementById('street-address').value,
-    // };
-
-    // // Send a PUT request to update the patient record
-    // axios.put(`${getURL}patient/${updationID}`, updatedData)
-    //     .then((response) => {
-    //         // Handle the success response here if needed
-    //         console.log("Patient updated successfully:", response);
-
-    //         // After a successful update, close the edit dialog
-    //         setOpenEdit(false);
-
-    //         // Update the local state with the updated data
-    //         setPeople((prevPeople) =>
-    //             prevPeople.map((person) =>
-    //                 person._id === updationID ? { ...person, ...updatedData } : person
-    //             )
-    //         );
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error updating patient:", error);
-    //     });
-    // }
+    const handleClick = () => {
+        navigate("/receptiondashb/AddPatient")
+    }
 
     const handleDelete = (personId) => {
         setOpenDelete(true)
@@ -118,6 +91,10 @@ function PatientTable() {
                             </div>
                             <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                                 <button
+                                    // Navigation to Add Patient Page
+                                    onClick={
+                                        handleClick
+                                    }
                                     type="button"
                                     className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                                 >

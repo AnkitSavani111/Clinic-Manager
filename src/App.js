@@ -6,11 +6,13 @@ import Appointment from './Components/Appointment';
 import About from './Components/About';
 import SignUp from './Components/SignUp';
 import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
+import AddPatient from './Components/AddPatient';
 import Forget from './Components/Forget';
 import OTP from './Components/OTP';
 import { useEffect} from "react";
 import { useUser } from "../src/Contexts/UserContext";
 import axios from "axios";
+import PatientDetails from './Components/PatientDetails';
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -49,6 +51,8 @@ function App() {
             <Route path='/appointment' element={<Appointment />} />
             <Route path='/about' element={<About />} />
             <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
+            <Route path='/receptiondashb/PatientDetails' element={<PatientDetails />} />
+            <Route path='/receptiondashb/AddPatient' element={<AddPatient />} />
           </>
         ) : (
           <></>

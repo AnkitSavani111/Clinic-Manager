@@ -15,76 +15,66 @@ import {
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PatientTable from './PatientTable'
-
-// const navigation = [
-//   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-//   { name: 'Team', href: '#', icon: UsersIcon, current: false },
-//   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-//   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-//   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-//   { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-// ]
-
-
+import { Link } from 'react-router-dom'
 
 const navigation = [
   // { name: 'Dashboard', href: '#', current: true, icon: HomeIcon },
   {
-    name: 'Team',
+    name: 'Patients',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Patient Details', to:"/receptiondashb/PatientDetails"  },
+      { name: 'Add Patient',  to:"/receptiondashb/AddPatient"  },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Projects',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', element: <Link to="/receptiondashb/PatientDetails" /> },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Calendar',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', to: '#' },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Documents',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', to: '#' },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Reports',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', to: '#' },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
 ]
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Your Profile', to: '#' },
+  { name: 'Settings', to: '#' },
+  { name: 'Sign out', to: '#' },
 ]
 
 function classNames(...classes) {
@@ -155,8 +145,8 @@ function Sidebar() {
                       {navigation.map((item) =>
                         !item.children ? (
                           <div key={item.name}>
-                            <a
-                              href={item.href}
+                            <Link
+                              to={item.to}
                               className={classNames(
                                 item.current
                                   ? 'bg-gray-100 text-gray-900'
@@ -165,7 +155,7 @@ function Sidebar() {
                               )}
                             >
                               {item.name}
-                            </a>
+                            </Link>
                           </div>
                         ) : (
                           <Disclosure as="div" key={item.name} className="space-y-1">
@@ -196,8 +186,8 @@ function Sidebar() {
                                   {item.children.map((subItem) => (
                                     <Disclosure.Button
                                       key={subItem.name}
-                                      as="a"
-                                      href={subItem.href}
+                                      as={Link}
+                                      to={subItem.to}
                                       className="group flex w-full items-center rounded-md py-2 pl-10 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                                     >
                                       {subItem.name}
@@ -237,8 +227,8 @@ function Sidebar() {
                 {navigation.map((item) =>
                   !item.children ? (
                     <div key={item.name}>
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.to}
                         className={classNames(
                           item.current
                             ? 'bg-gray-100 text-gray-900'
@@ -247,7 +237,7 @@ function Sidebar() {
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     </div>
                   ) : (
                     <Disclosure as="div" key={item.name} className="space-y-1">
@@ -279,8 +269,8 @@ function Sidebar() {
                             {item.children.map((subItem) => (
                               <Disclosure.Button
                                 key={subItem.name}
-                                as="a"
-                                href={subItem.href}
+                                as={Link}
+                                to={subItem.to}
                                 className="group flex w-full items-center rounded-md py-2 pl-10 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                               >
                                 {subItem.name}
@@ -370,7 +360,9 @@ function Sidebar() {
               </div>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
-                <PatientTable />
+
+
+
                 {/* /End replace */}
               </div>
             </div>
