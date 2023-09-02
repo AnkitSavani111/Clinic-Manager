@@ -68,18 +68,23 @@ function PatientTable() {
     // Validate fields
     if (changedData.name === undefined || changedData.name === "") {
       setNameError("Name is required");
+      return;
     }
     if (changedData.gender === undefined || changedData.gender === "") {
       setGenderError("Gender is required");
+      return;
     }
     if (changedData.phone === undefined || changedData.phone === "") {
       setPhoneError("Phone number is required");
+      return;
     }
     if (changedData.email === undefined || changedData.email === "") {
       setEmailError("Email address is required");
+      return;
     }
     if (changedData.age === undefined || changedData.age === "") {
       setAgeError("Age is required");
+      return;
     }
     if (changedData.address === undefined || changedData.address === "") {
       setAddressError("Address is required");
