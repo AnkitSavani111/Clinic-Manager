@@ -9,7 +9,7 @@ function Homebody() {
     return (
         <>
             <main className='-z-10'>
-                <div id='home' className="relative px-6 lg:px-8">
+                <div id='home' className="relative px-6 lg:px-8 h-screen">
                     <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:my-auto">
                         {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
