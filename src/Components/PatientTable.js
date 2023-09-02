@@ -56,7 +56,8 @@ function PatientTable() {
     setUpdatetionID(personId);
   };
 
-  const updateRecord = (changedData) => {
+  const validateForm = (data) => {
+    var isValid = true;
     setNameError("");
     setGenderError("");
     setPhoneError("");
@@ -66,28 +67,35 @@ function PatientTable() {
     setAddressError("");
 
     // Validate fields
-    if (changedData.name === undefined || changedData.name === "") {
+    if (data.name === undefined || data.name === "") {
       setNameError("Name is required");
-      return;
+      isValid = false;
     }
-    if (changedData.gender === undefined || changedData.gender === "") {
+    if (data.gender === undefined || data.gender === "") {
       setGenderError("Gender is required");
-      return;
+      isValid = false;
     }
-    if (changedData.phone === undefined || changedData.phone === "") {
+    if (data.phone === undefined || data.phone === "") {
       setPhoneError("Phone number is required");
-      return;
+      isValid = false;
     }
-    if (changedData.email === undefined || changedData.email === "") {
+    if (data.email === undefined || data.email === "") {
       setEmailError("Email address is required");
-      return;
+      isValid = false;
     }
-    if (changedData.age === undefined || changedData.age === "") {
+    if (data.age === undefined || data.age === "") {
       setAgeError("Age is required");
-      return;
+      isValid = false;
     }
-    if (changedData.address === undefined || changedData.address === "") {
+    if (data.address === undefined || data.address === "") {
       setAddressError("Address is required");
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const updateRecord = (changedData) => {
+    if (!validateForm(changedData)) {
       return;
     }
 
@@ -160,7 +168,7 @@ function PatientTable() {
                   className='inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto'
                   onClick={(e) => {
                     e.preventDefault();
-                    nav("/receptiondashb/AddPatient")
+                    nav("/receptiondashb/AddPatient");
                   }}
                 >
                   Add Patient
