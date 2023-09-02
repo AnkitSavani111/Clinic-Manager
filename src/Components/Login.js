@@ -144,7 +144,7 @@ const Login = () => {
         </div>
       </div> */}
 
-      <div className='Background bg-slate-400 bg-cover relative h-screen'>
+      <div className='Background bg-slate-400 bg-cover relative h-screen overflow-hidden'>
         <div className='flex justify-center items-center h-screen'>
           <div className='Card bg-slate-300 flex sm:w-2/5 sm:h-auto h-4/5 flex-col justify-center m-auto items-center shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-lg rounded-2xl'>
             <Toaster />
@@ -159,7 +159,7 @@ const Login = () => {
               </h2>
             </div>
             <div className='sm:mt-5 sm:mx-auto sm:w-full sm:max-w-md'>
-              <div className='bg-transparent py-8 px-4 sm:rounded-lg sm:px-10'>
+              <div className='bg-transparent py-4  px-4 sm:rounded-lg sm:px-10'>
                 <form className='space-y-6' onSubmit={handleSubmit}>
                   <div>
                     <label
