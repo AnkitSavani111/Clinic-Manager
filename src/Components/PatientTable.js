@@ -383,28 +383,71 @@ function PatientTable() {
                                   Gender
                                 </label>
                                 <div className='mt-1 sm:col-span-2 sm:mt-0'>
-                                  <input
-                                    type='text'
-                                    name='gender'
-                                    id='gender'
-                                    value={currentPatient.gender}
-                                    onChange={(e) => {
-                                      setCurrentPatient({
-                                        ...currentPatient,
-                                        gender: e.target.value,
-                                      });
-                                    }}
-                                    autoComplete='gender'
-                                    className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
-                                  />
-                                  {genderError && (
-                                    <div className='text-red-500'>
-                                      {genderError}
-                                    </div>
-                                  )}
+                                  <div className='flex items-center space-x-4'>
+                                    <label className='inline-flex items-center'>
+                                      <input
+                                        type='radio'
+                                        name='gender'
+                                        value='male'
+                                        checked={
+                                          currentPatient.gender === "male"
+                                        }
+                                        onChange={(e) => {
+                                          setCurrentPatient({
+                                            ...currentPatient,
+                                            gender: e.target.value,
+                                          });
+                                        }}
+                                        className='form-radio h-5 w-5 text-indigo-600'
+                                      />
+                                      <span className='ml-2'>Male</span>
+                                    </label>
+
+                                    <label className='inline-flex items-center'>
+                                      <input
+                                        type='radio'
+                                        name='gender'
+                                        value='female'
+                                        checked={
+                                          currentPatient.gender === "female"
+                                        }
+                                        onChange={(e) => {
+                                          setCurrentPatient({
+                                            ...currentPatient,
+                                            gender: e.target.value,
+                                          });
+                                        }}
+                                        className='form-radio h-5 w-5 text-indigo-600'
+                                      />
+                                      <span className='ml-2'>Female</span>
+                                    </label>
+
+                                    <label className='inline-flex items-center'>
+                                      <input
+                                        type='radio'
+                                        name='gender'
+                                        value='other'
+                                        checked={
+                                          currentPatient.gender === "other"
+                                        }
+                                        onChange={(e) => {
+                                          setCurrentPatient({
+                                            ...currentPatient,
+                                            gender: e.target.value,
+                                          });
+                                        }}
+                                        className='form-radio h-5 w-5 text-indigo-600'
+                                      />
+                                      <span className='ml-2'>Other</span>
+                                    </label>
+                                    {genderError && (
+                                      <div className='text-red-500'>
+                                        {genderError}
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
-
                               <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
                                   htmlFor='phone'
