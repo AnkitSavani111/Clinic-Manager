@@ -3,7 +3,8 @@ import { Fragment, useState, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Toast, toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const getURL = "http://localhost:4000/";
 
 function PatientTable() {
@@ -23,6 +24,7 @@ function PatientTable() {
   const [ageError, setAgeError] = useState("");
   const [generalError, setGeneralError] = useState("");
   const [addressError, setAddressError] = useState("");
+  const nav = useNavigate();
 
   const insert = () => {
     axios
@@ -40,7 +42,6 @@ function PatientTable() {
   }, []);
 
   const handleUpdate = (personId) => {
-
     axios
       .get(`${getURL}patient/${personId}`)
       .then((response) => {
@@ -56,7 +57,6 @@ function PatientTable() {
   };
 
   const updateRecord = (changedData) => {
-
     setNameError("");
     setGenderError("");
     setPhoneError("");
@@ -101,9 +101,11 @@ function PatientTable() {
             person._id === updationID ? { ...person, ...changedData } : person
           )
         );
+        handleShowToast("Patient updated successfully", "success");
       })
       .catch((error) => {
         console.error("Error updating patient:", error);
+        handleShowToast("Error updating patient", "error");
       });
   };
 
@@ -118,19 +120,35 @@ function PatientTable() {
       .then((response) => {
         console.log(response);
         setPeople(people.filter((person) => person._id !== deletionID));
+        handleShowToast("Patient deleted successfully", "success");
       })
       .catch((error) => {
         console.log(error);
+        handleShowToast("Error deleting patient", "error");
       });
+  };
+
+  const handleShowToast = (message, type) => {
+    if (type === "error") {
+      toast.error(message, {
+        position: "bottom-center",
+      });
+      return;
+    } else if (type === "success") {
+      toast.success(message, {
+        position: "bottom-center",
+      });
+      return;
+    }
   };
 
   return (
     <div className='py-4'>
       <div className='h-auto'>
         <>
-          {/* <Toa */}
           <div className='px-4 sm:px-6 lg:px-8'>
             <div className='sm:flex sm:items-center'>
+              <Toaster />
               <div className='sm:flex-auto'>
                 <h1 className='text-xl font-semibold text-gray-900'>
                   Patients Details
@@ -140,6 +158,10 @@ function PatientTable() {
                 <button
                   type='button'
                   className='inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    nav("/receptiondashb/AddPatient")
+                  }}
                 >
                   Add Patient
                 </button>
@@ -337,7 +359,11 @@ function PatientTable() {
                                     autoComplete='given-name'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
-                                  {nameError && <div className="text-red-500">{nameError}</div>}
+                                  {nameError && (
+                                    <div className='text-red-500'>
+                                      {nameError}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -363,7 +389,11 @@ function PatientTable() {
                                     autoComplete='gender'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
-                                  {genderError && <div className="text-red-500">{genderError}</div>}
+                                  {genderError && (
+                                    <div className='text-red-500'>
+                                      {genderError}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -389,7 +419,11 @@ function PatientTable() {
                                     autoComplete='family-name'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
-                                  {phoneError && <div className="text-red-500">{phoneError}</div>}
+                                  {phoneError && (
+                                    <div className='text-red-500'>
+                                      {phoneError}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -415,7 +449,11 @@ function PatientTable() {
                                     autoComplete='email'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
-                                  {emailError && <div className="text-red-500">{emailError}</div>}
+                                  {emailError && (
+                                    <div className='text-red-500'>
+                                      {emailError}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -441,7 +479,11 @@ function PatientTable() {
                                     autoComplete='address-level2'
                                     className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
-                                  {ageError && <div className="text-red-500">{ageError}</div>}
+                                  {ageError && (
+                                    <div className='text-red-500'>
+                                      {ageError}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -466,7 +508,11 @@ function PatientTable() {
                                     autoComplete='address'
                                     className='block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   ></textarea>
-                                  {addressError && <div className="text-red-500">{addressError}</div>}
+                                  {addressError && (
+                                    <div className='text-red-500'>
+                                      {addressError}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -474,12 +520,10 @@ function PatientTable() {
                         </div>
                         <div className='bg-gray-50 py-3 flex flex-row-reverse px-6 rounded-xl gap-x-5'>
                           <button
-                            onClick={
-                              (e) => {
-                                e.preventDefault();
-                                updateRecord(currentPatient);
-                              }
-                            }
+                            onClick={(e) => {
+                              e.preventDefault();
+                              updateRecord(currentPatient);
+                            }}
                             type='submit'
                             disabled={isUpdating}
                             className='inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
