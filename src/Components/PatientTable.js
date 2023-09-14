@@ -124,7 +124,7 @@ function PatientTable() {
 
   const deleteRecord = () => {
     axios
-      .delete(`${getURL}patient/${deletionID}`)
+      .delete(`${getURL}/patient/${deletionID}`)
       .then((response) => {
         console.log(response);
         setPeople(people.filter((person) => person._id !== deletionID));
