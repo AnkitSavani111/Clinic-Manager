@@ -20,7 +20,7 @@ function App() {
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
-  axios.defaults.baseURL = "http://localhost:4000";
+  axios.defaults.baseURL = process.env.REACT_APP_API;
 
   useEffect(() => {
     const verifyUser = async () => {
