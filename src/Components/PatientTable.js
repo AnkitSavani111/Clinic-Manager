@@ -28,7 +28,7 @@ function PatientTable() {
 
   const insert = () => {
     axios
-      .get(getURL + "patient")
+      .get(getURL + "/patient")
       .then((response) => {
         console.log(response);
         setPeople(response.data);
@@ -43,7 +43,7 @@ function PatientTable() {
 
   const handleUpdate = (personId) => {
     axios
-      .get(`${getURL}patient/${personId}`)
+      .get(`${getURL}/patient/${personId}`)
       .then((response) => {
         console.log(response);
         setCurrentPatient(response.data);
@@ -100,7 +100,7 @@ function PatientTable() {
     }
 
     axios
-      .put(`${getURL}patient/${updationID}`, changedData)
+      .put(`${getURL}/patient/${updationID}`, changedData)
       .then((response) => {
         console.log("Patient updated successfully:", response);
         setOpenEdit(false);
