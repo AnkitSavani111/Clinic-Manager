@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-const getURL = "http://localhost:4000/";
+const getURL = process.env.REACT_APP_API;
 
 function PatientTable() {
   const [openEdit, setOpenEdit] = useState(false);

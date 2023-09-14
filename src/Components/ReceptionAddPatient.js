@@ -107,7 +107,7 @@ function ReceptionAddPatient() {
     return true;
   };
 
-  const apiURL = "http://localhost:4000" + "/patient";
+  const apiURL = process.env.REACT_APP_API+ "/patient";
   const handleSubmit = (event) => {
     event.preventDefault();
 
