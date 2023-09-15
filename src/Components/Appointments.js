@@ -25,6 +25,7 @@ function Appointments() {
 
   useEffect(() => {
     getAppointments();
+    console.warn(process.env.REACT_APP_SOCKET);
   }, []);
 
   // Render your appointments list
