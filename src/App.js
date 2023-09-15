@@ -13,6 +13,7 @@ import { useEffect} from "react";
 import { useUser } from "../src/Contexts/UserContext";
 import axios from "axios";
 import PatientDetails from './Components/PatientDetails';
+import Appointments from './Components/Appointments';
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -53,6 +54,7 @@ function App() {
             <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
             <Route path='/receptiondashb/PatientDetails' element={<PatientDetails />} />
             <Route path='/receptiondashb/AddPatient' element={<AddPatient />} />
+            <Route path='/receptiondashb/appointments' element={<Appointments/>} />
           </>
         ) : (
           <></>
