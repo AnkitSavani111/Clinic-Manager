@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io(process.env.REACT_APP_API);
+const socket = io(process.env.REACT_APP_SOCKET);
 // Connect to your server
 
 function Appointments() {
