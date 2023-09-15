@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io(process.env.REACT_APP_SOCKET);
-// Connect to your server
-
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
+  const [host_ip, setHost_ip] = useState("");
+
+  axios.get(process.env.REACT_APP_API + "/user/ip").then((res) => {
+    setHost_ip(res.data.ip);
+  });
+  const socket = io(`http://${host_ip}:4000`);
 
   socket.on("appointment", (data) => {
+    console.log(data);
     getAppointments();
   });
-
   async function getAppointments() {
     try {
       const response = await axios.get(
@@ -25,7 +28,6 @@ function Appointments() {
 
   useEffect(() => {
     getAppointments();
-    console.warn(process.env.REACT_APP_SOCKET);
   }, []);
 
   // Render your appointments list
