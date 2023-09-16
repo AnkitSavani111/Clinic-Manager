@@ -14,77 +14,67 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import PatientTable from './PatientTable'
-
-// const navigation = [
-//   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-//   { name: 'Team', href: '#', icon: UsersIcon, current: false },
-//   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-//   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-//   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-//   { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-// ]
-
-
+import { Link } from 'react-router-dom'
+import ReceptionAddPatient from './ReceptionAddPatient'
 
 const navigation = [
   // { name: 'Dashboard', href: '#', current: true, icon: HomeIcon },
   {
-    name: 'Team',
+    name: 'Patients',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Patient Details', to:"/receptiondashb/PatientDetails"  },
+      { name: 'Add Patient',  to:"/receptiondashb/AddPatient"  },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Projects',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', element: <Link to="/receptiondashb/PatientDetails" /> },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Calendar',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', to: '#' },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Documents',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', to: '#' },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
   {
     name: 'Reports',
     current: false,
     children: [
-      { name: 'Overview', href: '#' },
-      { name: 'Members', href: '#' },
-      { name: 'Calendar', href: '#' },
-      { name: 'Settings', href: '#' },
+      { name: 'Overview', to: '#' },
+      { name: 'Members', to: '#' },
+      { name: 'Calendar', to: '#' },
+      { name: 'Settings', to: '#' },
     ],
   },
 ]
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Your Profile', to: '#' },
+  { name: 'Settings', to: '#' },
+  { name: 'Sign out', to: '#' },
 ]
 
 function classNames(...classes) {
@@ -92,12 +82,10 @@ function classNames(...classes) {
 }
 
 
-function Sidebar() {
+function AddPatient() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
-
+  
   return (
-    <div>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
@@ -157,8 +145,8 @@ function Sidebar() {
                       {navigation.map((item) =>
                         !item.children ? (
                           <div key={item.name}>
-                            <a
-                              href={item.href}
+                            <Link
+                              to={item.to}
                               className={classNames(
                                 item.current
                                   ? 'bg-gray-100 text-gray-900'
@@ -167,7 +155,7 @@ function Sidebar() {
                               )}
                             >
                               {item.name}
-                            </a>
+                            </Link>
                           </div>
                         ) : (
                           <Disclosure as="div" key={item.name} className="space-y-1">
@@ -198,8 +186,8 @@ function Sidebar() {
                                   {item.children.map((subItem) => (
                                     <Disclosure.Button
                                       key={subItem.name}
-                                      as="a"
-                                      href={subItem.href}
+                                      as={Link}
+                                      to={subItem.to}
                                       className="group flex w-full items-center rounded-md py-2 pl-10 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                                     >
                                       {subItem.name}
@@ -212,29 +200,7 @@ function Sidebar() {
                         )
                       )}
                     </nav>
-                    {/* <nav className="space-y-1 px-2">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                          )}
-                        >
-                          <item.icon
-                            className={classNames(
-                              item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                              'mr-4 flex-shrink-0 h-6 w-6'
-                            )}
-                            aria-hidden="true"
-                          />
-                          {item.name}
-                        </a>
-                      ))}
-                    </nav> */}
+
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -261,8 +227,8 @@ function Sidebar() {
                 {navigation.map((item) =>
                   !item.children ? (
                     <div key={item.name}>
-                      <a
-                        href={item.href}
+                      <Link
+                        to={item.to}
                         className={classNames(
                           item.current
                             ? 'bg-gray-100 text-gray-900'
@@ -271,7 +237,7 @@ function Sidebar() {
                         )}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     </div>
                   ) : (
                     <Disclosure as="div" key={item.name} className="space-y-1">
@@ -303,8 +269,8 @@ function Sidebar() {
                             {item.children.map((subItem) => (
                               <Disclosure.Button
                                 key={subItem.name}
-                                as="a"
-                                href={subItem.href}
+                                as={Link}
+                                to={subItem.to}
                                 className="group flex w-full items-center rounded-md py-2 pl-10 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                               >
                                 {subItem.name}
@@ -317,27 +283,6 @@ function Sidebar() {
                   )
                 )}
               </nav>
-              {/* <nav className="flex-1 space-y-1 px-2 pb-4">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                    )}
-                  >
-                    <item.icon
-                      className={classNames(
-                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-3 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
-                ))}
-              </nav> */}
             </div>
           </div>
         </div>
@@ -354,24 +299,6 @@ function Sidebar() {
             <div className="flex flex-1 justify-between px-4 ">
               <div className="flex flex-1">
                 <div className="text-center w-full sm:text-[1.5rem] text-[1.1rem] self-center font-semibold text-[rgb(8  72 48)]">Reception Dashboard</div>
-
-                {/* <form className="flex w-full md:ml-0" action="#" method="GET">
-                  <label htmlFor="search-field" className="sr-only">
-                    Search
-                  </label>
-                  <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                      <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <input
-                      id="search-field"
-                      className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                      placeholder="Search"
-                      type="search"
-                      name="search"
-                    />
-                  </div>
-                </form> */}
               </div>
               <div className="ml-4 flex items-center md:ml-6">
                 <button
@@ -429,19 +356,20 @@ function Sidebar() {
           <main className="flex-1">
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+                <h1 className="text-2xl font-semibold text-gray-900">Add Patient</h1>
               </div>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
-                      <PatientTable />
+
+                      <ReceptionAddPatient />
+                
                 {/* /End replace */}
               </div>
             </div>
           </main>
         </div>
       </div>
-    </div>
   )
 }
 
-export default Sidebar
+export default AddPatient
