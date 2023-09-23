@@ -14,6 +14,7 @@ import { useUser } from "../src/Contexts/UserContext";
 import axios from "axios";
 import PatientDetails from './Components/PatientDetails';
 import Appointments from './Components/Appointments';
+import PatientDetailsConfirmed from './Components/PatientDetailsConfirmed';
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -55,6 +56,7 @@ function App() {
             <Route path='/receptiondashb/PatientDetails' element={<PatientDetails />} />
             <Route path='/receptiondashb/AddPatient' element={<AddPatient />} />
             <Route path='/receptiondashb/appointments' element={<Appointments/>} />
+            <Route path='/receptiondashb/ConfirmList' element={<PatientDetailsConfirmed/>} />
           </>
         ) : (
           <></>

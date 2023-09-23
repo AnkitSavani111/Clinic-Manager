@@ -19,6 +19,7 @@ function PatientTable() {
   const [scheduleID, setScheduleID] = useState(0);
   const [currentPatient, setCurrentPatient] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isScheduling, setIsScheduling] = useState(false);
   const [nameError, setNameError] = useState("");
   const [genderError, setGenderError] = useState("");
   const [phoneError, setPhoneError] = useState("");
@@ -874,7 +875,7 @@ function PatientTable() {
                                   >
                                     <option>Pending</option>
                                     <option>In</option>
-                                    <option>Rejected</option>
+                                    <option>Reject</option>
                                   </select>
                                   {/* {phoneError && (
                                     <div className="text-red-500">
@@ -891,7 +892,7 @@ function PatientTable() {
                                 >
                                   Time Slots
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className="mt-1 sm:col-span-2 sm:mt-0 flex gap-x-5">
                                   <select
                                     id="timeslot"
                                     name="timeslot"
@@ -1004,10 +1005,10 @@ function PatientTable() {
                               updateRecord(currentPatient);
                             }}
                             type="submit"
-                            disabled={isUpdating}
+                            disabled={isScheduling}
                             className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
-                            {isUpdating ? "Scheduling..." : "Schedule"}
+                            {isScheduling ? "Scheduling..." : "Schedule"}
                           </button>
                           <button
                             onClick={(e) => {

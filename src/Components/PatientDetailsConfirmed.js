@@ -16,6 +16,7 @@ import {
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PatientTable from './PatientTable'
 import { Link } from 'react-router-dom'
+import PatientTableConfirmed from './PatientTableConfirmed'
 
 const navigation = [
   // { name: 'Dashboard', href: '#', current: true, icon: HomeIcon },
@@ -33,7 +34,7 @@ const navigation = [
     name: 'Projects',
     current: false,
     children: [
-      { name: 'Overview', element: <Link to="/receptiondashb/PatientDetails" /> },
+      { name: 'Overview', element: <Link to="/receptiondashb/" /> },
       { name: 'Members', to: '#' },
       { name: 'Calendar', to: '#' },
       { name: 'Settings', to: '#' },
@@ -82,7 +83,7 @@ function classNames(...classes) {
 }
 
 
-function PatientDetails() {
+function PatientDetailsConfirmed() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -360,7 +361,7 @@ function PatientDetails() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
               {/* Replace with your content */}
 
-              <PatientTable />
+              <PatientTableConfirmed />
 
               {/* /End replace */}
             </div>
@@ -371,4 +372,4 @@ function PatientDetails() {
   )
 }
 
-export default PatientDetails
+export default PatientDetailsConfirmed
