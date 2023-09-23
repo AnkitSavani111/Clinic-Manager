@@ -25,7 +25,7 @@ const navigation = [
         name: 'Patients',
         current: false,
         children: [
-            { name: 'Patient Details', to: "/doctordashb/PatientList" },
+            { name: 'Patient Details', to: "/doctordashb/PatientDetails" },
             { name: 'Previous Records', to: "/doctordashb/PreviousRecord" },
             { name: 'Calendar', to: '#' },
             { name: 'Settings', to: '#' },
