@@ -1,12 +1,11 @@
 import React from 'react'
-import ReceptionHome from '../ReceptionHome'
-import PatientTable from '../PatientTable'
+import DoctorHome from '../DoctorHome'
 
 function ReceptionDashBoard() {
   return (
     <div>
       <h1>
-        <ReceptionHome />
+        <DoctorHome/>
       </h1>
     </div>
   )
