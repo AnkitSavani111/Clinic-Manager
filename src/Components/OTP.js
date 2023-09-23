@@ -41,7 +41,7 @@ const OTP = () => {
             }
             setLoading(true);
 
-            axios.defaults.baseURL = "http://localhost:4000";
+            axios.defaults.baseURL = process.env.REACT_APP_API;
             const resp = await axios.post("/user/resetpassword", {
                 otp: otp,
                 password: psw,
@@ -67,7 +67,7 @@ const OTP = () => {
         try {
             e.preventDefault();
             setResend(true);
-            axios.defaults.baseURL = "http://localhost:4000";
+            axios.defaults.baseURL = process.env.REACT_APP_API;
             const resp = await axios.post("/user/forgetpassword", {
                 email: sessionStorage.getItem("toResetPassEmail"),
             });

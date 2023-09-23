@@ -21,7 +21,7 @@ const Forget = () => {
     }
 
     try {
-      axios.defaults.baseURL = "http://localhost:4000";
+      axios.defaults.baseURL = process.env.REACT_APP_API;
       setLoading(true);
       const resp = await axios.post("/user/forgetpassword", {
         email: document.getElementById("email").value,

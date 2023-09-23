@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-const getURL = "http://localhost:4000/";
+const getURL = process.env.REACT_APP_API;
 
 function PatientTable() {
   const [openEdit, setOpenEdit] = useState(false);
@@ -28,7 +28,7 @@ function PatientTable() {
 
   const insert = () => {
     axios
-      .get(getURL + "patient")
+      .get(getURL + "/patient")
       .then((response) => {
         console.log(response);
         setPeople(response.data);
@@ -43,7 +43,7 @@ function PatientTable() {
 
   const handleUpdate = (personId) => {
     axios
-      .get(`${getURL}patient/${personId}`)
+      .get(`${getURL}/patient/${personId}`)
       .then((response) => {
         console.log(response);
         setCurrentPatient(response.data);
@@ -100,7 +100,7 @@ function PatientTable() {
     }
 
     axios
-      .put(`${getURL}patient/${updationID}`, changedData)
+      .put(`${getURL}/patient/${updationID}`, changedData)
       .then((response) => {
         console.log("Patient updated successfully:", response);
         setOpenEdit(false);
@@ -124,7 +124,7 @@ function PatientTable() {
 
   const deleteRecord = () => {
     axios
-      .delete(`${getURL}patient/${deletionID}`)
+      .delete(`${getURL}/patient/${deletionID}`)
       .then((response) => {
         console.log(response);
         setPeople(people.filter((person) => person._id !== deletionID));

@@ -62,7 +62,7 @@ const Login = () => {
     }
 
     try {
-      axios.defaults.baseURL = "http://localhost:4000";
+      axios.defaults.baseURL = process.env.REACT_APP_API;
       axios.withCredentials = true;
       const res = await axios.post("/user/login", {
         email: document.getElementById("email").value,

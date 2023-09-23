@@ -13,10 +13,7 @@ import { useEffect} from "react";
 import { useUser } from "../src/Contexts/UserContext";
 import axios from "axios";
 import PatientDetails from './Components/PatientDetails';
-import DoctorDashBoard from './Components/Pages/DoctorDashBoard';
-import DoctorPatientList from './Components/DoctorPatientList';
-import PreviousRecord from './Components/PreviousRecord';
-
+import Appointments from './Components/Appointments';
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -24,7 +21,7 @@ function App() {
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
-  axios.defaults.baseURL = "http://localhost:4000";
+  axios.defaults.baseURL = process.env.REACT_APP_API;
 
   useEffect(() => {
     const verifyUser = async () => {
@@ -57,9 +54,7 @@ function App() {
             <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
             <Route path='/receptiondashb/PatientDetails' element={<PatientDetails />} />
             <Route path='/receptiondashb/AddPatient' element={<AddPatient />} />
-            <Route path='/doctordashb' element={<DoctorDashBoard />} />
-            <Route path='/doctordashb/PatientList' element={<DoctorPatientList />} />
-            <Route path='/doctordashb/PreviousRecord' element={<PreviousRecord />} />
+            <Route path='/receptiondashb/appointments' element={<Appointments/>} />
           </>
         ) : (
           <></>
