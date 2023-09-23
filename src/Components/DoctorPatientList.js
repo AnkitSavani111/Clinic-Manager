@@ -16,6 +16,7 @@ import {
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import PatientTable from './PatientTable'
 import { Link } from 'react-router-dom'
+import ConfirmedListTable from './ConfirmedListTable'
 
 const navigation = [
   // { name: 'Dashboard', href: '#', current: true, icon: HomeIcon },
@@ -23,52 +24,12 @@ const navigation = [
     name: 'Patients',
     current: false,
     children: [
-      { name: 'Patient Details', to: "/receptiondashb/PatientDetails" },
-      { name: 'Add Patient', to: "/receptiondashb/AddPatient" },
+      { name: 'Patient Details', to: "/doctordashb/PatientList" },
+      { name: 'Previous Records', to: "/doctordashb/PreviousRecord" },
       { name: 'Calendar', to: '#' },
       { name: 'Settings', to: '#' },
     ],
-  },
-  {
-    name: 'Projects',
-    current: false,
-    children: [
-      { name: 'Overview', element: <Link to="/receptiondashb/PatientDetails" /> },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Calendar',
-    current: false,
-    children: [
-      { name: 'Overview', to: '#' },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Documents',
-    current: false,
-    children: [
-      { name: 'Overview', to: '#' },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Reports',
-    current: false,
-    children: [
-      { name: 'Overview', to: '#' },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
+  }
 ]
 
 const userNavigation = [
@@ -82,7 +43,7 @@ function classNames(...classes) {
 }
 
 
-function PatientDetails() {
+function DoctorPatientList() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -360,7 +321,7 @@ function PatientDetails() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
               {/* Replace with your content */}
 
-              <PatientTable />
+              <ConfirmedListTable />
 
               {/* /End replace */}
             </div>
@@ -371,4 +332,4 @@ function PatientDetails() {
   )
 }
 
-export default PatientDetails
+export default DoctorPatientList
