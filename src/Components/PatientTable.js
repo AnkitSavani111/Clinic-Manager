@@ -16,7 +16,7 @@ function PatientTable() {
   const [people, setPeople] = useState([]);
   const [deletionID, setDeletionID] = useState(0);
   const [updationID, setUpdatetionID] = useState(0);
-  const [scheduleID, setScheduleID] = useState(0);
+  const [schedulePatient, setSchedulePatient] = useState(0);
   const [currentPatient, setCurrentPatient] = useState({});
   const [isUpdating, setIsUpdating] = useState(false);
   const [isScheduling, setIsScheduling] = useState(false);
@@ -72,14 +72,14 @@ function PatientTable() {
     setUpdatetionID(personId);
   };
 
-  const handleSchedule = (personId) => {
+  const handleSchedule = (person) => {
     setOpenSchedule(true);
-    setScheduleID(personId);
+    setSchedulePatient(person);
   };
 
   const scheduleRecord = (insertedData) => {
     axios
-      .post(`${getURL}/patient/${scheduleID}`, insertedData)
+      .post(`${getURL}/appointment`, insertedData)
       .then((response) => {
         console.log("Schduled succesfully : ", response);
         setOpenSchedule(false);
@@ -186,21 +186,21 @@ function PatientTable() {
   };
 
   return (
-    <div className="py-4">
-      <div className="h-auto">
+    <div className='py-4'>
+      <div className='h-auto'>
         <>
-          <div className="px-4 sm:px-6 lg:px-8">
-            <div className="sm:flex sm:items-center">
+          <div className='px-4 sm:px-6 lg:px-8'>
+            <div className='sm:flex sm:items-center'>
               <Toaster />
-              <div className="sm:flex-auto">
-                <h1 className="text-xl font-semibold text-gray-900">
+              <div className='sm:flex-auto'>
+                <h1 className='text-xl font-semibold text-gray-900'>
                   Patients Details
                 </h1>
               </div>
-              <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+              <div className='mt-4 sm:mt-0 sm:ml-16 sm:flex-none'>
                 <button
-                  type="button"
-                  className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                  type='button'
+                  className='inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto'
                   onClick={(e) => {
                     e.preventDefault();
                     nav("/receptiondashb/AddPatient");
@@ -210,70 +210,70 @@ function PatientTable() {
                 </button>
               </div>
             </div>
-            <div className="mt-8 flex flex-col">
-              <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                  <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    <table className="min-w-full divide-y divide-gray-300">
-                      <thead className="bg-gray-50">
+            <div className='mt-8 flex flex-col'>
+              <div className='-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8'>
+                <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
+                  <div className='overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg'>
+                    <table className='min-w-full divide-y divide-gray-300'>
+                      <thead className='bg-gray-50'>
                         <tr>
                           <th
-                            scope="col"
-                            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                            scope='col'
+                            className='py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6'
                           >
                             Name
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Mobile Number
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Email
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Gender
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Age
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Date
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Schedule
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Edit
                           </th>
                           <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                            scope='col'
+                            className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                           >
                             Delete
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white">
+                      <tbody className='bg-white'>
                         {people.map((person, personIdx) => (
                           <tr
                             key={person._id}
@@ -281,33 +281,33 @@ function PatientTable() {
                               personIdx % 2 === 0 ? undefined : "bg-gray-50"
                             }
                           >
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                            <td className='whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
                               {person.name}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                               {person.phone}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                               {person.email}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                            <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                               {person.gender}
                             </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                            <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
                               {person.age}
                             </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                            <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
                               {person.date_registration}
                             </td>
-                            <td className="relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                            <td className='relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
                               <button
                                 key={person._id}
-                                onClick={() => handleSchedule(person._id)}
+                                onClick={() => handleSchedule(person)}
                               >
                                 Schedule
                               </button>
                             </td>
-                            <td className="relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                            <td className='relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
                               <button
                                 key={person._id}
                                 onClick={() => handleUpdate(person._id)}
@@ -315,7 +315,7 @@ function PatientTable() {
                                 Edit
                               </button>
                             </td>
-                            <td className="relative text-red-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6">
+                            <td className='relative text-red-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
                               <button
                                 key={person._id}
                                 onClick={() => handleDelete(person._id)}
@@ -334,8 +334,8 @@ function PatientTable() {
           </div>
           <Transition.Root show={openEdit} as={Fragment}>
             <Dialog
-              as="div"
-              className="relative z-30"
+              as='div'
+              className='relative z-30'
               initialFocus={cancelButtonRef}
               onClose={() => {
                 setOpenEdit(false);
@@ -350,30 +350,30 @@ function PatientTable() {
             >
               <Transition.Child
                 as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
+                enter='ease-out duration-300'
+                enterFrom='opacity-0'
+                enterTo='opacity-100'
+                leave='ease-in duration-200'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'
               >
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
               </Transition.Child>
 
-              <div className="fixed inset-0 z-10 overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className='fixed inset-0 z-10 overflow-y-auto'>
+                <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
                   <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enter='ease-out duration-300'
+                    enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+                    enterTo='opacity-100 translate-y-0 sm:scale-100'
+                    leave='ease-in duration-200'
+                    leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+                    leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                   >
-                    <Dialog.Panel className="relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:m-5 xl:mx-64">
+                    <Dialog.Panel className='relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:m-5 xl:mx-64'>
                       <form
-                        className="space-y-8 divide-y divide-gray-200 px-20 py-10"
+                        className='space-y-8 divide-y divide-gray-200 px-20 py-10'
                         onSubmit={(e) => {
                           e.preventDefault();
                           updateRecord({
@@ -385,27 +385,27 @@ function PatientTable() {
                           });
                         }}
                       >
-                        <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                          <div className="space-y-6 sm:space-y-5">
+                        <div className='space-y-8 divide-y divide-gray-200 sm:space-y-5'>
+                          <div className='space-y-6 sm:space-y-5'>
                             <div>
-                              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                              <h3 className='text-lg font-medium leading-6 text-gray-900'>
                                 Patient Information
                               </h3>
                               {/* <p className="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p> */}
                             </div>
-                            <div className="space-y-6 sm:space-y-5">
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                            <div className='space-y-6 sm:space-y-5'>
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="name"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='name'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Full name
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
                                   <input
-                                    type="text"
-                                    name="name"
-                                    id="name"
+                                    type='text'
+                                    name='name'
+                                    id='name'
                                     value={currentPatient.name}
                                     onChange={(e) => {
                                       setCurrentPatient({
@@ -413,31 +413,31 @@ function PatientTable() {
                                         name: e.target.value,
                                       });
                                     }}
-                                    autoComplete="given-name"
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                                    autoComplete='given-name'
+                                    className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
                                   {nameError && (
-                                    <div className="text-red-500">
+                                    <div className='text-red-500'>
                                       {nameError}
                                     </div>
                                   )}
                                 </div>
                               </div>
 
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="gender"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='gender'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Gender
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                  <div className="flex items-center space-x-4">
-                                    <label className="inline-flex items-center">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                                  <div className='flex items-center space-x-4'>
+                                    <label className='inline-flex items-center'>
                                       <input
-                                        type="radio"
-                                        name="gender"
-                                        value="male"
+                                        type='radio'
+                                        name='gender'
+                                        value='male'
                                         checked={
                                           currentPatient.gender === "male"
                                         }
@@ -447,16 +447,16 @@ function PatientTable() {
                                             gender: e.target.value,
                                           });
                                         }}
-                                        className="form-radio h-5 w-5 text-indigo-600"
+                                        className='form-radio h-5 w-5 text-indigo-600'
                                       />
-                                      <span className="ml-2">Male</span>
+                                      <span className='ml-2'>Male</span>
                                     </label>
 
-                                    <label className="inline-flex items-center">
+                                    <label className='inline-flex items-center'>
                                       <input
-                                        type="radio"
-                                        name="gender"
-                                        value="female"
+                                        type='radio'
+                                        name='gender'
+                                        value='female'
                                         checked={
                                           currentPatient.gender === "female"
                                         }
@@ -466,16 +466,16 @@ function PatientTable() {
                                             gender: e.target.value,
                                           });
                                         }}
-                                        className="form-radio h-5 w-5 text-indigo-600"
+                                        className='form-radio h-5 w-5 text-indigo-600'
                                       />
-                                      <span className="ml-2">Female</span>
+                                      <span className='ml-2'>Female</span>
                                     </label>
 
-                                    <label className="inline-flex items-center">
+                                    <label className='inline-flex items-center'>
                                       <input
-                                        type="radio"
-                                        name="gender"
-                                        value="other"
+                                        type='radio'
+                                        name='gender'
+                                        value='other'
                                         checked={
                                           currentPatient.gender === "other"
                                         }
@@ -485,30 +485,30 @@ function PatientTable() {
                                             gender: e.target.value,
                                           });
                                         }}
-                                        className="form-radio h-5 w-5 text-indigo-600"
+                                        className='form-radio h-5 w-5 text-indigo-600'
                                       />
-                                      <span className="ml-2">Other</span>
+                                      <span className='ml-2'>Other</span>
                                     </label>
                                     {genderError && (
-                                      <div className="text-red-500">
+                                      <div className='text-red-500'>
                                         {genderError}
                                       </div>
                                     )}
                                   </div>
                                 </div>
                               </div>
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="phone"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='phone'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Mobile Number
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
                                   <input
-                                    type="tel"
-                                    name="phone"
-                                    id="phone"
+                                    type='tel'
+                                    name='phone'
+                                    id='phone'
                                     value={currentPatient.phone}
                                     onChange={(e) => {
                                       setCurrentPatient({
@@ -516,29 +516,29 @@ function PatientTable() {
                                         phone: e.target.value,
                                       });
                                     }}
-                                    autoComplete="family-name"
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                                    autoComplete='family-name'
+                                    className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
                                   {phoneError && (
-                                    <div className="text-red-500">
+                                    <div className='text-red-500'>
                                       {phoneError}
                                     </div>
                                   )}
                                 </div>
                               </div>
 
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="email"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='email'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Email address
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
                                   <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
+                                    id='email'
+                                    name='email'
+                                    type='email'
                                     value={currentPatient.email}
                                     onChange={(e) => {
                                       setCurrentPatient({
@@ -546,29 +546,29 @@ function PatientTable() {
                                         email: e.target.value,
                                       });
                                     }}
-                                    autoComplete="email"
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                                    autoComplete='email'
+                                    className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
                                   {emailError && (
-                                    <div className="text-red-500">
+                                    <div className='text-red-500'>
                                       {emailError}
                                     </div>
                                   )}
                                 </div>
                               </div>
 
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="age"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='age'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Age
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
                                   <input
-                                    type="number"
-                                    name="age"
-                                    id="age"
+                                    type='number'
+                                    name='age'
+                                    id='age'
                                     value={currentPatient.age}
                                     onChange={(e) => {
                                       setCurrentPatient({
@@ -576,28 +576,28 @@ function PatientTable() {
                                         age: e.target.value,
                                       });
                                     }}
-                                    autoComplete="address-level2"
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                                    autoComplete='address-level2'
+                                    className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   />
                                   {ageError && (
-                                    <div className="text-red-500">
+                                    <div className='text-red-500'>
                                       {ageError}
                                     </div>
                                   )}
                                 </div>
                               </div>
 
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="address"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='address'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Address
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
                                   <textarea
-                                    name="address"
-                                    id="address"
+                                    name='address'
+                                    id='address'
                                     value={currentPatient.address}
                                     onChange={(e) => {
                                       setCurrentPatient({
@@ -605,11 +605,11 @@ function PatientTable() {
                                         address: e.target.value,
                                       });
                                     }}
-                                    autoComplete="address"
-                                    className="block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                                    autoComplete='address'
+                                    className='block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   ></textarea>
                                   {addressError && (
-                                    <div className="text-red-500">
+                                    <div className='text-red-500'>
                                       {addressError}
                                     </div>
                                   )}
@@ -618,15 +618,15 @@ function PatientTable() {
                             </div>
                           </div>
                         </div>
-                        <div className="bg-gray-50 py-3 flex flex-row-reverse px-6 rounded-xl gap-x-5">
+                        <div className='bg-gray-50 py-3 flex flex-row-reverse px-6 rounded-xl gap-x-5'>
                           <button
                             onClick={(e) => {
                               e.preventDefault();
                               updateRecord(currentPatient);
                             }}
-                            type="submit"
+                            type='submit'
                             disabled={isUpdating}
-                            className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className='inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                           >
                             {isUpdating ? "Updating..." : "Update"}
                           </button>
@@ -642,8 +642,8 @@ function PatientTable() {
                               setGeneralError("");
                               setAddressError("");
                             }}
-                            type="button"
-                            className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            type='button'
+                            className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                           >
                             Cancel
                           </button>
@@ -658,46 +658,46 @@ function PatientTable() {
 
           <Transition.Root show={openDelete} as={Fragment}>
             <Dialog
-              as="div"
-              className="relative z-10"
+              as='div'
+              className='relative z-10'
               initialFocus={cancelButtonRef}
               onClose={setOpenDelete}
             >
               <Transition.Child
                 as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
+                enter='ease-out duration-300'
+                enterFrom='opacity-0'
+                enterTo='opacity-100'
+                leave='ease-in duration-200'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'
               >
-                <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm transition-opacity" />
+                <div className='fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm transition-opacity' />
               </Transition.Child>
-              <div className="fixed inset-0 z-10 overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className='fixed inset-0 z-10 overflow-y-auto'>
+                <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
                   <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enter='ease-out duration-300'
+                    enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+                    enterTo='opacity-100 translate-y-0 sm:scale-100'
+                    leave='ease-in duration-200'
+                    leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+                    leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                   >
-                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                      <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 content-center ">
-                        <div className="flex justify-center">
-                          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
+                      <div className='bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 content-center '>
+                        <div className='flex justify-center'>
+                          <div className='mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left'>
                             <Dialog.Title
-                              as="h3"
-                              className="text-lg font-bold text-center leading-6 text-gray-900"
+                              as='h3'
+                              className='text-lg font-bold text-center leading-6 text-gray-900'
                             >
                               Remove Patient
                             </Dialog.Title>
-                            <div className="mt-2">
-                              <div className="grid justify-center p-3 md:gap-5">
-                                <div className="relative z-0 w-full group text-center">
+                            <div className='mt-2'>
+                              <div className='grid justify-center p-3 md:gap-5'>
+                                <div className='relative z-0 w-full group text-center'>
                                   Are you sure, you want to remove this patient
                                   Details?
                                 </div>
@@ -706,10 +706,10 @@ function PatientTable() {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row space-x-11 justify-center">
+                      <div className='bg-gray-50 px-4 py-3 sm:flex sm:flex-row space-x-11 justify-center'>
                         <button
-                          type="button"
-                          className="inline-flex w-full justify-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                          type='button'
+                          className='inline-flex w-full justify-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
                           onClick={async (e) => {
                             e.preventDefault();
                             deleteRecord();
@@ -719,8 +719,8 @@ function PatientTable() {
                           Yes
                         </button>
                         <button
-                          type="button"
-                          className="inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                          type='button'
+                          className='inline-flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
                           onClick={async (e) => {
                             e.preventDefault();
                             setOpenDelete(false);
@@ -738,8 +738,8 @@ function PatientTable() {
 
           <Transition.Root show={openSchedule} as={Fragment}>
             <Dialog
-              as="div"
-              className="relative z-30"
+              as='div'
+              className='relative z-30'
               initialFocus={cancelButtonRef}
               onClose={() => {
                 setOpenSchedule(false);
@@ -754,259 +754,114 @@ function PatientTable() {
             >
               <Transition.Child
                 as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
+                enter='ease-out duration-300'
+                enterFrom='opacity-0'
+                enterTo='opacity-100'
+                leave='ease-in duration-200'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'
               >
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
               </Transition.Child>
 
-              <div className="fixed inset-0 z-10 overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className='fixed inset-0 z-10 overflow-y-auto'>
+                <div className='flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0'>
                   <Transition.Child
                     as={Fragment}
-                    enter="ease-out duration-300"
-                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100"
-                    leave="ease-in duration-200"
-                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enter='ease-out duration-300'
+                    enterFrom='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
+                    enterTo='opacity-100 translate-y-0 sm:scale-100'
+                    leave='ease-in duration-200'
+                    leaveFrom='opacity-100 translate-y-0 sm:scale-100'
+                    leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
                   >
-                    <Dialog.Panel className="relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:m-5 xl:mx-64">
+                    <Dialog.Panel className='relative rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:m-5 xl:mx-64'>
                       <form
-                        className="space-y-8 divide-y divide-gray-200 px-20 py-10"
+                        className='space-y-8 divide-y divide-gray-200 px-20 py-10'
                         onSubmit={(e) => {
                           e.preventDefault();
-                          scheduleRecord();
-                          //   {
-                          //   name: document.getElementById("name").value,
-                          //   phone: document.getElementById("phone").value,
-                          //   email: document.getElementById("email").value,
-                          //   age: document.getElementById("age").value,
-                          //   address: document.getElementById("address").value,
-                          // }
+                          scheduleRecord({
+                            patient: schedulePatient._id,
+                            status: document.getElementById("status").value,
+                            timestamp: Date.now(),
+                          });
                         }}
                       >
-                        <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                          <div className="space-y-6 sm:space-y-5">
+                        <div className='space-y-8 divide-y divide-gray-200 sm:space-y-5'>
+                          <div className='space-y-6 sm:space-y-5'>
                             <div>
-                              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                              <h3 className='text-lg font-medium leading-6 text-gray-900'>
                                 Patient Scheduling
                               </h3>
-                              {/* <p className="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p> */}
                             </div>
-                            <div className="space-y-6 sm:space-y-5">
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                            <div className='space-y-6 sm:space-y-5'>
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="name"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='name'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Patient Name
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                  {/* <input
-                                    type='text'
-                                    name='name'
-                                    id='name'
-                                    value={currentPatient.name}
-                                    onChange={(e) => {
-                                      setCurrentPatient({
-                                        ...currentPatient,
-                                        name: e.target.value,
-                                      });
-                                    }}
-                                    autoComplete='given-name'
-                                    className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
-                                  /> */}
-                                  <p className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm">
-                                    Name fetch from DB
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                                  <p className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'>
+                                    {schedulePatient.name}
                                   </p>
-                                  {/* {nameError && (
-                                    <div className='text-red-500'>
-                                      {nameError}
-                                    </div>
-                                  )} */}
                                 </div>
                               </div>
-
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="gender"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                                >
-                                  Dentist
-                                </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                  <div className="flex items-center space-x-4">
-                                    {/*  */}
-
-                                    <input
-                                      id="dentist"
-                                      name="dentist"
-                                      type="text"
-                                      // onchange = {}
-                                      className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                                    />
-
-                                    {/* {genderError && (
-                                      <div className='text-red-500'>
-                                        {genderError}
-                                      </div>
-                                    )} */}
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label
-                                  htmlFor="phone"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='phone'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Status
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                <div className='mt-1 sm:col-span-2 sm:mt-0'>
                                   <select
-                                    name="status"
-                                    id="status"
-                                    className="w-32 block max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                                    name='status'
+                                    id='status'
+                                    className='w-32 block max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                                   >
-                                    <option>Pending</option>
-                                    <option>In</option>
-                                    <option>Reject</option>
+                                    <option>pending</option>
+                                    <option>in</option>
+                                    <option>reject</option>
                                   </select>
-                                  {/* {phoneError && (
-                                    <div className="text-red-500">
-                                      {phoneError}
-                                    </div>
-                                  )} */}
                                 </div>
                               </div>
 
-                              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                              <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                 <label
-                                  htmlFor="email"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                                  htmlFor='email'
+                                  className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                                 >
                                   Time Slots
                                 </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0 flex gap-x-5">
-                                  <select
-                                    id="timeslot"
-                                    name="timeslot"
-                                    autoComplete="timeslot"
-                                    className="w-32 block max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                                    // onChange={handleData}
-                                    // value={data.timeslot}
-                                  >
-                                    {timeslots.map((timeslot) => (
-                                      <option key={timeslot.id}>
-                                        {timeslot.time}
-                                      </option>
-                                    ))}
-                                  </select>
+                                <div className='mt-1 sm:col-span-2 sm:mt-0 flex gap-x-5'>
+
+                                  <input type='time' id='time' step='60' />
+
                                   <button
-                                    id="currentTime"
-                                    name="currentTime"
-                                    onClick={(time)=>{
+                                    id='currentTime'
+                                    name='currentTime'
+                                    onClick={(time) => {
                                       time.preventDefault();
-                                      document.getElementById("timeslot").value = new Date().toLocaleTimeString();
+                                      document.getElementById(
+                                        "timeslot"
+                                      ).value = new Date().toLocaleTimeString();
                                     }}
-                                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    className='inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                                   >
                                     Current time
                                   </button>
-                                  {/* {emailError && (
-                                    <div className="text-red-500">
-                                      {emailError}
-                                    </div>
-                                  )} */}
                                 </div>
                               </div>
-
-                              {/* <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label
-                                  htmlFor="diagnosis"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                                >
-                                  Diagnosis
-                                </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                  <input
-                                    type="text"
-                                    name="diagnosis"
-                                    id="diagnosis"
-                              
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                                  />
-                                  {ageError && (
-                                    <div className="text-red-500">
-                                      {ageError}
-                                    </div>
-                                  )}
-                                </div>
-                              </div> */}
-
-                              {/* <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label
-                                  htmlFor="treatment"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                                >
-                                  Treatment
-                                </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                  <input
-                                    type="text"
-                                    name="treatment"
-                                    id="treatment"
-                                    
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                                  />
-                                  {ageError && (
-                                    <div className="text-red-500">
-                                      {ageError}
-                                    </div>
-                                  )}
-                                </div>
-                              </div> */}
-
-                              {/* <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                                <label
-                                  htmlFor="remarks"
-                                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                                >
-                                  Remarks
-                                </label>
-                                <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                  <input
-                                    type="text"
-                                    name="remarks"
-                                    id="remarks"
-                                    
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                                  />
-                                   {ageError && (
-                                    <div className="text-red-500">
-                                      {ageError}
-                                    </div>
-                                  )} 
-                                </div>
-                              </div> */}
-
                             </div>
                           </div>
                         </div>
-                        <div className="bg-gray-50 py-3 flex flex-row-reverse px-6 rounded-xl gap-x-5">
+                        <div className='bg-gray-50 py-3 flex flex-row-reverse px-6 rounded-xl gap-x-5'>
                           <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              updateRecord(currentPatient);
-                            }}
-                            type="submit"
+                            type='submit'
                             disabled={isScheduling}
-                            className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className='inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                           >
                             {isScheduling ? "Scheduling..." : "Schedule"}
                           </button>
@@ -1015,8 +870,8 @@ function PatientTable() {
                               e.preventDefault();
                               setOpenSchedule(false);
                             }}
-                            type="button"
-                            className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            type='button'
+                            className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                           >
                             Cancel
                           </button>
