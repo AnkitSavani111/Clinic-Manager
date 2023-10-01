@@ -17,6 +17,8 @@ import Appointments from './Components/Appointments';
 import DoctorDashBoard from './Components/Pages/DoctorDashBoard';
 import DoctorPatientList from './Components/DoctorPatientList';
 import DoctorRecord from './Components/PreviousRecord';
+import DoctorTreatment from './Components/DoctorTreatment';
+import Treatment from './Components/Treatment';
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -60,7 +62,9 @@ function App() {
             <Route path='/receptiondashb/appointments' element={<Appointments/>} />
             <Route path='/doctordashb' element={<DoctorDashBoard />} />
             <Route path='/doctordashb/PatientDetails' element={<DoctorPatientList/>} />
-            <Route path='/doctordashb/PreviousRecord' element={<DoctorRecord/>} />
+            <Route path='/doctordashb/PreviousRecord' element={<DoctorRecord/>} /> 
+            <Route path='/doctordashb/Treatment' element={<DoctorTreatment/>} /> 
+            <Route path='/doctordashb/Treatment/:id' element={<Treatment/>} /> 
           </>
         ) : (
           <></>
