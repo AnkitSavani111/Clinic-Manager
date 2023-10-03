@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './Components/Login';
 import Home from './Components/Pages/Home';
-import { BrowserRouter, Routes, Route ,useNavigate} from 'react-router-dom';
+import { Routes, Route ,useNavigate} from 'react-router-dom';
 import Appointment from './Components/Appointment';
 import About from './Components/About';
 import SignUp from './Components/SignUp';
@@ -14,7 +14,11 @@ import { useUser } from "../src/Contexts/UserContext";
 import axios from "axios";
 import PatientDetails from './Components/PatientDetails';
 import Appointments from './Components/Appointments';
-import PatientDetailsConfirmed from './Components/PatientDetailsConfirmed';
+import DoctorDashBoard from './Components/Pages/DoctorDashBoard';
+import DoctorPatientList from './Components/DoctorPatientList';
+import DoctorRecord from './Components/PreviousRecord';
+import DoctorTreatment from './Components/DoctorTreatment';
+import Treatment from './Components/Treatment';
 
 function App() {
   // const [userData, setUserData] = useState(null);
@@ -56,7 +60,11 @@ function App() {
             <Route path='/receptiondashb/PatientDetails' element={<PatientDetails />} />
             <Route path='/receptiondashb/AddPatient' element={<AddPatient />} />
             <Route path='/receptiondashb/appointments' element={<Appointments/>} />
-            <Route path='/receptiondashb/ConfirmList' element={<PatientDetailsConfirmed/>} />
+            <Route path='/doctordashb' element={<DoctorDashBoard />} />
+            <Route path='/doctordashb/PatientDetails' element={<DoctorPatientList/>} />
+            <Route path='/doctordashb/PreviousRecord' element={<DoctorRecord/>} /> 
+            <Route path='/doctordashb/Treatment' element={<DoctorTreatment/>} /> 
+            <Route path='/doctordashb/Treatment/:id' element={<Treatment/>} /> 
           </>
         ) : (
           <></>
