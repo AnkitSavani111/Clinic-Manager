@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-// import DoctorLogin from "./DoctorLogin";
-// import ReceptionLogin from "./ReceptionLogin";
 import Logo from "../Images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUser } from "../Contexts/UserContext";
-// import { Input } from "@mui/material";
 import { Toaster, toast } from "react-hot-toast";
 
 const Login = () => {
@@ -15,17 +12,9 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  // const [comp, setComp] = useState("Doctor");
   const [Role, setRole] = useState("");
   const navigate = useNavigate();
   const { user, setUser } = useUser();
-  // const handleDoctor = () => {
-  //   setComp("Doctor");
-  // };
-
-  // const handleReception = () => {
-  //   setComp("Reception");
-  // };
 
   const validateForm = () => {
     let isValid = true;
@@ -76,24 +65,22 @@ const Login = () => {
         email: res.data.user.email,
         role: res.data.user.role,
       });
-      handleShowToast("Login Successful","success");
+      handleShowToast("Login Successful", "success");
       navigate("/");
     } catch (error) {
-      handleShowToast("Login Failed. Try again","error");
+      handleShowToast("Login Failed. Try again", "error");
       // alert(error);
     }
   };
 
-  const handleShowToast = (message,type) => {
-    if(type === "error")
-    {
+  const handleShowToast = (message, type) => {
+    if (type === "error") {
       toast.error(message, {
         position: "bottom-center",
       });
       return;
     }
-    else if(type === "success")
-    {
+    else if (type === "success") {
       toast.success(message, {
         position: "bottom-center",
       });
@@ -103,47 +90,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <div className="Login bg-[url('Images/bglogin.jpg')] bg-cover relative h-screen flex items-center justify-center">
-        <div className="CardContainer px-2 py-2 mt-2 w-3/12 absolute left-1/4 text-center rounded-3xl border-white border-solid backdrop-blur-md shadow-slate-900 drop-shadow-md shadow-md">
-
-          <div className="flex flex-col mt-7 mb-7 justify-center text-center">
-            <div className="flex flex-wrap justify-center">
-              <div className="Heading py-2 px-1  text-blue-900 font-extrabold italic text-3xl drop-shadow-lg shadow-black">
-                Ashirwad
-              </div>
-              <span className="SubHeading py-2 px-1 text-teal-700 font-extrabold text-3xl drop-shadow-lg shadow-black">
-                Dental Clinic
-              </span>
-            </div>
-            <div className="SelectionTabs">
-              <ul className="flex flex-wrap justify-center">
-                <div className="ButtonsStyle flex justify-center rounded-lg shadow-lg backdrop-blur-sm">
-                  <li className="Doctor px-2 py-2 cursor-pointer">
-                    <button
-                      onClick={handleDoctor}
-                      className="overflow-hidden font-bold text-neutral-800 after:block after:w-full after:h-0.5 after:bg-teal-500 after:origin-left after:transform after:scale-x-0 after:transition-transform after:ease after:duration-300 hover:after:scale-x-110"
-                    >
-                      Doctor
-                    </button>
-                  </li>
-                  <li className="Doctor px-2 py-2 cursor-pointer">
-                    <button
-                      onClick={handleReception}
-                      className="overflow-hidden font-bold text-neutral-800 after:block after:w-full after:h-0.5 after:bg-teal-500 after:origin-left after:transform after:scale-x-0 after:transition-transform after:ease after:duration-300 hover:after:scale-x-110"
-                    >
-                      Reception
-                    </button>
-                  </li>
-                </div>
-              </ul>
-              <div className="relative top-5">
-                {comp === "Doctor" ? <DoctorLogin /> : <ReceptionLogin />}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       <div className='Background bg-slate-400 bg-cover relative h-screen overflow-hidden'>
         <div className='flex justify-center items-center h-screen'>
           <div className='Card bg-slate-300 flex sm:w-2/5 sm:h-auto h-4/5 flex-col justify-center m-auto items-center shadow-custom6 drop-shadow-md py-10 sm:px-6 lg:px-8 backdrop-blur-lg rounded-2xl'>

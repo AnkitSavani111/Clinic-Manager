@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import InfoCard from './InfoCard'
 
 
 function Homebody() {
@@ -11,15 +10,6 @@ function Homebody() {
             <main className='-z-10'>
                 <div id='home' className="relative px-6 lg:px-8 h-screen">
                     <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:my-auto">
-                        {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                            <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                                Announcing our next round of funding.
-                                <Link to="/" className="font-semibold text-indigo-600">
-                                    <span className="absolute inset-0" aria-hidden="true" />
-                                    Read more <span aria-hidden="true">&rarr;</span>
-                                </Link>
-                            </div>
-                        </div> */}
                         <div className="text-center">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                                 Ashirwad Dental Clinic
@@ -34,9 +24,6 @@ function Homebody() {
                                 >
                                     Book Appointment
                                 </Link>
-                                {/* <Link to="#cause-heading" className="text-base font-semibold leading-7 text-gray-900">
-                                    Know More <span aria-hidden="true">→</span>
-                                </Link> */}
                                 <a href="#cause-heading" className="text-base font-semibold leading-7 text-gray-900 scroll-smooth md:scroll-auto">
                                     Know More <span aria-hidden="true">→</span>
                                 </a>
@@ -93,26 +80,7 @@ function Homebody() {
                                 About us
                             </h2>
                             <div className="containerCard">
-                                {/* {
-                                    Data.map((value) => {
-                                        return (
-                                            <>
-                                                <InfoCard customImgSrc={value.image}
-                                                    customDetail={value.detail}
-                                                />
-                                            </>
-                                        );
-                                    })} */}
                             </div>
-                            {/* <p className="mt-3 text-xl text-white">
-                                hello
-                            </p> */}
-                            {/* <Link
-                                to="#"
-                                className="mt-8 block w-full rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 sm:w-auto"
-                            >
-                                Read our story
-                            </Link> */}
                         </div>
                     </div>
                 </section>

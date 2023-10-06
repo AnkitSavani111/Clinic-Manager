@@ -11,7 +11,6 @@ function Appointment() {
   const [phoneError, setPhoneError] = useState("");
   const [genderError, setGenderError] = useState("");
   const [emailError, setEmailError] = useState("");
-  // const [timeslotError, setTimeslotError] = useState("");
   const [ageError, setAgeError] = useState("");
   const [addressError, setAddressError] = useState("");
   const [generalError, setGeneralError] = useState("");
@@ -166,7 +165,6 @@ function Appointment() {
                   <h3 className="text-lg font-medium leading-6 text-gray-900">
                     Personal Information
                   </h3>
-                  {/* <p className="mt-1 max-w-2xl text-sm text-gray-500">Use a permanent address where you can receive mail.</p> */}
                 </div>
                 <div className="space-y-6 sm:space-y-5">
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
@@ -340,7 +338,6 @@ function Appointment() {
                         autoComplete="address"
                         placeholder="h-no, village, landmark, district"
                         className="block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                        // className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         onChange={handleData}
                         value={data.address}
                       ></textarea>
@@ -351,26 +348,6 @@ function Appointment() {
                       )}
                     </div>
                   </div>
-
-                  {/* <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <h3 className="text-lg font-medium leading-6 text-gray-900">Verified your details ?</h3>
-                    <div className="relative flex items-start">
-                      <div className="flex h-5 items-center">
-                        <input
-                          id="verify-details"
-                          name="verify-details"
-                          type="checkbox"
-                          className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <label htmlFor="verify-details" className="font-medium text-gray-700">
-                          Yes, I have verified my details
-                        </label>
-                        <p className="text-gray-500">You won't able to change anything once you filled the form</p>
-                      </div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>

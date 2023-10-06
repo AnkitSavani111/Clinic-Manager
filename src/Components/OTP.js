@@ -186,9 +186,6 @@ const OTP = () => {
                                         Resend OTP
                                     </p>
                                 ) : null}
-                                {/* <p className='' onClick={handleResendOTP}>
-                {resend ? "Sending OTP..." : "Resend OTP"}
-                </p> */}
                             </div>
 
                             <div>
