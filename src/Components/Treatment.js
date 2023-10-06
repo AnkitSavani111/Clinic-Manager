@@ -184,21 +184,7 @@ function Treatment() {
                                     leaveTo="transform opacity-0 scale-95"
                                 >
                                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        {/* {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <a
-                              href={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              {item.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))} */}
+                                        
                                     </Menu.Items>
                                 </Transition>
                             </Menu>
@@ -282,6 +268,21 @@ function Treatment() {
                                             </div>
 
                                         </div>
+                                        <div className='flex justify-end sm:pr-9 gap-x-4'>
+                                            <button
+                                                type="button"
+                                                className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
+                                            >
+                                                Print
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                                            >
+                                                Add More
+                                            </button>
+                                        </div>
+
                                         <div className="mt-8 flex flex-col">
                                             <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                                 <div className="w-full py-2 align-middle md:px-6 lg:px-8">
@@ -296,13 +297,22 @@ function Treatment() {
                                                                         Name of Prescription
                                                                     </th>
                                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                        Total Quantity
+                                                                        Day
                                                                     </th>
-                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                        Duration
+                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20">
+                                                                        Morning
                                                                     </th>
-                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                        Add
+                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20">
+                                                                        Afternoon
+                                                                    </th>
+                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20">
+                                                                        Night
+                                                                    </th>
+                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20">
+                                                                        After
+                                                                    </th>
+                                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20">
+                                                                        Before
                                                                     </th>
                                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                                         Remove
@@ -359,153 +369,59 @@ function Treatment() {
 
                                                                         </div>
                                                                     </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Hemlo</td>
-                                                                    <td>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                                                                        >
-                                                                            Add More
-                                                                        </button>
+                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-25">
+                                                                        <input
+                                                                            id="morningcheck"
+                                                                            aria-describedby="morningcheck-description"
+                                                                            name="morning"
+                                                                            type="checkbox"
+                                                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                                        />
                                                                     </td>
-                                                                    <td >
-                                                                        <button
-                                                                            type="button"
-                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                                                                        >
-                                                                            Remove
-                                                                        </button>
+                                                                    <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-25'>
+                                                                        <input
+                                                                            id="afternooncheck"
+                                                                            aria-describedby="afternooncheck-description"
+                                                                            name="afternoon"
+                                                                            type="checkbox"
+                                                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                                        />
                                                                     </td>
-                                                                </tr>
-                                                            </tbody>
-                                                            <tbody className="divide-y divide-gray-200 bg-white">
-                                                                <tr>
-                                                                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                                        1.
+                                                                    <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-25'>
+                                                                        <input
+                                                                            id="nightcheck"
+                                                                            aria-describedby="nightcheck-description"
+                                                                            name="night"
+                                                                            type="checkbox"
+                                                                            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                                        />
                                                                     </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                                        <div className="flex max-w-lg rounded-lg shadow-sm">
-
+                                                                    <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-25'>
+                                                                        <div className="flex items-start">
                                                                             <input
-                                                                                type="text"
-                                                                                name="username"
-                                                                                id="username"
-                                                                                autoComplete="username"
-                                                                                className="block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                                                id="before"
+                                                                                name="whentotake"
+                                                                                type="radio"
+                                                                                defaultChecked="before"
+                                                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                                                             />
                                                                         </div>
                                                                     </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                                        <div className="flex flex-row h-10 rounded-lg relative bg-transparent mt-1 ">
-                                                                            <button
-                                                                                data-action="decrement"
-                                                                                className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-10 rounded-l cursor-pointer outline-none"
-                                                                                onClick={
-                                                                                    decrement
-                                                                                }
-                                                                            >
-                                                                                <span className="m-auto text-2xl font-thin">-</span>
-                                                                            </button>
+                                                                    <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500 w-25'>
+                                                                        <div className="flex items-start">
                                                                             <input
-                                                                                type="number"
-                                                                                className="w-14 outline-none focus:outline-none bg-white text-center  text-md hover:text-black focus:text-black md:text-base cursor-text [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-gray-700"
-                                                                                name="custom-input-number"
-                                                                                value={value}
-                                                                                onChange={e => setValue(Number(e.target.value))}
-                                                                            />
-                                                                            <button
-                                                                                data-action="increment"
-                                                                                className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-10 rounded-l cursor-pointer outline-none"
-                                                                                onClick={
-                                                                                    increment
-                                                                                }
-                                                                            >
-
-                                                                                <span className="m-auto text-2xl font-thin">+</span>
-                                                                            </button>
-
-                                                                        </div>
-                                                                    </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Hemlo</td>
-                                                                    <td>
-                                                                        <button
-                                                                            type="button"
-                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                                                                        >
-                                                                            Add More
-                                                                        </button>
-                                                                    </td>
-                                                                    <td >
-                                                                        <button
-                                                                            type="button"
-                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                                                                        >
-                                                                            Remove
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                            <tbody className="divide-y divide-gray-200 bg-white">
-                                                                <tr>
-                                                                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                                        1.
-                                                                    </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                                        <div className="flex max-w-lg rounded-lg shadow-sm">
-
-                                                                            <input
-                                                                                type="text"
-                                                                                name="username"
-                                                                                id="username"
-                                                                                autoComplete="username"
-                                                                                className="block w-full min-w-0 flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                                                id="before"
+                                                                                name="whentotake"
+                                                                                type="radio"
+                                                                                defaultChecked="after"
+                                                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                                                             />
                                                                         </div>
                                                                     </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                                        <div className="flex flex-row h-10 rounded-lg relative bg-transparent mt-1 ">
-                                                                            <button
-                                                                                data-action="decrement"
-                                                                                className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-10 rounded-l cursor-pointer outline-none"
-                                                                                onClick={
-                                                                                    decrement
-                                                                                }
-                                                                            >
-                                                                                <span className="m-auto text-2xl font-thin">-</span>
-                                                                            </button>
-                                                                            <input
-                                                                                type="number"
-                                                                                className="w-14 outline-none focus:outline-none bg-white text-center  text-md hover:text-black focus:text-black md:text-base cursor-text [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-gray-700"
-                                                                                name="custom-input-number"
-                                                                                value={value}
-                                                                                onChange={e => setValue(Number(e.target.value))}
-                                                                            />
-                                                                            <button
-                                                                                data-action="increment"
-                                                                                className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-10 rounded-l cursor-pointer outline-none"
-                                                                                onClick={
-                                                                                    increment
-                                                                                }
-                                                                            >
-
-                                                                                <span className="m-auto text-2xl font-thin">+</span>
-                                                                            </button>
-
-                                                                        </div>
-                                                                    </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Hemlo</td>
-                                                                    <td>
+                                                                    <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                                                                         <button
                                                                             type="button"
-                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                                                                        >
-                                                                            Add More
-                                                                        </button>
-                                                                    </td>
-                                                                    <td >
-                                                                        <button
-                                                                            type="button"
-                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                                                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
                                                                         >
                                                                             Remove
                                                                         </button>
@@ -518,31 +434,6 @@ function Treatment() {
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* <div className="space-y-6 sm:space-y-5">
-                                        <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:pt-5">
-                                            <label htmlFor="username" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                                1. Medicine Name
-                                            </label>
-                                            <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                                <div className="flex max-w-lg rounded-md shadow-sm">
-
-                                                    <input
-                                                        type="text"
-                                                        name="username"
-                                                        id="username"
-                                                        autoComplete="username"
-                                                        className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-                                    </div> */}
-
                                 </div>
                             </div>
 
