@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
-import Homebody from "./Homebody";
-import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -126,10 +124,10 @@ function Appointment() {
         })
         .catch((error) => {
           console.error(error);
-          // Handle the error here.
         });
     }
   };
+  console.log(generalError);
 
   const timeslots = [
     { id: 1, time: "10:00 AM" },
@@ -155,133 +153,133 @@ function Appointment() {
 
   return (
     <>
-      <section className="bg-slate-100 md:pt-7 object-top bg-cover">
-        <div className="backdrop-blur-sm bg-opacity-60">
+      <section className='bg-slate-100 md:pt-7 object-top bg-cover'>
+        <div className='backdrop-blur-sm bg-opacity-60'>
           <Navbar />
-          <form className="space-y-8 divide-y divide-gray-200 p-20">
-            <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-              <div className="space-y-6 sm:space-y-5">
+          <form className='space-y-8 divide-y divide-gray-200 p-20'>
+            <div className='space-y-8 divide-y divide-gray-200 sm:space-y-5'>
+              <div className='space-y-6 sm:space-y-5'>
                 <div>
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">
+                  <h3 className='text-lg font-medium leading-6 text-gray-900'>
                     Personal Information
                   </h3>
                 </div>
-                <div className="space-y-6 sm:space-y-5">
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                <div className='space-y-6 sm:space-y-5'>
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='name'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Full name
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0'>
                       <input
-                        type="text"
-                        name="name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        placeholder="First Middle Last"
-                        className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        type='text'
+                        name='name'
+                        id='first-name'
+                        autoComplete='given-name'
+                        placeholder='First Middle Last'
+                        className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         value={data.name}
                         onChange={handleData}
                       />
                       {nameError && (
-                        <p className="mt-2 text-sm text-red-600">{nameError}</p>
+                        <p className='mt-2 text-sm text-red-600'>{nameError}</p>
                       )}
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='phone'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Mobile Number
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0'>
                       <input
-                        type="tel"
-                        name="phone"
-                        id="phone"
-                        autoComplete="family-name"
-                        placeholder="+910000000000"
-                        className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        type='tel'
+                        name='phone'
+                        id='phone'
+                        autoComplete='family-name'
+                        placeholder='+910000000000'
+                        className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         onChange={handleData}
                         value={data.phone === 0 ? "" : data.phone}
                       />
                       {phoneError && (
-                        <p className="mt-2 text-sm text-red-600">
+                        <p className='mt-2 text-sm text-red-600'>
                           {phoneError}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="gender"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='gender'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Gender
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0'>
                       <input
-                        type="text"
-                        name="gender"
-                        id="gender"
-                        autoComplete="given-name"
-                        placeholder="male / female"
-                        className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        type='text'
+                        name='gender'
+                        id='gender'
+                        autoComplete='given-name'
+                        placeholder='male / female'
+                        className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         value={data.gender}
                         onChange={handleData}
                       />
                       {genderError && (
-                        <p className="mt-2 text-sm text-red-600">
+                        <p className='mt-2 text-sm text-red-600'>
                           {genderError}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='email'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Email address
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0'>
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        placeholder="example@gmail.com"
-                        className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        id='email'
+                        name='email'
+                        type='email'
+                        autoComplete='email'
+                        placeholder='example@gmail.com'
+                        className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         onChange={handleData}
                         value={data.email}
                       />
                       {emailError && (
-                        <p className="mt-2 text-sm text-red-600">
+                        <p className='mt-2 text-sm text-red-600'>
                           {emailError}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="timeslot"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='timeslot'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Available Time Slot and Date
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0 flex space-x-8">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0 flex space-x-8'>
                       <select
-                        id="timeslot"
-                        name="timeslot"
-                        autoComplete="timeslot"
-                        className="w-32 block max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        id='timeslot'
+                        name='timeslot'
+                        autoComplete='timeslot'
+                        className='w-32 block max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         // onChange={handleData}
                         // value={data.timeslot}
                       >
@@ -290,59 +288,59 @@ function Appointment() {
                         ))}
                       </select>
                       <input
-                        className="max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
-                        type="date"
-                        id="birthday"
-                        name="birthday"
+                        className='max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
+                        type='date'
+                        id='birthday'
+                        name='birthday'
                         min={tomorrow}
                         max={afterweek}
                       ></input>
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="age"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='age'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Age
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0'>
                       <input
-                        type="number"
-                        name="age"
-                        id="age"
-                        autoComplete="address-level2"
-                        placeholder="Enter Age"
-                        className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        type='number'
+                        name='age'
+                        id='age'
+                        autoComplete='address-level2'
+                        placeholder='Enter Age'
+                        className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         onChange={handleData}
                         value={data.age === 0 ? "" : data.age}
                       />
                       {ageError && (
-                        <p className="mt-2 text-sm text-red-600">{ageError}</p>
+                        <p className='mt-2 text-sm text-red-600'>{ageError}</p>
                       )}
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                  <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label
-                      htmlFor="address"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      htmlFor='address'
+                      className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
                     >
                       Address
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className='mt-1 sm:col-span-2 sm:mt-0'>
                       <textarea
-                        name="address"
-                        id="address"
-                        autoComplete="address"
-                        placeholder="h-no, village, landmark, district"
-                        className="block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                        name='address'
+                        id='address'
+                        autoComplete='address'
+                        placeholder='h-no, village, landmark, district'
+                        className='block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
                         onChange={handleData}
                         value={data.address}
                       ></textarea>
                       {addressError && (
-                        <p className="mt-2 text-sm text-red-600">
+                        <p className='mt-2 text-sm text-red-600'>
                           {addressError}
                         </p>
                       )}
@@ -352,19 +350,19 @@ function Appointment() {
               </div>
             </div>
 
-            <div className="pt-5">
-              <div className="flex justify-end">
+            <div className='pt-5'>
+              <div className='flex justify-end'>
                 <Link to={"/"}>
                   <button
-                    type="button"
-                    className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    type='button'
+                    className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                   >
                     Cancel
                   </button>
                 </Link>
                 <button
-                  type="submit"
-                  className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  type='submit'
+                  className='ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                   onClick={handleSubmit}
                 >
                   Book Appointment

@@ -1,19 +1,13 @@
-import React from 'react';
-import Navbar from '../Navbar';
-import Homebody from '../Homebody'
-import Footer from '../Footer';
+import React from "react";
+import Sidebar from "../Navigation";
 
 function Home() {
   return (
-    <>
-      <section
-        className="Home bg-[url('Images/bghome.jpg')] bg-cover  md:pt-7"
-      >
-        <Navbar />
-        <Homebody />
-        <Footer />
-      </section>
-    </>
+    <div>
+      <h1>
+        <Sidebar />
+      </h1>
+    </div>
   );
 }
 

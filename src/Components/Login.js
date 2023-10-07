@@ -65,11 +65,11 @@ const Login = () => {
         email: res.data.user.email,
         role: res.data.user.role,
       });
+      alert(user);
       handleShowToast("Login Successful", "success");
       navigate("/");
     } catch (error) {
       handleShowToast("Login Failed. Try again", "error");
-      // alert(error);
     }
   };
 
@@ -79,8 +79,7 @@ const Login = () => {
         position: "bottom-center",
       });
       return;
-    }
-    else if (type === "success") {
+    } else if (type === "success") {
       toast.success(message, {
         position: "bottom-center",
       });
@@ -96,11 +95,11 @@ const Login = () => {
             <Toaster />
             <div className='sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply'>
               <img
-                className="sm:m-auto m-auto mt-5 h-12 w-auto mix-blend-multiply rounded-md"
+                className='sm:m-auto m-auto mt-5 h-12 w-auto mix-blend-multiply rounded-md'
                 src={Logo}
-                alt="Your Company"
+                alt='Your Company'
               />
-              <h2 className="mt-6 text-center sm:text-3xl text-2xl font-bold tracking-tight text-gray-900">
+              <h2 className='mt-6 text-center sm:text-3xl text-2xl font-bold tracking-tight text-gray-900'>
                 Sign in to your account
               </h2>
             </div>
@@ -109,49 +108,49 @@ const Login = () => {
                 <form className='space-y-6' onSubmit={handleSubmit}>
                   <div>
                     <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor='email'
+                      className='block text-sm font-medium text-gray-700'
                     >
                       Email address
                     </label>
-                    <div className="mt-1">
+                    <div className='mt-1'>
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
+                        id='email'
+                        name='email'
+                        type='email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        autoComplete="email"
-                        placeholder="example@gmail.com"
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        autoComplete='email'
+                        placeholder='example@gmail.com'
+                        className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                       />
                     </div>
                     {emailError && (
-                      <span className="text-red-500 text-sm">{emailError}</span>
+                      <span className='text-red-500 text-sm'>{emailError}</span>
                     )}
                   </div>
 
                   <div>
                     <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor='password'
+                      className='block text-sm font-medium text-gray-700'
                     >
                       Password
                     </label>
-                    <div className="mt-1">
+                    <div className='mt-1'>
                       <input
-                        id="password"
-                        name="password"
-                        type="password"
+                        id='password'
+                        name='password'
+                        type='password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        autoComplete="current-password"
-                        placeholder="********"
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        autoComplete='current-password'
+                        placeholder='********'
+                        className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                       />
                     </div>
                     {passwordError && (
-                      <span className="text-red-500 text-sm">
+                      <span className='text-red-500 text-sm'>
                         {passwordError}
                       </span>
                     )}
@@ -160,8 +159,8 @@ const Login = () => {
                   <div>
                     <div>
                       <label
-                        htmlFor="Role"
-                        className="block mb-2 text-sm font-medium text-gray-900"
+                        htmlFor='Role'
+                        className='block mb-2 text-sm font-medium text-gray-900'
                       >
                         Select your work
                       </label>
@@ -170,41 +169,41 @@ const Login = () => {
                           setRole(e.target.value);
                         }}
                         value={Role}
-                        name="Role"
-                        id="Role"
-                        className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                        name='Role'
+                        id='Role'
+                        className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100'
                       >
-                        <option value="" disabled selected>
+                        <option value='' disabled selected>
                           Select Role
                         </option>
-                        <option value="doctor">Doctor</option>
-                        <option value="receptionist">Receptionist</option>
+                        <option value='doctor'>Doctor</option>
+                        <option value='receptionist'>Receptionist</option>
                       </select>
                     </div>
                   </div>
 
-                  <div className="sm:flex sm:items-center sm:justify-between items-center p-1">
-                    <div className="flex items-center">
+                  <div className='sm:flex sm:items-center sm:justify-between items-center p-1'>
+                    <div className='flex items-center'>
                       <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        id='remember-me'
+                        name='remember-me'
+                        type='checkbox'
+                        className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
                       />
                       <label
-                        htmlFor="remember-me"
-                        className="sm:ml-2 sm:font-medium font-medium sm:block sm:text-[15px] text-sm ml-1 text-black"
+                        htmlFor='remember-me'
+                        className='sm:ml-2 sm:font-medium font-medium sm:block sm:text-[15px] text-sm ml-1 text-black'
                       >
                         Remember me
                       </label>
                     </div>
 
-                    <div className="text-sm mt-5 sm:mt-0">
+                    <div className='text-sm mt-5 sm:mt-0'>
                       {" "}
                       {/* Add mt-2 to create space on mobile */}
                       <Link
-                        to="/forget"
-                        className="sm:font-medium font-medium sm:text-[14px] text-indigo-900 sm:text-indigo-900 sm:hover:text-slate-950 sm:duration-100"
+                        to='/forget'
+                        className='sm:font-medium font-medium sm:text-[14px] text-indigo-900 sm:text-indigo-900 sm:hover:text-slate-950 sm:duration-100'
                       >
                         Forgot your password ?
                       </Link>
@@ -213,14 +212,14 @@ const Login = () => {
 
                   <div>
                     <button
-                      type="submit"
-                      className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      type='submit'
+                      className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                     >
                       Sign in
                     </button>
                   </div>
                   {showErrorMessage && (!email || !password) && (
-                    <div className="text-red-500 text-sm mt-2">
+                    <div className='text-red-500 text-sm mt-2'>
                       Please fill in both email and password fields.
                     </div>
                   )}
