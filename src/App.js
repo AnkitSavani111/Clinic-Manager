@@ -1,27 +1,21 @@
-import './App.css';
-import Login from './Components/Login';
-import Home from './Components/Pages/Home';
-import { Routes, Route ,useNavigate} from 'react-router-dom';
-import Appointment from './Components/Appointment';
-import About from './Components/About';
-import SignUp from './Components/SignUp';
-import ReceptionDashBoard from './Components/Pages/ReceptionDashBoard';
-import AddPatient from './Components/AddPatient';
-import Forget from './Components/Forget';
-import OTP from './Components/OTP';
-import { useEffect} from "react";
+import "./App.css";
+import Login from "./Components/Login";
+import UserHome from "./Components/Pages/UserHome";
+import Home from "./Components/Pages/Home";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Appointment from "./Components/NakamuAppointment";
+import SignUp from "./Components/SignUp";
+import AddPatient from "./Components/AddPatient";
+import Forget from "./Components/Forget";
+import OTP from "./Components/OTP";
+import { useEffect } from "react";
 import { useUser } from "../src/Contexts/UserContext";
 import axios from "axios";
-import PatientDetails from './Components/PatientDetails';
-import Appointments from './Components/Appointments';
-import DoctorDashBoard from './Components/Pages/DoctorDashBoard';
-import DoctorPatientList from './Components/DoctorPatientList';
-import DoctorRecord from './Components/PreviousRecord';
-import DoctorTreatment from './Components/DoctorTreatment';
-import Treatment from './Components/Treatment';
+import Treatment from "./Components/Treatment";
+import Patients from "./Components/Patients";
+import Appointments from "./Components/Appointments";
 
 function App() {
-  // const [userData, setUserData] = useState(null);
   const { user, setUser } = useUser();
   const navigate = useNavigate();
 
@@ -37,9 +31,7 @@ function App() {
           email: response.data.email,
           role: response.data.role,
         });
-        // setUserData(response.data);
       } catch (error) {
-        // console.warn("Unauthorized");
         navigate("/login");
       }
     };
@@ -53,18 +45,13 @@ function App() {
         {user ? (
           <>
             <Route path='/' element={<Home />} />
+            <Route path='/user/home' element={<UserHome />} />
             <Route path='/home' element={<Home />} />
             <Route path='/appointment' element={<Appointment />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/receptiondashb' element={<ReceptionDashBoard />} />
-            <Route path='/receptiondashb/PatientDetails' element={<PatientDetails />} />
-            <Route path='/receptiondashb/AddPatient' element={<AddPatient />} />
-            <Route path='/receptiondashb/appointments' element={<Appointments/>} />
-            <Route path='/doctordashb' element={<DoctorDashBoard />} />
-            <Route path='/doctordashb/PatientDetails' element={<DoctorPatientList/>} />
-            <Route path='/doctordashb/PreviousRecord' element={<DoctorRecord/>} /> 
-            <Route path='/doctordashb/Treatment' element={<DoctorTreatment/>} /> 
-            <Route path='/doctordashb/Treatment/:id' element={<Treatment/>} /> 
+            <Route path='/patients' element={<Patients />} />
+            <Route path='/add-patient' element={<AddPatient />} />
+            <Route path='/appointments' element={<Appointments />} />
+            <Route path='/treatment/:id' element={<Treatment />} />
           </>
         ) : (
           <></>

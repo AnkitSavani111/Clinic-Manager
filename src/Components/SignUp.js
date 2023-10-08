@@ -65,50 +65,48 @@ const SignUp = () => {
       setShowErrorMessage(true);
       return;
     }
-
-    // Your sign-up logic here
   };
 
   return (
     <>
-      <div className="Background bg-slate-400 bg-cover relative h-screen">
-        <div className="flex justify-center items-center h-full">
-          <div className="Card bg-slate-300 flex flex-col justify-center m-auto items-center w-4/5 sm:h-auto sm:w-2/5 shadow-custom6 drop-shadow-md sm:py-2 py-2 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply">
+      <div className='Background bg-slate-400 bg-cover relative h-screen'>
+        <div className='flex justify-center items-center h-full'>
+          <div className='Card bg-slate-300 flex flex-col justify-center m-auto items-center w-4/5 sm:h-auto sm:w-2/5 shadow-custom6 drop-shadow-md sm:py-2 py-2 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl'>
+            <div className='sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply'>
               <img
-                className="m-auto mt-2 h-12 w-auto mix-blend-multiply rounded-md"
+                className='m-auto mt-2 h-12 w-auto mix-blend-multiply rounded-md'
                 src={Logo}
-                alt="Your Company"
+                alt='Your Company'
               />
-              <h2 className=" text-center mt-5 sm:text-3xl text-2xl font-bold tracking-tight text-gray-900">
+              <h2 className=' text-center mt-5 sm:text-3xl text-2xl font-bold tracking-tight text-gray-900'>
                 Sign up for account
               </h2>
             </div>
 
-            <div className=" sm:mx-auto sm:w-full sm:max-w-md">
-              <div className="bg-transparent py-8 sm:rounded-lg sm:px-10">
-                <form className="space-y-6" action="#" method="POST">
+            <div className=' sm:mx-auto sm:w-full sm:max-w-md'>
+              <div className='bg-transparent py-8 sm:rounded-lg sm:px-10'>
+                <form className='space-y-6' action='#' method='POST'>
                   <div>
                     <label
-                      htmlFor="usrname"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor='usrname'
+                      className='block text-sm font-medium text-gray-700'
                     >
                       User Name
                     </label>
-                    <div className="mt-1">
+                    <div className='mt-1'>
                       <input
-                        id="usrname"
-                        name="usrname"
-                        type="usrname"
-                        autoComplete="usrname"
+                        id='usrname'
+                        name='usrname'
+                        type='usrname'
+                        autoComplete='usrname'
                         value={userName}
-                        placeholder="User_Name"
+                        placeholder='User_Name'
                         onChange={(e) => setUserName(e.target.value)}
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                       />
                     </div>
                     {userNameError && (
-                      <span className="text-red-500 text-sm">
+                      <span className='text-red-500 text-sm'>
                         {userNameError}
                       </span>
                     )}
@@ -116,49 +114,49 @@ const SignUp = () => {
 
                   <div>
                     <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor='email'
+                      className='block text-sm font-medium text-gray-700'
                     >
                       Email
                     </label>
-                    <div className="mt-1">
+                    <div className='mt-1'>
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
+                        id='email'
+                        name='email'
+                        type='email'
+                        autoComplete='email'
                         value={email}
-                        placeholder="example@gmail.com"
+                        placeholder='example@gmail.com'
                         onChange={(e) => setEmail(e.target.value)}
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                       />
                     </div>
                     {emailError && (
-                      <span className="text-red-500 text-sm">{emailError}</span>
+                      <span className='text-red-500 text-sm'>{emailError}</span>
                     )}
                   </div>
 
                   <div>
                     <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor='password'
+                      className='block text-sm font-medium text-gray-700'
                     >
                       Password
                     </label>
-                    <div className="mt-1">
+                    <div className='mt-1'>
                       <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
+                        id='password'
+                        name='password'
+                        type='password'
+                        autoComplete='current-password'
                         value={password}
-                        placeholder="********"
+                        placeholder='********'
                         onChange={(e) => setPassword(e.target.value)}
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
                       />
                     </div>
                     {passwordError && (
-                      <span className="text-red-500 text-sm">
+                      <span className='text-red-500 text-sm'>
                         {passwordError}
                       </span>
                     )}
@@ -167,8 +165,8 @@ const SignUp = () => {
                   <div>
                     <div>
                       <label
-                        htmlFor="Role"
-                        className="block mb-2 text-sm font-medium text-gray-900"
+                        htmlFor='Role'
+                        className='block mb-2 text-sm font-medium text-gray-900'
                       >
                         Select Account Role
                       </label>
@@ -177,16 +175,16 @@ const SignUp = () => {
                           setRole(e.target.value);
                         }}
                         value={Role}
-                        name="Role"
-                        id="Role"
-                        className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
+                        name='Role'
+                        id='Role'
+                        className='inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100'
                       >
-                        <option value="">Select Role</option>
-                        <option value="doctor">Doctor</option>
-                        <option value="receptionist">Receptionist</option>
+                        <option value=''>Select Role</option>
+                        <option value='doctor'>Doctor</option>
+                        <option value='receptionist'>Receptionist</option>
                       </select>
                       {roleError && (
-                        <span className="text-red-500 text-sm">
+                        <span className='text-red-500 text-sm'>
                           {roleError}
                         </span>
                       )}
@@ -195,13 +193,13 @@ const SignUp = () => {
                   <div>
                     <button
                       onClick={handleSubmit}
-                      className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                     >
                       Sign up
                     </button>
                     {showErrorMessage &&
                       (!userName || !email || !password || !Role) && (
-                        <div className="text-red-500 text-sm mt-2">
+                        <div className='text-red-500 text-sm mt-2'>
                           Please fill in all fields.
                         </div>
                       )}
