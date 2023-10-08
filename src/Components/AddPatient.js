@@ -1,375 +1,366 @@
-import React from 'react'
-import logo from '../Images/logo.png'
-import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition, Disclosure } from '@headlessui/react'
-import {
-  Bars3BottomLeftIcon,
-  BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
-import ReceptionAddPatient from './ReceptionAddPatient'
-
-const navigation = [
-  // { name: 'Dashboard', href: '#', current: true, icon: HomeIcon },
-  {
-    name: 'Patients',
-    current: false,
-    children: [
-      { name: 'Patient Details', to:"/receptiondashb/PatientDetails"  },
-      { name: 'Add Patient',  to:"/receptiondashb/AddPatient"  },
-      { name: 'Confirm List', to: '/receptiondashb/ConfirmList' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Projects',
-    current: false,
-    children: [
-      { name: 'Overview', element: <Link to="/receptiondashb/PatientDetails" /> },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Calendar',
-    current: false,
-    children: [
-      { name: 'Overview', to: '#' },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Documents',
-    current: false,
-    children: [
-      { name: 'Overview', to: '#' },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-  {
-    name: 'Reports',
-    current: false,
-    children: [
-      { name: 'Overview', to: '#' },
-      { name: 'Members', to: '#' },
-      { name: 'Calendar', to: '#' },
-      { name: 'Settings', to: '#' },
-    ],
-  },
-]
-
-const userNavigation = [
-  { name: 'Your Profile', to: '#' },
-  { name: 'Settings', to: '#' },
-  { name: 'Sign out', to: '#' },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
+import React, { useState } from "react";
+import Sidebar from "./Navigation";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddPatient() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [genderError, setGenderError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [ageError, setAgeError] = useState("");
+  const [addressError, setAddressError] = useState("");
+  const [generalError, setGeneralError] = useState(""); // eslint-disable-line no-unused-vars
+
+  const inputData = {
+    name: "",
+    phone: 0,
+    email: "",
+    gender: "",
+    date_registration: Date.now(),
+    age: 0,
+    address: "",
+  };
+  const [data, setData] = useState(inputData);
+
+  const navigate = useNavigate();
+
+  const handleData = (event) => {
+    setData({ ...data, [event.target.name]: event.target.value });
+  };
+
+  const validateForm = () => {
+    // Reset all error states
+    setNameError("");
+    setPhoneError("");
+    setGenderError("");
+    setEmailError("");
+    // setTimeslotError("");
+    setAgeError("");
+    setAddressError("");
+    setGeneralError("");
+
+    // Perform validation
+    let isValid = true;
+
+    // Name validation
+    if (!data.name.trim()) {
+      setNameError("Full name is required");
+      isValid = false;
+    }
+
+    // Age validation (assuming it's a number)
+    if (data.age <= 0) {
+      setAgeError("Age must be a positive number");
+      isValid = false;
+    }
+
+    // Phone validation (assuming it's a number)
+    if (data.phone <= 0) {
+      setPhoneError("Mobile number is required");
+      isValid = false;
+    }
+
+    // Gender validation
+    if (!data.gender.trim()) {
+      setGenderError("Gender is required");
+      isValid = false;
+    }
+
+    // Email validation
+    if (
+      !data.email.trim() ||
+      !data.email.includes("@") ||
+      !data.email.includes(".")
+    ) {
+      setEmailError("Invalid email format");
+      isValid = false;
+    }
+
+    // Address validation
+    if (!data.address.trim()) {
+      setAddressError("Address is required");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      setGeneralError("Please fill in all required fields");
+      return false;
+    }
+
+    return true;
+  };
+
+  const apiURL = process.env.REACT_APP_API + "/patient";
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const isFormValid = validateForm();
+
+    if (isFormValid) {
+      // If all validations passed, proceed to axios post request
+      axios
+        .post(apiURL, data)
+        .then((response) => {
+          console.log(response);
+          // Redirect to the desired page upon successful submission
+          navigate("/patients");
+        })
+        .catch((error) => {
+          console.error(error);
+          // Handle the error here.
+        });
+    }
+  };
+
+  let tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate() + 1);
+  tomorrow = tomorrow.toISOString().slice(0, 10);
+  // console.log(tomorrow);
+
+  let afterweek = new Date();
+  afterweek.setDate(new Date().getDate() + 15);
+  afterweek = afterweek.toISOString().slice(0, 10);
+
   return (
+    <>
       <div>
-        <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
-            <Transition.Child
-              as={Fragment}
-              enter="transition-opacity ease-linear duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition-opacity ease-linear duration-300"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
-            </Transition.Child>
-
-            <div className="fixed inset-0 z-40 flex">
-              <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-              >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4 no-scrollbar">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-in-out duration-300"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-300"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                  >
-                    <div className="absolute top-0 right-0 -mr-12 pt-2">
-                      <button
-                        type="button"
-                        className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        onClick={() => setSidebarOpen(false)}
-                      >
-                        <span className="sr-only">Close sidebar</span>
-                        <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
-                      </button>
-                    </div>
-                  </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4 self-center">
-                    <img
-                      className="h-8 w-auto"
-                      src={logo}
-                      alt="Your Company"
-                    />
-                  </div>
-                  <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                    <nav className="flex-1 space-y-1 bg-white px-2" aria-label="Sidebar">
-                      <div className="flex flex-col">Dashboard</div>
-                      {navigation.map((item) =>
-                        !item.children ? (
-                          <div key={item.name}>
-                            <Link
-                              to={item.to}
-                              className={classNames(
-                                item.current
-                                  ? 'bg-gray-100 text-gray-900'
-                                  : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                'group w-full flex items-center pl-7 pr-2 py-2 text-sm font-medium rounded-md'
-                              )}
-                            >
-                              {item.name}
-                            </Link>
-                          </div>
-                        ) : (
-                          <Disclosure as="div" key={item.name} className="space-y-1">
-                            {({ open }) => (
-                              <>
-                                <Disclosure.Button
-                                  className={classNames(
-                                    item.current
-                                      ? 'bg-gray-100 text-gray-900'
-                                      : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                    'group w-full flex items-center pr-2 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                                  )}
-                                >
-                                  <svg
-                                    className={classNames(
-                                      open ? 'text-gray-400 rotate-0' : 'text-gray-300',
-                                      'mr-2 h-5 w-5 flex-shrink-0 -rotate-90 transform transition-colors duration-150 ease-in-out group-hover:text-gray-400'
-                                    )}
-                                    viewBox="0 0 20 20"
-                                    aria-hidden="true"
-                                  >
-                                    <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" fill="currentColor" />
-                                  </svg>
-
-                                  {item.name}
-                                </Disclosure.Button>
-                                <Disclosure.Panel className="space-y-1">
-                                  {item.children.map((subItem) => (
-                                    <Disclosure.Button
-                                      key={subItem.name}
-                                      as={Link}
-                                      to={subItem.to}
-                                      className="group flex w-full items-center rounded-md py-2 pl-10 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                                    >
-                                      {subItem.name}
-                                    </Disclosure.Button>
-                                  ))}
-                                </Disclosure.Panel>
-                              </>
-                            )}
-                          </Disclosure>
-                        )
-                      )}
-                    </nav>
-
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-              <div className="w-14 flex-shrink-0" aria-hidden="true">
-                {/* Dummy element to force sidebar to shrink to fit close icon */}
+        <Sidebar />
+        <div className='flex flex-1 flex-col md:pl-64'>
+          <main className='flex-1'>
+            <div className='py-6'>
+              <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
+                <h1 className='text-2xl font-semibold text-gray-900'>
+                  Add Patient
+                </h1>
               </div>
-            </div>
-          </Dialog>
-        </Transition.Root>
-
-        {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col border-r border-gray-200 bg-white pt-5 overflow-y-scroll no-scrollbar " >
-            <div className="flex flex-shrink-0 self-center px-4">
-              <img
-                className="h-8 w-auto"
-                src={logo}
-                alt="Your Company"
-              />
-            </div>
-            <div className="mt-5 flex flex-grow flex-col">
-              <nav className="flex-1 space-y-1 bg-white px-2" aria-label="Sidebar">
-                {navigation.map((item) =>
-                  !item.children ? (
-                    <div key={item.name}>
-                      <Link
-                        to={item.to}
-                        className={classNames(
-                          item.current
-                            ? 'bg-gray-100 text-gray-900'
-                            : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                          'group w-full flex items-center pl-7 pr-2 py-2 text-sm font-medium rounded-md'
-                        )}
-                      >
-                        {item.name}
-                      </Link>
+              <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'></div>
+              <form className='space-y-8 divide-y divide-gray-200 p-10'>
+                <div className='space-y-8 divide-y divide-gray-200 sm:space-y-5'>
+                  <div className='space-y-6 sm:space-y-5'>
+                    <div>
+                      <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                        Personal Information
+                      </h3>
                     </div>
-                  ) : (
-                    <Disclosure as="div" key={item.name} className="space-y-1">
-                      {({ open }) => (
-                        <>
-                          <Disclosure.Button
-                            className={classNames(
-                              item.current
-                                ? 'bg-gray-100 text-gray-900'
-                                : 'bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                              'group w-full flex items-center pr-2 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                            )}
-                          >
-                            <svg
-                              className={classNames(
-                                open ? 'text-gray-400 rotate-0' : 'text-gray-300',
-                                'mr-2 h-5 w-5 flex-shrink-0 -rotate-90 transform transition-colors duration-150 ease-in-out group-hover:text-gray-400'
-                              )}
-                              viewBox="0 0 20 20"
-                              aria-hidden="true"
-                            >
-                              <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" fill="currentColor" />
-                            </svg>
-
-
-                            {item.name}
-                          </Disclosure.Button>
-                          <Disclosure.Panel className="space-y-1">
-                            {item.children.map((subItem) => (
-                              <Disclosure.Button
-                                key={subItem.name}
-                                as={Link}
-                                to={subItem.to}
-                                className="group flex w-full items-center rounded-md py-2 pl-10 pr-2 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                              >
-                                {subItem.name}
-                              </Disclosure.Button>
-                            ))}
-                          </Disclosure.Panel>
-                        </>
-                      )}
-                    </Disclosure>
-                  )
-                )}
-              </nav>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-1 flex-col md:pl-64">
-          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-            <button
-              type="button"
-              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <span className="sr-only">Open sidebar</span>
-              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-            <div className="flex flex-1 justify-between px-4 ">
-              <div className="flex flex-1">
-                <div className="text-center w-full sm:text-[1.5rem] text-[1.1rem] self-center font-semibold text-[rgb(8  72 48)]">Reception Dashboard</div>
-              </div>
-              <div className="ml-4 flex items-center md:ml-6">
-                <button
-                  type="button"
-                  className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {/* {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <a
-                              href={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              {item.name}
-                            </a>
+                    <div className='space-y-6 sm:space-y-5'>
+                      <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                        <label
+                          htmlFor='name'
+                          className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                        >
+                          Full name
+                        </label>
+                        <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                          <input
+                            type='text'
+                            name='name'
+                            id='first-name'
+                            autoComplete='given-name'
+                            placeholder='First Middle Last'
+                            className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
+                            value={data.name}
+                            onChange={handleData}
+                          />
+                          {nameError && (
+                            <p className='mt-2 text-sm text-red-600'>
+                              {nameError}
+                            </p>
                           )}
-                        </Menu.Item>
-                      ))} */}
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-              </div>
-            </div>
-          </div>
+                        </div>
+                      </div>
 
-          <main className="flex-1">
-            <div className="py-6">
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Add Patient</h1>
-              </div>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                {/* Replace with your content */}
+                      <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                        <label
+                          htmlFor='phone'
+                          className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                        >
+                          Mobile Number
+                        </label>
+                        <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                          <input
+                            type='tel'
+                            name='phone'
+                            id='phone'
+                            autoComplete='family-name'
+                            placeholder='+910000000000'
+                            className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
+                            onChange={handleData}
+                            value={data.phone === 0 ? "" : data.phone}
+                          />
+                          {phoneError && (
+                            <p className='mt-2 text-sm text-red-600'>
+                              {phoneError}
+                            </p>
+                          )}
+                        </div>
+                      </div>
 
-                      <ReceptionAddPatient />
-                
-                {/* /End replace */}
-              </div>
+                      <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                        <label
+                          htmlFor='gender'
+                          className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                        >
+                          Gender
+                        </label>
+                        <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                          <div className='flex items-center space-x-4'>
+                            <label className='inline-flex items-center'>
+                              <input
+                                type='radio'
+                                name='gender'
+                                value='male'
+                                checked={data.gender === "male"}
+                                onChange={handleData}
+                                className='form-radio h-5 w-5 text-indigo-600'
+                              />
+                              <span className='ml-2'>Male</span>
+                            </label>
+
+                            <label className='inline-flex items-center'>
+                              <input
+                                type='radio'
+                                name='gender'
+                                value='female'
+                                checked={data.gender === "female"}
+                                onChange={handleData}
+                                className='form-radio h-5 w-5 text-indigo-600'
+                              />
+                              <span className='ml-2'>Female</span>
+                            </label>
+
+                            <label className='inline-flex items-center'>
+                              <input
+                                type='radio'
+                                name='gender'
+                                value='other'
+                                checked={data.gender === "other"}
+                                onChange={handleData}
+                                className='form-radio h-5 w-5 text-indigo-600'
+                              />
+                              <span className='ml-2'>Other</span>
+                            </label>
+                          </div>
+
+                          {genderError && (
+                            <p className='mt-2 text-sm text-red-600'>
+                              {genderError}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                        <label
+                          htmlFor='email'
+                          className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                        >
+                          Email address
+                        </label>
+                        <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                          <input
+                            id='email'
+                            name='email'
+                            type='email'
+                            autoComplete='email'
+                            placeholder='example@gmail.com'
+                            className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
+                            onChange={handleData}
+                            value={data.email}
+                          />
+                          {emailError && (
+                            <p className='mt-2 text-sm text-red-600'>
+                              {emailError}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                        <label
+                          htmlFor='age'
+                          className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                        >
+                          Age
+                        </label>
+                        <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                          <input
+                            type='number'
+                            name='age'
+                            id='age'
+                            autoComplete='address-level2'
+                            placeholder='Enter Age'
+                            className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
+                            onChange={handleData}
+                            value={data.age === 0 ? "" : data.age}
+                          />
+                          {ageError && (
+                            <p className='mt-2 text-sm text-red-600'>
+                              {ageError}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                        <label
+                          htmlFor='address'
+                          className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                        >
+                          Address
+                        </label>
+                        <div className='mt-1 sm:col-span-2 sm:mt-0'>
+                          <textarea
+                            name='address'
+                            id='address'
+                            autoComplete='address'
+                            placeholder='h-no, village, landmark, district'
+                            className='block h-20 resize-y w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'
+                            onChange={handleData}
+                            value={data.address}
+                          ></textarea>
+                          {addressError && (
+                            <p className='mt-2 text-sm text-red-600'>
+                              {addressError}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='pt-5'>
+                  <div className='flex justify-end'>
+                    <Link>
+                      <button
+                        onClick={() => {
+                          setData(inputData);
+                        }}
+                        type='button'
+                        className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      >
+                        Clear
+                      </button>
+                    </Link>
+                    <button
+                      type='submit'
+                      className='ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      onClick={handleSubmit}
+                    >
+                      Register Patient
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
+            {/* </div> */}
           </main>
         </div>
       </div>
-  )
+    </>
+  );
 }
 
-export default AddPatient
+export default AddPatient;

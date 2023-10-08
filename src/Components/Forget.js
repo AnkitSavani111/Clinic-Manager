@@ -17,7 +17,7 @@ const Forget = () => {
       setEmailError("Please enter a valid email address");
       return;
     } else {
-      setEmailError(""); 
+      setEmailError("");
     }
 
     try {
