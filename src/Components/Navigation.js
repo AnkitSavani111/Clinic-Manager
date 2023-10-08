@@ -33,6 +33,7 @@ function classNames(...classes) {
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useUser();
+
   return (
     <div>
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -184,7 +185,7 @@ export default function Sidebar() {
         <div className='flex flex-1 justify-between px-4 '>
           <div className='flex flex-1'>
             <div className='text-center w-full sm:text-[1.5rem] text-[1.1rem] self-center font-semibold text-[rgb(8  72 48)]'>
-              {user.role} Dashboard
+            {user.role && user.role.charAt(0).toUpperCase() + user.role.slice(1)} Dashboard
             </div>
           </div>
           <div className='ml-4 flex items-center md:ml-6'>
