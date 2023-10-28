@@ -16,6 +16,7 @@ function PreviousRecord() {
   const [openDetails, setOpenDetails] = useState(false);
   const cancelButtonRef = useRef(null);
   const [people, setPeople] = useState([]);
+  const [peopleCopy, setPeopleCopy] = useState([]);
   const [currentPatient, setCurrentPatient] = useState({});
   const [tabs, setTabs] = useState([]);
   const [currentApp, setCurrentApp] = useState();
@@ -26,6 +27,7 @@ function PreviousRecord() {
       .then((response) => {
         console.log(response);
         setPeople(response.data);
+        setPeopleCopy(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -64,6 +66,13 @@ function PreviousRecord() {
     return classes.filter(Boolean).join(" ");
   }
 
+  const handleSearch = (searchKey) => {
+    const filteredPeople = peopleCopy.filter((person) => {
+      return person.name.toLowerCase().includes(searchKey.toLowerCase());
+    });
+    setPeople(filteredPeople);
+  };
+
   return (
     <>
       <Sidebar />
@@ -99,11 +108,12 @@ function PreviousRecord() {
                                   />
                                 </div>
                                 <input
-                                  type='email'
-                                  name='email'
-                                  id='email'
+                                  id='search'
                                   className='block w-full rounded-none rounded-l-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                                   placeholder='Enter Here'
+                                  onChange={(e) => {
+                                    handleSearch(e.target.value);
+                                  }}
                                 />
                               </div>
                               <button
