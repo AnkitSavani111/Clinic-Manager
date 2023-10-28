@@ -22,7 +22,7 @@ const navigation = [
   {
     name: "Appointments",
     current: false,
-    children: [{ name: "View Appointments", to: "/patients" }],
+    children: [{ name: "View Appointments", to: "/appointments" }],
   },
 ];
 

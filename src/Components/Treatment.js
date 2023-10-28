@@ -150,7 +150,7 @@ function Treatment() {
               <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'></div>
               <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
                 <div className='overflow-hidden bg-white shadow sm:rounded-lg'>
-                  <div className='px-4 py-5 sm:px-6'>
+                  <div className='flex px-4 py-5 sm:px-6 justify-between'>
                     <h3 className='text-lg font-medium leading-6 text-gray-900'>
                       Patient Details
                     </h3>

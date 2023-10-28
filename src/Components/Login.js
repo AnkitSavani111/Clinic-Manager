@@ -65,7 +65,6 @@ const Login = () => {
         email: res.data.user.email,
         role: res.data.user.role,
       });
-      alert(user);
       handleShowToast("Login Successful", "success");
       navigate("/");
     } catch (error) {
