@@ -861,10 +861,7 @@ function Patients() {
                                               name='currentTime'
                                               onClick={(time) => {
                                                 time.preventDefault();
-                                                document.getElementById(
-                                                  "timeslot"
-                                                ).value =
-                                                  new Date().toLocaleTimeString();
+                                                document.getElementById("time").value = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
                                               }}
                                               className='inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                                             >
