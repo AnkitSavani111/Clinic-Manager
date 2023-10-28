@@ -14,6 +14,7 @@ import axios from "axios";
 import Treatment from "./Components/Treatment";
 import Patients from "./Components/Patients";
 import Appointments from "./Components/Appointments";
+import PreviousRecord from "./Components/PreviousRecord";
 
 function App() {
   const { user, setUser } = useUser();
@@ -49,6 +50,7 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/appointment' element={<Appointment />} />
             <Route path='/patients' element={<Patients />} />
+            <Route path='/record' element={< PreviousRecord/>} />
             <Route path='/add-patient' element={<AddPatient />} />
             <Route path='/appointments' element={<Appointments />} />
             <Route path='/treatment/:id' element={<Treatment />} />

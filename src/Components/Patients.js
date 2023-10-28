@@ -6,6 +6,7 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Navigation";
+
 const getURL = "http://localhost:4000/";
 
 function Patients() {
@@ -809,15 +810,15 @@ function Patients() {
                                         </h3>
                                       </div>
                                       <div className='space-y-6 sm:space-y-5'>
-                                        <div className='sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                                        <div className='sm:grid sm:grid-cols-3 sm:items-center sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                           <label
                                             htmlFor='name'
-                                            className='block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2'
+                                            className='block text-sm font-medium text-gray-700 sm:mt-px'
                                           >
                                             Patient Name
                                           </label>
                                           <div className='mt-1 sm:col-span-2 sm:mt-0'>
-                                            <p className='block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'>
+                                            <p className='block w-full max-w-lg rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm'>
                                               {schedulePatient.name}
                                             </p>
                                           </div>
