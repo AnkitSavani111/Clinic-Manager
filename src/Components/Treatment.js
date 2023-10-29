@@ -86,7 +86,12 @@ function Treatment() {
     const printWindow = window.open("", "_blank");
     // Render the PrintPrescriptionComponent in the new window
     ReactDOM.render(
-      <PrintPrescriptionComponent prescriptionData={prescriptions} />,
+      <PrintPrescriptionComponent
+        prescriptionData={prescriptions}
+        data={data}
+        diagnosis={document.getElementById("diagnosis").value}
+        treatments={document.getElementById("treatments").value}
+      />,
       printWindow.document.body
     );
     // Print the new window
@@ -150,7 +155,7 @@ function Treatment() {
               <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'></div>
               <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
                 <div className='overflow-hidden bg-white shadow sm:rounded-lg'>
-                  <div className='px-4 py-5 sm:px-6'>
+                  <div className='flex px-4 py-5 sm:px-6 justify-between'>
                     <h3 className='text-lg font-medium leading-6 text-gray-900'>
                       Patient Details
                     </h3>
@@ -329,13 +334,13 @@ function Treatment() {
                                       scope='col'
                                       className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20'
                                     >
-                                      After
+                                      Before Meal
                                     </th>
                                     <th
                                       scope='col'
                                       className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900 w-20'
                                     >
-                                      Before
+                                      After Meal
                                     </th>
                                     <th
                                       scope='col'

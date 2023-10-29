@@ -17,12 +17,13 @@ const navigation = [
     children: [
       { name: "Patient Details", to: "/patients" },
       { name: "Add Patient", to: "/add-patient" },
+      { name: "Record", to: "/record" },
     ],
   },
   {
     name: "Appointments",
     current: false,
-    children: [{ name: "View Appointments", to: "/patients" }],
+    children: [{ name: "View Appointments", to: "/appointments" }],
   },
 ];
 
@@ -185,7 +186,7 @@ export default function Sidebar() {
         <div className='flex flex-1 justify-between px-4 '>
           <div className='flex flex-1'>
             <div className='text-center w-full sm:text-[1.5rem] text-[1.1rem] self-center font-semibold text-[rgb(8  72 48)]'>
-            {user.role && user.role.charAt(0).toUpperCase() + user.role.slice(1)} Dashboard
+              {user.role && user.role.charAt(0).toUpperCase() + user.role.slice(1)} Dashboard
             </div>
           </div>
           <div className='ml-4 flex items-center md:ml-6'>
@@ -277,9 +278,10 @@ export default function Sidebar() {
 
                           {item.name}
                         </Disclosure.Button>
-                        <Disclosure.Panel className='space-y-1'>
+                        <Disclosure.Panel className='space-y-1 '>
                           {item.children.map((subItem) => (
                             <Disclosure.Button
+                            
                               key={subItem.name}
                               as={Link}
                               to={subItem.to}

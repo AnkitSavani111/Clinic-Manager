@@ -124,7 +124,7 @@ function Appointments() {
                                       scope='col'
                                       className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                                     >
-                                      Age
+                                      Status
                                     </th>
                                     <th
                                       scope='col'
@@ -141,7 +141,8 @@ function Appointments() {
                                   </tr>
                                 </thead>
                                 <tbody className='bg-white'>
-                                  {appointments.map((app, idx) => (
+
+                                  {Array.isArray(appointments) && appointments ? (appointments.map((app, idx) => (
                                     <tr
                                       key={app._id}
                                       className={
@@ -183,7 +184,7 @@ function Appointments() {
                                         </button>
                                       </td>
                                     </tr>
-                                  ))}
+                                  ))) : (<></>)}
                                 </tbody>
                               </table>
                             </div>

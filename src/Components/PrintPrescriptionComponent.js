@@ -2,91 +2,18 @@ import React from "react";
 // import Logo from "../Images/logo.png";
 
 // Custom component for printing prescription
-const PrintPrescriptionComponent = ({ prescriptionData }) => {
-  console.warn(prescriptionData);
+const PrintPrescriptionComponent = ({
+  prescriptionData,
+  data,
+  diagnosis,
+  treatments,
+}) => {
+  console.warn(data);
   return (
-    // <div
-    //   style={{
-    //     fontFamily: "Arial, sans-serif",
-    //     backgroundColor: "#ffffff",
-    //     padding: "16px",
-    //     borderRadius: "8px",
-    //     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    //   }}
-    // >
-    //   <h2
-    //     style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "1rem" }}
-    //   >
-    //     Prescription Details
-    //   </h2>
-    //   <table style={{ width: "100%", borderCollapse: "collapse" }}>
-    //     <thead>
-    //       <tr>
-    //         <th
-    //           style={{
-    //             padding: "8px",
-    //             border: "1px solid #ddd",
-    //             textAlign: "left",
-    //           }}
-    //         >
-    //           Name
-    //         </th>
-    //         <th
-    //           style={{
-    //             padding: "8px",
-    //             border: "1px solid #ddd",
-    //             textAlign: "left",
-    //           }}
-    //         >
-    //           Day
-    //         </th>
-    //         <th
-    //           style={{
-    //             padding: "8px",
-    //             border: "1px solid #ddd",
-    //             textAlign: "left",
-    //           }}
-    //         >
-    //           Time
-    //         </th>
-    //         <th
-    //           style={{
-    //             padding: "8px",
-    //             border: "1px solid #ddd",
-    //             textAlign: "left",
-    //           }}
-    //         >
-    //           Meal
-    //         </th>
-    //       </tr>
-    //     </thead>
-    //     <tbody>
-    //       {prescriptionData.map((prescription) => (
-    //         <tr key={prescription.id}>
-    //           <td style={{ padding: "8px", border: "1px solid #ddd" }}>
-    //             {prescription.name}
-    //           </td>
-    //           <td style={{ padding: "8px", border: "1px solid #ddd" }}>
-    //             {prescription.day}
-    //           </td>
-    //           <td style={{ padding: "8px", border: "1px solid #ddd" }}>
-    //             {prescription.morning ? "1 " : " 0 "}-
-    //             {prescription.afternoon ? " 1 " : " 0 "}-
-    //             {prescription.night ? " 1 " : " 0"}
-    //           </td>
-    //           <td style={{ padding: "8px", border: "1px solid #ddd" }}>
-    //             {prescription.whentotake}
-    //           </td>
-    //         </tr>
-    //       ))}
-    //     </tbody>
-    //   </table>
-    // </div>
-
     <>
       {/* <img src="../Images/logo.png" alt="ADC" /> */}
       <div
-        className="mainHeader"
+        className='mainHeader'
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -94,14 +21,14 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
         }}
       >
         <div
-          className="leftClinicInfo"
+          className='leftClinicInfo'
           style={{
             display: "flex",
             width: "50%",
             fontSize: "1.2rem",
           }}
         >
-          <div className="docInfo">
+          <div className='docInfo'>
             <span style={{ color: "darkblue", fontSize: "1.3rem" }}>
               <b>Dr. Shailesh Pateliya</b>
             </span>
@@ -110,7 +37,7 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
           </div>
         </div>
         <div
-          className="rightClinicInfo"
+          className='rightClinicInfo'
           style={{
             width: "50%",
             fontSize: "1.2rem",
@@ -129,7 +56,7 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
       </div>
       <hr style={{ borderStyle: "solid" }} />
       <div
-        className="Date"
+        className='Date'
         style={{
           display: "flex",
           justifyContent: "flex-end",
@@ -137,58 +64,61 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
           fontSize: "1.25rem",
         }}
       >
-        <b>Date : 28/10/2023</b>
+        <b>Date : {new Date(data.timestamp).toLocaleDateString() || "N/A"}</b>
       </div>
       <div
-        className="PatientInfo"
+        className='PatientInfo'
         style={{
           marginBottom: "3%",
         }}
       >
         <div
-          className="PatientName"
+          className='PatientName'
           style={{ width: "50%", fontSize: "1.2rem", marginBottom: "1%" }}
         >
           Name:
           <div>
             <span>
-              <b>Savaliya Jaivin</b>
+              <b>
+                {data ? data.patient.name : "N/A"}(
+                {data ? data.patient.gender.charAt(0).toUpperCase() : "-"})
+              </b>
             </span>
           </div>
         </div>
 
         <div
-          className="PatientAge"
+          className='PatientAge'
           style={{ width: "50%", fontSize: "1.2rem", marginBottom: "1%" }}
         >
           Age:
           <div>
             <span>
-              <b>20</b>
+              <b>{data ? data.patient.age : "-"}</b>
             </span>
           </div>
         </div>
 
         <div
-          className="PatientNumber"
+          className='PatientNumber'
           style={{ width: "50%", fontSize: "1.2rem", marginBottom: "1%" }}
         >
           Mobile Number:
           <div>
             <span>
-              <b>7874322731</b>
+              <b>{data ? data.patient.phone : "-"}</b>
             </span>
           </div>
         </div>
 
         <div
-          className="PatientAddress"
+          className='PatientAddress'
           style={{ width: "50%", fontSize: "1.2rem", marginBottom: "1%" }}
         >
           Address:
           <div>
             <span>
-              <b>Surat</b>
+              <b>{data ? data.patient.address : "-"}</b>
             </span>
           </div>
         </div>
@@ -204,25 +134,25 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
           }}
         />
         <div
-          className="Diagnosis"
+          className='Diagnosis'
           style={{ width: "50%", fontSize: "1.2rem", marginBottom: "1%" }}
         >
-          Diagnosis:
+          Diagnosis
           <div>
             <span>
-              <b>diag.</b>
+              <b>{diagnosis ? diagnosis : "-"}</b>
             </span>
           </div>
         </div>
       </div>
       <div
-        className="Treatment"
+        className='Treatment'
         style={{ width: "50%", fontSize: "1.2rem", marginBottom: "1%" }}
       >
-        Treatment:
+        Treatment
         <div>
           <span>
-            <b>treat.</b>
+            <b>{treatments ? treatments : "-"}</b>
           </span>
         </div>
       </div>
@@ -231,8 +161,8 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
         style={{
           width: "100%",
           borderCollapse: "collapse",
-          marginTop:"5%",
-          fontSize:"1.25rem"
+          marginTop: "5%",
+          fontSize: "1.25rem",
         }}
       >
         <thead>
@@ -240,7 +170,7 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
             <th
               style={{
                 padding: "8px",
-                borderTop:"3px solid black",
+                borderTop: "3px solid black",
                 borderBottom: "3px solid black",
                 textAlign: "left",
               }}
@@ -250,7 +180,7 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
             <th
               style={{
                 padding: "8px",
-                borderTop:"3px solid black",
+                borderTop: "3px solid black",
                 borderBottom: "3px solid black",
                 textAlign: "left",
               }}
@@ -260,7 +190,7 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
             <th
               style={{
                 padding: "8px",
-                borderTop:"3px solid black",
+                borderTop: "3px solid black",
                 borderBottom: "3px solid black",
                 textAlign: "left",
               }}
@@ -270,45 +200,54 @@ const PrintPrescriptionComponent = ({ prescriptionData }) => {
           </tr>
         </thead>
         <tbody>
-          {prescriptionData.map((prescription) => (
-            <tr key={prescription.id}>
-              <td style={{ padding: "8px"}}>
-                {prescription.name}
-              </td>
-              <td style={{ padding: "8px" }}>
-                {prescription.day}
-              </td>
-              <td style={{ padding: "8px" }}>
-                {prescription.morning ? "1 " : " 0 "}-
-                {prescription.afternoon ? " 1 " : " 0 "}-
-                {prescription.night ? " 1 " : " 0"}
-              </td>
-            </tr>
-          ))}
+          {prescriptionData ? (
+            prescriptionData.map((prescription) =>
+              prescription? (
+                <tr key={prescription.id}>
+                  <td style={{ padding: "8px" }}>{prescription.name}</td>
+                  <td style={{ padding: "8px" }}>{prescription.day}</td>
+                  <td style={{ padding: "8px" }}>
+                    {prescription.morning ? "1 " : " 0 "}-
+                    {prescription.afternoon ? " 1 " : " 0 "}-
+                    {prescription.night ? " 1 " : " 0"}
+                    <br />
+                    {prescription.whentotake} meal
+                  </td>
+                </tr>
+              ) : (
+                <></>
+              )
+            )
+          ) : (
+            <></>
+          )}
         </tbody>
       </table>
       <hr style={{ borderStyle: "solid" }} />
-      <div className="lastPart" style={{
-        height:"100%",
-        verticalAlign:"text-bottom",
-        marginTop:"15%"
-      }}>
+      <div
+        className='lastPart'
+        style={{
+          height: "100%",
+          verticalAlign: "text-bottom",
+          marginTop: "15%",
+        }}
+      >
         <div
-          className="regards"
+          className='regards'
           style={{
             display: "flex",
             justifyContent: "flex-end",
-            fontSize:"1.3rem"
+            fontSize: "1.3rem",
           }}
         >
           <b>Dr. Shailesh Pateliya</b>
         </div>
         <div
-          className="degree"
+          className='degree'
           style={{
             display: "flex",
             justifyContent: "flex-end",
-            fontSize:"1.3rem"
+            fontSize: "1.3rem",
           }}
         >
           B.D.S.
