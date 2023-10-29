@@ -13,7 +13,7 @@ function Navbar() {
   const currentPath = location.pathname;
 
   const links = [
-    { name: "Home", path: "/" },
+    { name: "Home", path: "/user/home" },
     { name: "Book Appointment", path: "/appointment" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },

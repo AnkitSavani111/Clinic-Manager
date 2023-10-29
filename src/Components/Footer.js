@@ -48,7 +48,7 @@ const Footer = () => {
             <h6 className='font-bold mt-5 text-xl text-white col-span-2 mb-3 text-center lg:text-left'>
               Follow us
             </h6>
-            <div className='flex mt-4 gap-6 sm:mt-0'>
+            <div className='flex mt-4 gap-6 sm:mt-0 justify-center sm:justify-start'>
               <a
                 href='https://www.facebook.com/'
                 className='text-gray-50 hover:text-gray-900'
