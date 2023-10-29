@@ -18,6 +18,7 @@ const navigation = [
       { name: "Patient Details", to: "/patients" },
       { name: "Add Patient", to: "/add-patient" },
       { name: "Record", to: "/record" },
+      { name: "Add User", to: "/add-user" }
     ],
   },
   {
@@ -281,7 +282,7 @@ export default function Sidebar() {
                         <Disclosure.Panel className='space-y-1 '>
                           {item.children.map((subItem) => (
                             <Disclosure.Button
-                            
+
                               key={subItem.name}
                               as={Link}
                               to={subItem.to}
