@@ -10,24 +10,6 @@ import logo from "../Images/logo.png";
 import { Link } from "react-router-dom";
 import { useUser } from "../Contexts/UserContext";
 
-const navigation = [
-  {
-    name: "Patients",
-    current: false,
-    children: [
-      { name: "Patient Details", to: "/patients" },
-      { name: "Add Patient", to: "/add-patient" },
-      { name: "Record", to: "/record" },
-      { name: "Add User", to: "/add-user" }
-    ],
-  },
-  {
-    name: "Appointments",
-    current: false,
-    children: [{ name: "View Appointments", to: "/appointments" }],
-  },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -35,6 +17,52 @@ function classNames(...classes) {
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useUser();
+
+  const navigation = [
+    {
+      name: "Patients",
+      current: false,
+      children: [
+        {
+          name: "Patient Details",
+          to: "/patients",
+          role: ["admin", "receptionist", "doctor"],
+        },
+        {
+          name: "Add Patient",
+          to: "/add-patient",
+          role: ["admin", "receptionist", "doctor"],
+        },
+        {
+          name: "Record",
+          to: "/record",
+          role: ["admin", "receptionist", "doctor"],
+        },
+      ],
+    },
+    {
+      name: "Appointments",
+      current: false,
+      children: [
+        {
+          name: "View Appointments",
+          to: "/appointments",
+          role: ["admin", "receptionist", "doctor"],
+        },
+      ],
+    },
+  ];
+
+  if (user.role === "admin") {
+    navigation.push({
+      name: "Users",
+      current: false,
+      children: [
+        { name: "Add User", to: "/add-user", role: ["admin"] },
+        // { name: "View Users", to: "/users" ,role:["admin"]},
+      ],
+    });
+  }
 
   return (
     <div>
@@ -187,7 +215,9 @@ export default function Sidebar() {
         <div className='flex flex-1 justify-between px-4 '>
           <div className='flex flex-1'>
             <div className='text-center w-full sm:text-[1.5rem] text-[1.1rem] self-center font-semibold text-[rgb(8  72 48)]'>
-              {user.role && user.role.charAt(0).toUpperCase() + user.role.slice(1)} Dashboard
+              {user.role &&
+                user.role.charAt(0).toUpperCase() + user.role.slice(1)}{" "}
+              Dashboard
             </div>
           </div>
           <div className='ml-4 flex items-center md:ml-6'>
@@ -282,7 +312,6 @@ export default function Sidebar() {
                         <Disclosure.Panel className='space-y-1 '>
                           {item.children.map((subItem) => (
                             <Disclosure.Button
-
                               key={subItem.name}
                               as={Link}
                               to={subItem.to}
