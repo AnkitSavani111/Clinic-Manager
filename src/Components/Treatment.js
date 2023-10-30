@@ -101,7 +101,7 @@ function Treatment() {
 
   const handleSave = async () => {
     const diagnosis = document.getElementById("diagnosis").value;
-    const treatments = document.getElementById("treatments").value;
+    const treatment = document.getElementById("treatments").value;
 
     const prescription = prescriptions.map((prescription) => {
       const { id, ...rest } = prescription;
@@ -118,7 +118,7 @@ function Treatment() {
 
     const data = {
       diagnosis,
-      treatments,
+      treatment,
       prescription,
       status: "completed",
     };
