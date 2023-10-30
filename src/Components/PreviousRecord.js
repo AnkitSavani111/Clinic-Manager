@@ -316,13 +316,13 @@ function PreviousRecord() {
                                                 className='block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
                                                 defaultValue={
                                                   currentApp
-                                                    ? currentApp.timestamp
+                                                    ? new Date(currentApp.timestamp).toLocaleDateString()
                                                     : "-"
                                                 }
                                               >
                                                 {tabs.map((tab) => (
                                                   <option key={tab._id}>
-                                                    {tab.timestamp}
+                                                    {new Date(tab.timestamp).toLocaleDateString()}
                                                   </option>
                                                 ))}
                                               </select>
@@ -351,7 +351,7 @@ function PreviousRecord() {
                                                         : undefined
                                                     }
                                                   >
-                                                    {tab.timestamp}
+                                                    {new Date(tab.timestamp).toLocaleDateString()}
                                                   </Link>
                                                 ))}
                                               </nav>
