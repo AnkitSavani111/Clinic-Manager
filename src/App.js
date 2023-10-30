@@ -3,7 +3,7 @@ import Login from "./Components/Login";
 import UserHome from "./Components/Pages/UserHome";
 import Home from "./Components/Pages/Home";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Appointment from "./Components/NakamuAppointment";
+import Appointment from "./Components/Appointment";
 import SignUp from "./Components/SignUp";
 import AddPatient from "./Components/AddPatient";
 import Forget from "./Components/Forget";

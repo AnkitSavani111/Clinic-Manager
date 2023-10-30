@@ -17,41 +17,113 @@ function classNames(...classes) {
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useUser();
+  let navigation = []
 
-  const navigation = [
-    {
-      name: "Patients",
-      current: false,
-      children: [
-        {
-          name: "Patient Details",
-          to: "/patients",
-          role: ["admin", "receptionist", "doctor"],
-        },
-        {
-          name: "Add Patient",
-          to: "/add-patient",
-          role: ["admin", "receptionist", "doctor"],
-        },
-        {
-          name: "Record",
-          to: "/record",
-          role: ["admin", "receptionist", "doctor"],
-        },
-      ],
-    },
-    {
-      name: "Appointments",
-      current: false,
-      children: [
-        {
-          name: "View Appointments",
-          to: "/appointments",
-          role: ["admin", "receptionist", "doctor"],
-        },
-      ],
-    },
-  ];
+  if(user.role === 'receptionist'){
+    // console.log(user.role);
+    navigation = [
+      {
+        name: "Patients",
+        current: false,
+        children: [
+          {
+            name: "Patient Details",
+            to: "/patients",
+            role: ["admin", "receptionist", "doctor"],
+          },
+          {
+            name: "Add Patient",
+            to: "/add-patient",
+            role: ["admin", "receptionist", "doctor"],
+          },
+          {
+            name: "Record",
+            to: "/record",
+            role: ["admin", "receptionist", "doctor"],
+          },
+        ],
+      },
+      {
+        name: "Appointments",
+        current: false,
+        children: [
+          {
+            name: "View Appointments",
+            to: "/appointments",
+            role: ["admin", "receptionist", "doctor"],
+          },
+        ],
+      },
+    ];
+  }
+  else if(user.role=== 'doctor'){
+    navigation = [
+      {
+        name: "Patients",
+        current: false,
+        children: [
+          {
+            name: "Patient Details",
+            to: "/patients",
+            role: ["admin", "receptionist", "doctor"],
+          },
+          {
+            name: "Record",
+            to: "/record",
+            role: ["admin", "receptionist", "doctor"],
+          },
+        ],
+      },
+      {
+        name: "Appointments",
+        current: false,
+        children: [
+          {
+            name: "View Appointments",
+            to: "/appointments",
+            role: ["admin", "receptionist", "doctor"],
+          },
+        ],
+      },
+    ];
+  }
+  else{
+    navigation = [
+      {
+        name: "Patients",
+        current: false,
+        children: [
+          {
+            name: "Patient Details",
+            to: "/patients",
+            role: ["admin", "receptionist", "doctor"],
+          },
+          {
+            name: "Add Patient",
+            to: "/add-patient",
+            role: ["admin", "receptionist", "doctor"],
+          },
+          {
+            name: "Record",
+            to: "/record",
+            role: ["admin", "receptionist", "doctor"],
+          },
+        ],
+      },
+      {
+        name: "Appointments",
+        current: false,
+        children: [
+          {
+            name: "View Appointments",
+            to: "/appointments",
+            role: ["admin", "receptionist", "doctor"],
+          },
+        ],
+      },
+    ];
+  }
+  
 
   if (user.role === "admin") {
     navigation.push({

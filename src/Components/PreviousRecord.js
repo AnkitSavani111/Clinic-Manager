@@ -371,19 +371,6 @@ function PreviousRecord() {
                                             </div>
                                             <div className='sm:grid sm:grid-cols-5 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                               <p
-                                                htmlFor='name'
-                                                className='block text-sm font-medium text-gray-700 sm:mt-px'
-                                              >
-                                                Full name
-                                              </p>
-                                              <div className='sm:justify-center sm:col-span-4 sm:mt-px'>
-                                                <p className='text-sm text-gray-700 content-center'>
-                                                  {currentPatient.name}
-                                                </p>
-                                              </div>
-                                            </div>
-                                            <div className='sm:grid sm:grid-cols-5 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
-                                              <p
                                                 htmlFor='gender'
                                                 className='block text-sm font-medium text-gray-700 sm:mt-px'
                                               >
@@ -431,10 +418,10 @@ function PreviousRecord() {
                                                     {currentApp &&
                                                     currentApp.treatment
                                                       ? currentApp.treatment
-                                                      : "-    "}
+                                                      : "-"}
                                                   </p>
                                                 </div>
-                                                <div className='sm:grid sm:grid-cols-5 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
+                                                {/* <div className='sm:grid sm:grid-cols-5 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5'>
                                                   <p
                                                     htmlFor='remark'
                                                     className='block text-sm font-medium text-gray-700 sm:mt-px'
@@ -445,9 +432,9 @@ function PreviousRecord() {
                                                     {currentApp &&
                                                     currentApp.remarks
                                                       ? currentApp.remarks
-                                                      : "-    "}
+                                                      : "-"}
                                                   </p>
-                                                </div>
+                                                </div> */}
                                               </>
                                             ) : (
                                               <p>

@@ -155,7 +155,7 @@ const Login = () => {
                     )}
                   </div>
 
-                  <div>
+                  {/* <div>
                     <div>
                       <label
                         htmlFor='Role'
@@ -179,10 +179,10 @@ const Login = () => {
                         <option value='receptionist'>Receptionist</option>
                       </select>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className='sm:flex sm:items-center sm:justify-between items-center p-1'>
-                    <div className='flex items-center'>
+                    {/* <div className='flex items-center'>
                       <input
                         id='remember-me'
                         name='remember-me'
@@ -195,7 +195,7 @@ const Login = () => {
                       >
                         Remember me
                       </label>
-                    </div>
+                    </div> */}
 
                     <div className='text-sm mt-5 sm:mt-0'>
                       {" "}

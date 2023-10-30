@@ -8,12 +8,14 @@ import {
 } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Navigation";
-const getURL = process.env.REACT_APP_API+"/";
+import { useUser } from "../Contexts/UserContext";
+const getURL = process.env.REACT_APP_API + "/";
 
 function Appointments() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [appointments, setAppointments] = useState([]);
   const [all, setAll] = useState([]);
+  const { user } = useUser();
   const nav = useNavigate();
 
   const insert = () => {
@@ -132,12 +134,15 @@ function Appointments() {
                                     >
                                       Date
                                     </th>
-                                    <th
-                                      scope='col'
-                                      className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
-                                    >
-                                      Treatment
-                                    </th>
+                                    {user.role === "doctor" || user.role === "admin" ?
+                                      (<th
+                                        scope='col'
+                                        className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
+                                      >
+                                        Treatment
+                                      </th>) : (<></>)
+                                    }
+
                                   </tr>
                                 </thead>
                                 <tbody className='bg-white'>
@@ -167,22 +172,42 @@ function Appointments() {
                                       <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
                                         {app.timestamp}
                                       </td>
-                                      <td className='relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
-                                        <button
-                                          key={app._id}
-                                          onClick={(e) => {
-                                            e.preventDefault();
-                                            nav(`/treatment/${app._id}`, {
-                                              state: { app },
-                                            });
-                                          }}
-                                        >
-                                          <IdentificationIcon
-                                            className='h-5 w-5  text-blue-500 '
-                                            aria-hidden='true'
-                                          />
-                                        </button>
-                                      </td>
+                                      {user.role === "doctor" ?
+
+                                        (<td className='relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
+                                          <button
+                                            key={app._id}
+                                            onClick={(e) => {
+                                              e.preventDefault();
+                                              nav(`/treatment/${app._id}`, {
+                                                state: { app },
+                                              });
+                                            }}
+                                          >
+                                            <IdentificationIcon
+                                              className='h-5 w-5  text-blue-500 '
+                                              aria-hidden='true'
+                                            />
+                                          </button>
+                                        </td>) : (user.role === "admin" ?
+                                          (<td className='relative text-blue-500 whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-6'>
+                                            <button
+                                              key={app._id}
+                                              onClick={(e) => {
+                                                e.preventDefault();
+                                                nav(`/treatment/${app._id}`, {
+                                                  state: { app },
+                                                });
+                                              }}
+                                            >
+                                              <IdentificationIcon
+                                                className='h-5 w-5  text-blue-500 '
+                                                aria-hidden='true'
+                                              />
+                                            </button>
+                                          </td>) : (console.log(user.role))    
+                                        )
+                                      }
                                     </tr>
                                   ))) : (<></>)}
                                 </tbody>
@@ -197,8 +222,8 @@ function Appointments() {
               </div>
             </div>
           </div>
-        </main>
-      </div>
+        </main >
+      </div >
     </>
   );
 }
