@@ -24,7 +24,7 @@ const Forget = () => {
       axios.defaults.baseURL = process.env.REACT_APP_API;
       setLoading(true);
       const resp = await axios.post("/user/forgetpassword", {
-        email: document.getElementById("email").value,
+        email,
       });
 
       if (resp.status == 200) {
@@ -68,25 +68,25 @@ const Forget = () => {
           <Toaster />
           <div className='Heading'>
             <img
-              className='sm:m-auto mt-2 m-auto h-[70px] w-auto sm:mt-2 sm:h-[70px] sm:w-auto sm:mix-blend-multiply rounded-md'
+              className="sm:m-auto mt-2 m-auto h-[70px] w-auto sm:mt-2 sm:h-[70px] sm:w-auto sm:mix-blend-multiply rounded-md"
               src={Logo}
-              alt='Your Company'
+              alt="Your Company"
             />
-            <div className='font-bold md:mt-2 sm:mt-2 mt-3 text-center md:font-bold sm:font-bold sm:text-3xl md:text-3xl text-3xl'>
+            <div className="font-bold md:mt-2 sm:mt-2 mt-3 text-center md:font-bold sm:font-bold sm:text-3xl md:text-3xl text-3xl">
               Request for new Password
             </div>
           </div>
-          <div className=' sm:mx-auto sm:w-full sm:max-w-md'>
-            <div className='bg-transparent py-8 sm:rounded-lg sm:px-10'>
-              <form className='space-y-6' method='POST'>
+          <div className=" sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="bg-transparent py-8 sm:rounded-lg sm:px-10">
+              <form className="space-y-6" method="POST">
                 <div>
                   <label
-                    htmlFor='email'
-                    className='block text-md font-medium text-gray-700'
+                    htmlFor="email"
+                    className="block text-md font-medium text-gray-700"
                   >
                     Email
                   </label>
-                  <div className='mt-1'>
+                  <div className="mt-1">
                     <input
                       id='email'
                       name='email'
