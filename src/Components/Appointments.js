@@ -8,9 +8,10 @@ import {
 } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Navigation";
-const getURL = "http://localhost:4000/";
+const getURL = process.env.REACT_APP_API+"/";
 
 function Appointments() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [appointments, setAppointments] = useState([]);
   const [all, setAll] = useState([]);
   const nav = useNavigate();

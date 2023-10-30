@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../Images/logo.png";
+import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +12,7 @@ const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [roleError, setRoleError] = useState("");
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -65,12 +68,48 @@ const SignUp = () => {
       setShowErrorMessage(true);
       return;
     }
+    // fetch call to backend
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API}/user/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: userName, email, password, role: Role }),
+      });
+      if (response.status === 201) {
+        handleShowToast("User added successfully", "success");
+        // navigate to previous page
+        navigate("/");
+      } else {
+        handleShowToast("User already exists", "error");
+      }
+    } catch (error) {
+      handleShowToast(error.message, "error");
+    }
+  };
+
+  const handleShowToast = (message, type) => {
+    if (type === "error") {
+      toast.error(message, {
+        position: "bottom-center",
+        duration: 3000,
+      });
+      return;
+    } else if (type === "success") {
+      toast.success(message, {
+        position: "bottom-center",
+        duration: 3000,
+      });
+      return;
+    }
   };
 
   return (
     <>
       <div className='Background bg-slate-400 bg-cover relative h-screen'>
         <div className='flex justify-center items-center h-full'>
+          <Toaster />
           <div className='Card bg-slate-300 flex flex-col justify-center m-auto items-center w-4/5 sm:h-auto sm:w-2/5 shadow-custom6 drop-shadow-md sm:py-2 py-2 sm:px-6 lg:px-8 backdrop-blur-md rounded-2xl'>
             <div className='sm:mx-auto sm:w-full sm:max-w-md mix-blend-multiply'>
               <img
